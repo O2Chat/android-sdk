@@ -156,7 +156,7 @@
                             android:ellipsize="end"
                             android:visibility="visible"
                             android:maxWidth="150dp"
-                            android:textSize="15dp"
+                            android:textSize="12dp"
                             android:layout_marginEnd="8dp"
                             tools:ignore="RtlCompat" />
 
