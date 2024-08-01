@@ -17,7 +17,7 @@ allprojects {
 App Module gradle file **(app/build.gradle)** 
 ```
 dependencies {
-	implementation 'com.github.O2Chat:android-sdk:3cc9701424'
+	implementation 'com.github.O2Chat:android-sdk:1.0.0'
 }
 ```
 
