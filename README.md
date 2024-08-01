@@ -1,5 +1,7 @@
 ## O2Chat Android SDK
 
+[![](https://jitpack.io/v/O2Chat/android-sdk.svg)](https://jitpack.io/#O2Chat/android-sdk)
+
 ## First time integration 
 ### [Integration Guide](https://support.o2chat.com/support/solutions/articles/50000000207)
 
