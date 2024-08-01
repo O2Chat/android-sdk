@@ -147,6 +147,7 @@ import retrofit2.Response;
  */
 
 public class ConversationsDetailFragment extends Fragment{
+
     ScheduledExecutorService scheduler;
     ArrayList<ConversationByUID> conversationByUIDArrayListIdZero;
     Handler handlerResend;
@@ -2310,8 +2311,7 @@ public class ConversationsDetailFragment extends Fragment{
                 if (isFileAttach){
                     Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                     intent.addCategory(Intent.CATEGORY_OPENABLE);
-                    String [] mimeTypes = {"image/*"};
-//                    String [] mimeTypes = {"image/*","application/msword","application/doc","application/docx", "application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"};
+                    String [] mimeTypes = {"image/*","application/msword","application/doc","application/docx", "application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"};
                     intent.setType("*/*");
                     intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
                     intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
