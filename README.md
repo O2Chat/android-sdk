@@ -1,7 +1,7 @@
-## Freshchat Android SDK
+## O2Chat Android SDK
 
 ## First time integration 
-### [Integration Guide](https://support.freshchat.com/support/solutions/articles/50000000207)
+### [Integration Guide](https://support.o2chat.com/support/solutions/articles/50000000207)
 
 #### Quick Steps
 Project gradle file **build.gradle**
