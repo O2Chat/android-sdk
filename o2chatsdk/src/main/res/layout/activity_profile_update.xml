@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.o2chatsdk.activities.SplashActivityCHat">
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical"-->
+<!--        android:weightSum="1">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_weight="0.2"-->
+<!--            android:background="@color/purple_200">-->
+
+
+<!--        </LinearLayout>-->
+
+
+
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical"-->
+<!--        android:weightSum="1">-->
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imgBackArrow"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:src="@drawable/ic_arrow_white"-->
+<!--                android:backgroundTint="@color/white"/>-->
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/rlUserDetial"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="130dp"-->
+<!--                android:layout_marginTop="40dp"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginEnd="20dp">-->
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:layout_marginTop="@dimen/_10sdp"-->
+<!--                    android:layout_marginEnd="@dimen/_10sdp"-->
+<!--                    android:layout_marginBottom="@dimen/_10sdp"-->
+<!--                    app:cardBackgroundColor="@color/white"-->
+<!--                    app:cardElevation="10dp">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/txtUsername"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_centerInParent="true"-->
+<!--                            android:layout_marginTop="25dp"-->
+<!--                            android:gravity="center"-->
+<!--                            android:maxLines="1"-->
+<!--                            android:text="Bhom Singh"-->
+<!--                            android:layout_gravity="center_horizontal"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="@dimen/_12sdp"-->
+<!--                            android:textStyle="bold" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/txtAddress"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_marginTop="@dimen/_3sdp"-->
+<!--                            android:gravity="center"-->
+<!--                            android:maxLines="1"-->
+<!--                            android:text="Address:plat no 6 umerkot Sindh "-->
+<!--                            android:layout_gravity="center_horizontal"-->
+<!--                            android:textColor="@color/system_text_color"-->
+<!--                            android:textSize="@dimen/_10sdp"-->
+<!--                            android:textStyle="bold" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/txtEmailAddress"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_marginTop="@dimen/_3sdp"-->
+<!--                            android:gravity="center"-->
+<!--                            android:maxLines="1"-->
+<!--                            android:text="bhomsingh418@gmail.com"-->
+<!--                            android:layout_gravity="center_horizontal"-->
+<!--                            android:textColor="@color/system_text_color"-->
+<!--                            android:textSize="@dimen/_10sdp"-->
+<!--                            android:textStyle="bold" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/txtMobileNo"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_marginTop="@dimen/_3sdp"-->
+<!--                            android:gravity="center"-->
+<!--                            android:maxLines="1"-->
+<!--                            android:text="+923452689370"-->
+<!--                            android:layout_gravity="center_horizontal"-->
+<!--                            android:textColor="@color/system_text_color"-->
+<!--                            android:textSize="10dp"-->
+<!--                            android:textStyle="bold" />-->
+
+<!--                    </LinearLayout>-->
+
+<!--                </androidx.cardview.widget.CardView>-->
+
+<!--            </RelativeLayout>-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="@dimen/_50sdp"-->
+<!--                android:layout_height="@dimen/_50sdp"-->
+<!--                android:layout_marginTop="@dimen/_15sdp"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:elevation="5dp"-->
+<!--                android:background="@drawable/user_background">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/txtNameFirstLetter"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_centerInParent="true"-->
+<!--                    android:layout_marginStart="@dimen/_2sdp"-->
+<!--                    android:layout_marginTop="@dimen/_2sdp"-->
+<!--                    android:layout_marginEnd="@dimen/_2sdp"-->
+<!--                    android:layout_marginBottom="@dimen/_2sdp"-->
+<!--                    android:gravity="center"-->
+<!--                    android:maxLines="1"-->
+<!--                    android:text="B"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="@dimen/_15sdp"-->
+<!--                    android:textStyle="bold" />-->
+
+<!--            </RelativeLayout>-->
+
+<!--&lt;!&ndash;            <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_below="@+id/rlUserDetial"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:orientation="vertical">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:orientation="horizontal"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:weightSum="1">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_weight="0.5"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginTop="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginStart="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:maxLines="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="Create On"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textColor="@color/system_text_color"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textSize="@dimen/_12sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textStyle="bold" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_weight="0.5"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginTop="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginStart="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:maxLines="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="User Detail"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textColor="@color/system_text_color"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textSize="@dimen/_12sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textStyle="bold" />&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;                </LinearLayout>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:orientation="horizontal"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginTop="@dimen/_10sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:weightSum="1">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_weight="0.5"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginTop="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginStart="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:maxLines="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="Create On"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textColor="@color/system_text_color"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textSize="@dimen/_12sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textStyle="bold" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_weight="0.5"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginTop="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginStart="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:maxLines="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="User Detail"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textColor="@color/system_text_color"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textSize="@dimen/_12sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textStyle="bold" />&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;                </LinearLayout>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:orientation="horizontal"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginTop="10dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:weightSum="1">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_weight="0.5"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginTop="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginStart="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:maxLines="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="Create On"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textColor="@color/system_text_color"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textSize="@dimen/_12sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textStyle="bold" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_weight="0.5"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginTop="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginStart="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:maxLines="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="User Detail"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textColor="@color/system_text_color"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textSize="@dimen/_12sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textStyle="bold" />&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;                </LinearLayout>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:orientation="horizontal"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginTop="@dimen/_10sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:weightSum="1">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_weight="0.5"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginTop="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginStart="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:maxLines="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="Create On"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textColor="@color/system_text_color"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textSize="@dimen/_12sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textStyle="bold" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_weight="0.5"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginTop="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginStart="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:maxLines="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="User Detail"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textColor="@color/system_text_color"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textSize="@dimen/_12sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textStyle="bold" />&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;                </LinearLayout>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:orientation="horizontal"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginTop="@dimen/_10sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:weightSum="1">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_weight="0.5"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginTop="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginStart="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:maxLines="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="Create On"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textColor="@color/system_text_color"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textSize="@dimen/_12sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textStyle="bold" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_weight="0.5"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginTop="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginStart="@dimen/_5sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:maxLines="1"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:text="User Detail"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textColor="@color/system_text_color"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textSize="@dimen/_12sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:textStyle="bold" />&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;                </LinearLayout>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            </LinearLayout>&ndash;&gt;-->
+
+<!--        </RelativeLayout>-->
+
+
+
+
+<!--    </LinearLayout>-->
+
+</RelativeLayout>

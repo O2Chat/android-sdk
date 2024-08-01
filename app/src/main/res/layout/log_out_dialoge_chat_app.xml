@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/round_border_rectangle"
+    android:layout_margin="@dimen/_20sdp"
+    android:paddingRight="@dimen/_10sdp"
+    android:paddingLeft="@dimen/_10sdp">
+
+<!--    <com.wang.avi.AVLoadingIndicatorView-->
+<!--        android:id="@+id/progressBar"-->
+<!--        style="@style/AVLoadingIndicatorView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:visibility="gone"-->
+<!--        app:indicatorColor="@color/purple_200"-->
+<!--        app:indicatorName="BallScaleMultipleIndicator" />-->
+
+    <ImageView
+        android:id="@+id/alert_icon"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:src="@drawable/ic_info_blue" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/alert_icon"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:gravity="center_horizontal"
+        android:text=""
+        android:textSize="16sp" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ok_btn"
+            android:layout_below="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Yes"
+            android:gravity="fill_vertical"
+            android:textAllCaps="false"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/white"
+            android:paddingStart="@dimen/_20sdp"
+            android:paddingEnd="@dimen/_20sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/bg_buttons"
+            android:textAlignment="center"
+            />
+
+</RelativeLayout>
+
+
+
+

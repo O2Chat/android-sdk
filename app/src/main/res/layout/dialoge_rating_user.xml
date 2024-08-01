@@ -1,0 +1,108 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_border_feedback"
+    android:layout_margin="@dimen/_20sdp"
+    android:paddingRight="@dimen/_10sdp"
+    android:paddingLeft="@dimen/_10sdp">
+
+<!--    <com.wang.avi.AVLoadingIndicatorView-->
+<!--        android:id="@+id/progressBar"-->
+<!--        style="@style/AVLoadingIndicatorView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:visibility="gone"-->
+<!--        app:indicatorColor="@color/purple_200"-->
+<!--        app:indicatorName="BallScaleMultipleIndicator" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center_horizontal"
+            android:text="@string/lbl_please_rate_us"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <RatingBar
+            android:id="@+id/simpleRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rating="0"
+            android:isIndicator="false"
+            android:layout_gravity="center"
+            android:progressTint="@color/blue_color"
+            android:secondaryProgressTint="@color/blue_color"
+            android:numStars="5"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:stepSize="1"/>
+
+        <EditText
+            android:inputType="text"
+            android:id="@+id/editFeedBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:hint="@string/lbl_please_enter_feedback"
+            android:paddingStart="@dimen/_5sdp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            >
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSkip"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_18sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/bg_buttons_no"
+                android:gravity="center"
+                android:hint="@string/skip"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:textColorHint="@color/black"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSubmit"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_18sdp"
+                android:background="@drawable/bg_buttons_select"
+                android:gravity="center"
+                android:hint="@string/submit"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:textColorHint="@color/white"
+                tools:ignore="TouchTargetSizeCheck" />
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</RelativeLayout>
