@@ -1,14 +1,30 @@
-# SDK O2Chat
-> Step 1. Add the JitPack repository to your build file
-,,,gradle
-repositories {
-		mavenCentral()
-	maven { url 'https://jitpack.io' }
+## Freshchat Android SDK
+
+## First time integration 
+### [Integration Guide](https://support.freshchat.com/support/solutions/articles/50000000207)
+
+#### Quick Steps
+Project gradle file **build.gradle**
+```
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
 }
-,,,
-> Step 2. Add the dependency
-,,,gradle
+```
+
+App Module gradle file **(app/build.gradle)** 
+```
 dependencies {
-  implementation 'com.github.BhomSingh:wight_imp_create_sdk:Tag'
+    	dependencies {
+	        implementation 'com.github.O2Chat:android-sdk:3cc9701424'
 }
-,,, 
+```
+
+## Updating to newer versions of SDK
+### [Changelog](https://github.com/02chat/android-sdk/blob/master/CHANGELOG.md)
+
+
+## Contact us
+For any issues, queries or feature request, please reach out to us through support@02chat.com
