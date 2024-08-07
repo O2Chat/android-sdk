@@ -4,7 +4,7 @@ public class Constants {
 
     // CHAT HUB CONNECTION URL
     public static String ChatHubUrl = "http://175.107.196.226:5003/";
-//    public static String ChatHubUrl = "https://bb36-202-47-59-83.ngrok-free.app/";
+//    public static String ChatHubUrl = "https://3c82-202-47-59-83.ngrok-free.app/";
 
     // SELECTED MENU KEYS OR MENU NAMES
     public static String RESOLVED = "2";

@@ -13,8 +13,9 @@ import com.example.o2chatsdk.databinding.FragmentFilePreviewBinding;
 import com.example.o2chatsdk.fragments.ConversationsDetailFragment;
 import com.example.o2chatsdk.model.chat.selectedFilePreviewData;
 
+import com.example.signalrtestandroid.commons.KeyboardVisibilityUtils;
 import com.vanniktech.emoji.EmojiPopup;
-import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
+//import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 
 import java.util.ArrayList;
 
@@ -58,13 +59,23 @@ public class SelectFilePreviewActivity extends AppCompatActivity {
             popup.dismiss();
         });
 
-        KeyboardVisibilityEvent.setEventListener(SelectFilePreviewActivity.this, isOpen -> {
+//        KeyboardVisibilityEvent.setEventListener(SelectFilePreviewActivity.this, isOpen -> {
+//            if (isOpen){
+//                binding.ivSmile.setVisibility(View.GONE);
+//                binding.ivKeyboard.setVisibility(View.VISIBLE);
+//            } else{
+//                binding.ivSmile.setVisibility(View.VISIBLE);
+//                binding.ivKeyboard.setVisibility(View.GONE);
+//            }
+//        });
+
+        // Set keyboard visibility listener
+        KeyboardVisibilityUtils.setKeyboardVisibilityListener(this, isOpen -> {
             if (isOpen){
                 binding.ivSmile.setVisibility(View.GONE);
                 binding.ivKeyboard.setVisibility(View.VISIBLE);
-            } else{
+            } else {
                 binding.ivSmile.setVisibility(View.VISIBLE);
-                binding.ivKeyboard.setVisibility(View.GONE);
             }
         });
 

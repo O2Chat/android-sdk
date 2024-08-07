@@ -88,7 +88,7 @@
             android:exported="true"/>
 
         <service
-            android:name="com.example.signalrtestandroid.push.MyFirebaseMessagingService"
+            android:name=".push.MyFirebaseMessagingService"
             android:enabled="true"
             android:exported="false">
             <intent-filter>

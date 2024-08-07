@@ -55,8 +55,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         commons.saveDeviceToken(getApplicationContext(),token);
                         commons.saveFcmToken(getApplicationContext(),token);
                     }
+
+
                     // Log and toast
-                    //Log.d("FCM:", token);
+                    Log.d("FCM:", token);
         });
     }
 
@@ -236,6 +238,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             commons.saveDeviceToken(getApplicationContext(),token);
             commons.saveFcmToken(getApplicationContext(),token);
         }
-    }
 
+        // Log and toast
+        Log.d("FCM:", token);
+    }
 }

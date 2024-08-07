@@ -88,12 +88,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Common {
+
 //        new Gson().toJson(commons.getAlertLoginBanner(LoginActivity.this))
     private static final int SECOND_MILLIS = 1000;
     private static final int MINUTE_MILLIS = 60 * SECOND_MILLIS;
     private static final int HOUR_MILLIS = 60 * MINUTE_MILLIS;
     private static final int DAY_MILLIS = 24 * HOUR_MILLIS;
-
 
     // is isValidate Foreign Assets Wealth Statement
     public boolean isValidateConversationFeedBackDialog(Context applicationContext, RatingBar ratingBar)
@@ -864,7 +864,7 @@ public class Common {
 
     public String getCustomerEmail(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("saveCustomerEmail", MODE_PRIVATE);
-        String TaxFormString = prefs.getString("CustomerEmailAddress", "aqeel111@gmail.com");
+        String TaxFormString = prefs.getString("CustomerEmailAddress", "bhom.test@yahoo.com");
         return TaxFormString;
     }
 

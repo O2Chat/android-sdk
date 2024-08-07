@@ -72,6 +72,7 @@ import com.example.signalrtestandroid.adapters.TopicListAdapter;
 import com.example.signalrtestandroid.commons.Common;
 import com.example.signalrtestandroid.commons.Constants;
 import com.example.signalrtestandroid.commons.FileUtil;
+import com.example.signalrtestandroid.commons.KeyboardVisibilityUtils;
 import com.example.signalrtestandroid.commons.PaginationScrollListener;
 import com.example.signalrtestandroid.commons.PermissionHelper;
 import com.example.signalrtestandroid.commons.Utils;
@@ -114,7 +115,7 @@ import com.vanniktech.emoji.EmojiManager;
 import com.vanniktech.emoji.EmojiPopup;
 import com.vanniktech.emoji.google.GoogleEmojiProvider;
 
-import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
+//import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -482,7 +483,18 @@ public class ConversationsDetailFragment extends Fragment{
         LinearLayoutManager layoutManagerList = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
         fragmentConversationsBinding.rvConversationList.setLayoutManager(layoutManagerList);
 
-        KeyboardVisibilityEvent.setEventListener(getActivity(), isOpen -> {
+//        KeyboardVisibilityEvent.setEventListener(getActivity(), isOpen -> {
+//            if (isOpen){
+//                fragmentConversationsBinding.ivSmile.setVisibility(View.GONE);
+//                fragmentConversationsBinding.ivKeyboard.setVisibility(View.VISIBLE);
+//            } else{
+//                fragmentConversationsBinding.ivSmile.setVisibility(View.VISIBLE);
+//                fragmentConversationsBinding.ivKeyboard.setVisibility(View.GONE);
+//            }
+//        });
+
+        // Set keyboard visibility listener
+        KeyboardVisibilityUtils.setKeyboardVisibilityListener(getActivity(), isOpen -> {
             if (isOpen){
                 fragmentConversationsBinding.ivSmile.setVisibility(View.GONE);
                 fragmentConversationsBinding.ivKeyboard.setVisibility(View.VISIBLE);
@@ -491,6 +503,7 @@ public class ConversationsDetailFragment extends Fragment{
                 fragmentConversationsBinding.ivKeyboard.setVisibility(View.GONE);
             }
         });
+
 
         fragmentConversationsBinding.ivMenuTopic.setOnClickListener(view12 -> {
             if (!topicArrayList.isEmpty()){

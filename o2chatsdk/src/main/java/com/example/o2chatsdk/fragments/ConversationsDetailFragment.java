@@ -108,6 +108,7 @@ import com.download.library.DownloadListenerAdapter;
 import com.download.library.Extra;
 import com.example.o2chatsdk.R;
 import com.example.o2chatsdk.databinding.FragmentConversationsDetailBinding;
+import com.example.signalrtestandroid.commons.KeyboardVisibilityUtils;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
@@ -116,7 +117,7 @@ import com.vanniktech.emoji.EmojiManager;
 import com.vanniktech.emoji.EmojiPopup;
 import com.vanniktech.emoji.google.GoogleEmojiProvider;
 
-import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
+//import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -495,7 +496,18 @@ public class ConversationsDetailFragment extends Fragment{
         LinearLayoutManager layoutManagerList = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
         fragmentConversationsBinding.rvConversationList.setLayoutManager(layoutManagerList);
 
-        KeyboardVisibilityEvent.setEventListener(getActivity(), isOpen -> {
+//        KeyboardVisibilityEvent.setEventListener(getActivity(), isOpen -> {
+//            if (isOpen){
+//                fragmentConversationsBinding.ivSmile.setVisibility(View.GONE);
+//                fragmentConversationsBinding.ivKeyboard.setVisibility(View.VISIBLE);
+//            } else{
+//                fragmentConversationsBinding.ivSmile.setVisibility(View.VISIBLE);
+//                fragmentConversationsBinding.ivKeyboard.setVisibility(View.GONE);
+//            }
+//        });
+
+        // Set keyboard visibility listener
+        KeyboardVisibilityUtils.setKeyboardVisibilityListener(getActivity(), isOpen -> {
             if (isOpen){
                 fragmentConversationsBinding.ivSmile.setVisibility(View.GONE);
                 fragmentConversationsBinding.ivKeyboard.setVisibility(View.VISIBLE);
