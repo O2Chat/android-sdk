@@ -58,24 +58,13 @@ public class SelectFilePreviewActivity extends AppCompatActivity {
             popup.dismiss();
         });
 
-//        KeyboardVisibilityEvent.setEventListener(SelectFilePreviewActivity.this, isOpen -> {
-//            if (isOpen){
-//                binding.ivSmile.setVisibility(View.GONE);
-//                binding.ivKeyboard.setVisibility(View.VISIBLE);
-//            } else{
-//                binding.ivSmile.setVisibility(View.VISIBLE);
-//                binding.ivKeyboard.setVisibility(View.GONE);
-//            }
-//        });
-
         // Set keyboard visibility listener
         KeyboardVisibilityUtils.setKeyboardVisibilityListener(this, isOpen -> {
             if (isOpen){
                 binding.ivSmile.setVisibility(View.GONE);
                 binding.ivKeyboard.setVisibility(View.VISIBLE);
-            } else{
+            } else {
                 binding.ivSmile.setVisibility(View.VISIBLE);
-                binding.ivKeyboard.setVisibility(View.GONE);
             }
         });
 
@@ -127,6 +116,7 @@ public class SelectFilePreviewActivity extends AppCompatActivity {
             ConversationsDetailFragment.sendFileAfterPreview = sendFileAfterPreview;
             MainActivityChat.isPause = true;
             finish();
+
         });
     }
 
@@ -146,7 +136,7 @@ public class SelectFilePreviewActivity extends AppCompatActivity {
 
         if (currentPage >=0 &&  currentPage <= binding.ViewPagerSlider.getAdapter().getCount()) {
             if (receivedList.get(selectCurrentPage).getMessage() != null && !receivedList.get(selectCurrentPage).getMessage().isEmpty()) {
-                    binding.edtMessage.setText(receivedList.get(selectCurrentPage).getMessage());
+                binding.edtMessage.setText(receivedList.get(selectCurrentPage).getMessage());
             }else{
                 binding.edtMessage.setText("");
             }

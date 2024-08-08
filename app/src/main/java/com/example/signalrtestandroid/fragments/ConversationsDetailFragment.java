@@ -1,4 +1,5 @@
 package com.example.signalrtestandroid.fragments;
+
 import static com.example.signalrtestandroid.commons.Constants.COLOR_CODE_KEY;
 import static com.example.signalrtestandroid.commons.Constants.HIDE_TOOLBAR;
 import static com.example.signalrtestandroid.commons.Constants.NAME_KEY;
@@ -62,6 +63,7 @@ import com.example.signalrtestandroid.Events.chatEvents.SendNewChatEvent;
 import com.example.signalrtestandroid.Events.chatEvents.SendNewChatResponseEvent;
 import com.example.signalrtestandroid.Events.chatEvents.SendTypingIndicatorResponse;
 import com.example.signalrtestandroid.Events.chatEvents.TopicSelectEvent;
+
 import com.example.signalrtestandroid.activities.MainActivityChat;
 import com.example.signalrtestandroid.activities.SelectFilePreviewActivity;
 import com.example.signalrtestandroid.adapters.ConversationsByUIListAdapter;
@@ -72,7 +74,9 @@ import com.example.signalrtestandroid.adapters.TopicListAdapter;
 import com.example.signalrtestandroid.commons.Common;
 import com.example.signalrtestandroid.commons.Constants;
 import com.example.signalrtestandroid.commons.FileUtil;
-import com.example.signalrtestandroid.commons.KeyboardVisibilityUtils;
+
+
+import com.example.signalrtestandroid.commons.ImageCompressor;
 import com.example.signalrtestandroid.commons.PaginationScrollListener;
 import com.example.signalrtestandroid.commons.PermissionHelper;
 import com.example.signalrtestandroid.commons.Utils;
@@ -107,6 +111,7 @@ import com.download.library.DownloadListenerAdapter;
 import com.download.library.Extra;
 import com.example.signalrtestandroid.R;
 import com.example.signalrtestandroid.databinding.FragmentConversationsDetailBinding;
+import com.example.signalrtestandroid.commons.KeyboardVisibilityUtils;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
@@ -146,6 +151,7 @@ import retrofit2.Response;
  */
 
 public class ConversationsDetailFragment extends Fragment{
+
     ScheduledExecutorService scheduler;
     ArrayList<ConversationByUID> conversationByUIDArrayListIdZero;
     Handler handlerResend;
@@ -259,7 +265,7 @@ public class ConversationsDetailFragment extends Fragment{
         customerEmail = common.getCustomerEmail(mContext);
         conversationByUID = common.getConversationUUId(mContext);
 
-        if (common != null){
+        if (common!=null){
             cusId = common.getCustomerID(mContext);
         }
 
@@ -298,7 +304,9 @@ public class ConversationsDetailFragment extends Fragment{
 
         loadLocalMessages();
 
-        fragmentConversationsBinding.menuClick.setOnClickListener(v -> {
+        // getConversationByUID(isLocalChatLoaded,pageNumber,pageSize,common.getConversationUUId(mContext),cusId,false);
+
+        fragmentConversationsBinding.ivImageMenu.setOnClickListener(v -> {
             EventBus.getDefault().post(new MessageEvent("SwitchToConversationList"));
         });
 
@@ -329,32 +337,32 @@ public class ConversationsDetailFragment extends Fragment{
 
         fragmentConversationsBinding.ivAudioRecord.setOnClickListener(view113 -> {
 
-                // Check and request RECORD_AUDIO permission
-                ArrayList<String> permissionList = new ArrayList<>();
-                permissionList.add(Manifest.permission.RECORD_AUDIO);
-                permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
-                PermissionHelper.grantMultiplePermissions(getContext(), permissionList, new PermissionHelper.PermissionInterface() {
-                    @Override
-                    public void onSuccess() {
-                        // Assuming fragmentConversationsBinding is of type FragmentConversationsBinding
-                        if (fragmentConversationsBinding.lnAudioRecording.getVisibility() == View.VISIBLE) {
-                            // The layout is visible, handle it accordingly
-                            fragmentConversationsBinding.lnAudioRecording.setVisibility(View.GONE);
-                        } else {
-                            // The layout is not visible, handle it accordingly
-                            startRecording();
-                            fragmentConversationsBinding.lnAudioRecording.setVisibility(View.VISIBLE);
+            // Check and request RECORD_AUDIO permission
+            ArrayList<String> permissionList = new ArrayList<>();
+            permissionList.add(Manifest.permission.RECORD_AUDIO);
+            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            PermissionHelper.grantMultiplePermissions(getContext(), permissionList, new PermissionHelper.PermissionInterface() {
+                @Override
+                public void onSuccess() {
+                    // Assuming fragmentConversationsBinding is of type FragmentConversationsBinding
+                    if (fragmentConversationsBinding.lnAudioRecording.getVisibility() == View.VISIBLE) {
+                        // The layout is visible, handle it accordingly
+                        fragmentConversationsBinding.lnAudioRecording.setVisibility(View.GONE);
+                    } else {
+                        // The layout is not visible, handle it accordingly
+                        startRecording();
+                        fragmentConversationsBinding.lnAudioRecording.setVisibility(View.VISIBLE);
 
-                            fragmentConversationsBinding.edtMessage.setEnabled(false);
-                        }
+                        fragmentConversationsBinding.edtMessage.setEnabled(false);
                     }
+                }
 
-                    @Override
-                    public void onError() {
-                        fragmentConversationsBinding.edtMessage.setEnabled(true);
-                    }
-                });
+                @Override
+                public void onError() {
+                    fragmentConversationsBinding.edtMessage.setEnabled(true);
+                }
+            });
         });
 
         fragmentConversationsBinding.ivStop.setOnClickListener(view114 -> {
@@ -473,6 +481,7 @@ public class ConversationsDetailFragment extends Fragment{
             fragmentConversationsBinding.ivKeyboard.setVisibility(View.VISIBLE);
             popup.toggle();
         });
+
         fragmentConversationsBinding.ivKeyboard.setOnClickListener(v -> {
             fragmentConversationsBinding.ivKeyboard.setVisibility(View.GONE);
             fragmentConversationsBinding.ivSmile.setVisibility(View.VISIBLE);
@@ -504,16 +513,12 @@ public class ConversationsDetailFragment extends Fragment{
             }
         });
 
-
         fragmentConversationsBinding.ivMenuTopic.setOnClickListener(view12 -> {
             if (!topicArrayList.isEmpty()){
                 LoadTopics();
             }
         });
 
-        /**
-         * add scroll listener while user reach in bottom load more will call
-         */
         fragmentConversationsBinding.rvConversations.addOnScrollListener(new PaginationScrollListener(mLayoutManager) {
             @Override
             protected void loadMoreItems() {
@@ -529,6 +534,7 @@ public class ConversationsDetailFragment extends Fragment{
                     isLastPage = true;
                 }
             }
+
             @Override
             public boolean isLastPage() {
                 return isLastPage;
@@ -545,32 +551,32 @@ public class ConversationsDetailFragment extends Fragment{
 
         fragmentConversationsBinding.ivAudioRecord.setOnClickListener(view113 -> {
 
-                // Check and request RECORD_AUDIO permission
-                ArrayList<String> permissionList = new ArrayList<>();
-                permissionList.add(Manifest.permission.RECORD_AUDIO);
-                permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
-                PermissionHelper.grantMultiplePermissions(getContext(), permissionList, new PermissionHelper.PermissionInterface() {
-                    @Override
-                    public void onSuccess() {
-                        // Assuming fragmentConversationsBinding is of type FragmentConversationsBinding
-                        if (fragmentConversationsBinding.lnAudioRecording.getVisibility() == View.VISIBLE) {
-                            // The layout is visible, handle it accordingly
-                            fragmentConversationsBinding.lnAudioRecording.setVisibility(View.GONE);
-                        } else {
-                            // The layout is not visible, handle it accordingly
-                            startRecording();
-                            fragmentConversationsBinding.lnAudioRecording.setVisibility(View.VISIBLE);
+            // Check and request RECORD_AUDIO permission
+            ArrayList<String> permissionList = new ArrayList<>();
+            permissionList.add(Manifest.permission.RECORD_AUDIO);
+            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            PermissionHelper.grantMultiplePermissions(getContext(), permissionList, new PermissionHelper.PermissionInterface() {
+                @Override
+                public void onSuccess() {
+                    // Assuming fragmentConversationsBinding is of type FragmentConversationsBinding
+                    if (fragmentConversationsBinding.lnAudioRecording.getVisibility() == View.VISIBLE) {
+                        // The layout is visible, handle it accordingly
+                        fragmentConversationsBinding.lnAudioRecording.setVisibility(View.GONE);
+                    } else {
+                        // The layout is not visible, handle it accordingly
+                        startRecording();
+                        fragmentConversationsBinding.lnAudioRecording.setVisibility(View.VISIBLE);
 
-                            fragmentConversationsBinding.edtMessage.setEnabled(false);
-                        }
+                        fragmentConversationsBinding.edtMessage.setEnabled(false);
                     }
+                }
 
-                    @Override
-                    public void onError() {
-                        fragmentConversationsBinding.edtMessage.setEnabled(true);
-                    }
-                });
+                @Override
+                public void onError() {
+                    fragmentConversationsBinding.edtMessage.setEnabled(true);
+                }
+            });
         });
 
 
@@ -830,7 +836,6 @@ public class ConversationsDetailFragment extends Fragment{
 
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -876,10 +881,10 @@ public class ConversationsDetailFragment extends Fragment{
                         }
                     }
 
-                     for (int i=0;i<arrayListData.size();i++){
+                    for (int i=0;i<arrayListData.size();i++){
                         for (int j=0;j<fileUploadArrayList.size();j++){
                             if (fileUploadArrayList.get(j).getTempChatID().equalsIgnoreCase(arrayListData.get(i).getTempChatID())){
-                               UploadFilesDataModel uploadFilesData1 = new UploadFilesDataModel();
+                                UploadFilesDataModel uploadFilesData1 = new UploadFilesDataModel();
                                 uploadFilesData1.setCaption(arrayListData.get(i).getMessage());
                                 uploadFilesData1.setTempChatID(fileUploadArrayList.get(j).getTempChatID());
                                 uploadFilesData1.setFile(fileUploadArrayList.get(j).getFile());
@@ -906,6 +911,7 @@ public class ConversationsDetailFragment extends Fragment{
                 filesNames.clear();
             }
         }
+
     }
 
     public void getConversationByUID(boolean isLocallyLoaded,int pageNumber,int pageSize,String conversationByUUID,long customerId,boolean isCalledFromAssigned) {
@@ -929,7 +935,8 @@ public class ConversationsDetailFragment extends Fragment{
                             conversationByUID = response.body().getResult().get(0).conversationUid;
                             cusId = response.body().getResult().get(0).customerId;
 
-                            EventBus.getDefault().post(new MessageEvent( "startSignalR"));
+                            EventBus.getDefault().post(new com.example.signalrtestandroid.Events.appEvents.MessageEvent( "startSignalR"));
+
                         } else {
                             String uuid = UUID.randomUUID().toString();
                             common.saveConversationUUId(mContext, uuid);
@@ -998,6 +1005,10 @@ public class ConversationsDetailFragment extends Fragment{
                 if (t.getMessage().contains("Failed to connect")){
                     EventBus.getDefault().post(new ReLoadConversationEvent("Reconnecting"));
                 }
+
+                String uuid = UUID.randomUUID().toString();
+                common.saveConversationUUId(mContext, uuid);
+                conversationByUID = uuid;
             }
         });
     }
@@ -1196,16 +1207,16 @@ public class ConversationsDetailFragment extends Fragment{
                 sendMessageModel.fileUrl = "";
 
                 for (int j=0;j<event.multipartBodyPart.size();j++){
-                        if (event.multipartBodyPart.get(j).getTempChatID().equalsIgnoreCase(event.tempChatID)){
-                            UploadFilesDataModel uploadFilesData1 = new UploadFilesDataModel();
-                            uploadFilesData1.setCaption(event.caption);
-                            uploadFilesData1.setTempChatID(event.multipartBodyPart.get(j).getTempChatID());
-                            uploadFilesData1.setFile(event.multipartBodyPart.get(j).getFile());
-                            uploadFilesData1.setConversationUId(event.multipartBodyPart.get(j).getConversationUId());
-                            uploadFilesData1.setFileName(event.multipartBodyPart.get(j).getFileName());
-                            uploadFilesData1.setContentType(event.multipartBodyPart.get(j).getContentType());
-                            event.multipartBodyPart.set(j,uploadFilesData1);
-                        }
+                    if (event.multipartBodyPart.get(j).getTempChatID().equalsIgnoreCase(event.tempChatID)){
+                        UploadFilesDataModel uploadFilesData1 = new UploadFilesDataModel();
+                        uploadFilesData1.setCaption(event.caption);
+                        uploadFilesData1.setTempChatID(event.multipartBodyPart.get(j).getTempChatID());
+                        uploadFilesData1.setFile(event.multipartBodyPart.get(j).getFile());
+                        uploadFilesData1.setConversationUId(event.multipartBodyPart.get(j).getConversationUId());
+                        uploadFilesData1.setFileName(event.multipartBodyPart.get(j).getFileName());
+                        uploadFilesData1.setContentType(event.multipartBodyPart.get(j).getContentType());
+                        event.multipartBodyPart.set(j,uploadFilesData1);
+                    }
                 }
                 uploadFiles(event.multipartBodyPart);
             }
@@ -1681,7 +1692,6 @@ public class ConversationsDetailFragment extends Fragment{
         if (common!=null){
             common.setIsResolved(mContext,false);
         }
-
         if (type.equalsIgnoreCase("file")){
             if(uploadFilesData.size()>0){
                 for (int i=0;i<uploadFilesData.size();i++){
@@ -1693,7 +1703,7 @@ public class ConversationsDetailFragment extends Fragment{
                     sendMessageModel.customerId = cusId ;
                     sendMessageModel.groupId = isTopic ? groupId : 0 ;
                     sendMessageModel.contactNo = customerMobileNumber;
-                    sendMessageModel.name = customerName ;
+                    sendMessageModel.name = customerName;
                     sendMessageModel.cnic = customerCNIC;
                     sendMessageModel.conversationType = type.equalsIgnoreCase("file") ? "multimedia" : "text";
                     sendMessageModel.emailaddress = customerEmail;
@@ -1731,7 +1741,7 @@ public class ConversationsDetailFragment extends Fragment{
             sendMessageModel.tempChatId = tempChatID;
             sendMessageModel.conversationUId = common.getConversationUUId(mContext);
             sendMessageModel.connectionId = common.getConnectionID(mContext);
-            sendMessageModel.customerId = cusId ;
+            sendMessageModel.customerId = cusId;
             sendMessageModel.groupId = isTopic ? groupId : 0 ;
             sendMessageModel.conversationType = type.equalsIgnoreCase("file") ? "multimedia" : "text";
             sendMessageModel.contactNo = customerMobileNumber;
@@ -1745,7 +1755,7 @@ public class ConversationsDetailFragment extends Fragment{
             sendMessageModel.source = "Mobile_Android" ;
             sendMessageModel.isFromWidget = true;
             sendMessageModel.type = type;
-            sendMessageModel.channelid = channelId;
+            sendMessageModel.channelid = common.getChannelID(mContext);
             sendMessageModel.notifyMessage = "";
             sendMessageModel.caption = "";
             sendMessageModel.mobileToken = common.getFcmToken(mContext);
@@ -1754,13 +1764,11 @@ public class ConversationsDetailFragment extends Fragment{
             sendMessageModel.callerAppType = 3;
             sendMessageModel.topicId = topicID;
             sendMessageModel.topicMessage = topicMessage;
-            sendMessageModel.channelid = common.getChannelID(mContext);
             if (type.equalsIgnoreCase("welcomeMessage")){
                 sendMessageModel.isWelcome = true;
             }else{
                 sendMessageModel.isWelcome = false;
             }
-
             EventBus.getDefault().post(new SendNewChatEvent(sendMessageModel, "SendNewChatMessage"));
             if (!type.equalsIgnoreCase("welcomeMessage")){
                 addTempItemToList(sendMessageModel,true);
@@ -2107,31 +2115,31 @@ public class ConversationsDetailFragment extends Fragment{
     public void sendMessage(String caption,Conversation conversation,String type,String txtMessage,ArrayList<UploadFilesData> uploadFilesData, ArrayList<selectedFilePreviewData> arrayListData){
         if (type.equalsIgnoreCase("file")){
             if(uploadFilesData.size()>0){
-                    SendMessageModel sendMessageModel = new SendMessageModel();
-                    sendMessageModel.conversationDetailId = conversation.id;
-                    sendMessageModel.tempChatId = conversation.tempChatId;
-                    sendMessageModel.agentId = conversation.agentId;
-                    sendMessageModel.conversationUid = conversation.conversationUid;
-                    sendMessageModel.conversationId = conversation.conversationUid;
-                    sendMessageModel.customerId = conversation.customerId;
-                    sendMessageModel.message = conversation.files.get(0).documentOriginalName;
-                    sendMessageModel.receiverConnectionId = common.getConnectionID(mContext);
-                    sendMessageModel.receiverName = conversation.customerName;
-                    sendMessageModel.isFromWidget = true;
-                    sendMessageModel.type = type;
-                    sendMessageModel.groupId = conversation.groupId;
-                    sendMessageModel.timestamp = conversation.timestamp;
-                    sendMessageModel.conversationType = type.equalsIgnoreCase("file") ? "multimedia" : "text";
-                    sendMessageModel.documentName = conversation.files.get(0).documentName;
-                    sendMessageModel.documentOrignalname = conversation.files.get(0).documentOriginalName;
-                    sendMessageModel.documentType = conversation.files.get(0).type;
-                    sendMessageModel.fileUrl = conversation.files.get(0).url;
-                    sendMessageModel.icon = "";
-                    sendMessageModel.pageId = "";
-                    sendMessageModel.pageName = "";
-                    sendMessageModel.caption = caption;
-                    sendMessageModel.timezone = "UTC";
-                    EventBus.getDefault().post(new SendChatEvent(sendMessageModel, "SendNewMessage"));
+                SendMessageModel sendMessageModel = new SendMessageModel();
+                sendMessageModel.conversationDetailId = conversation.id;
+                sendMessageModel.tempChatId = conversation.tempChatId;
+                sendMessageModel.agentId = conversation.agentId;
+                sendMessageModel.conversationUid = conversation.conversationUid;
+                sendMessageModel.conversationId = conversation.conversationUid;
+                sendMessageModel.customerId = conversation.customerId;
+                sendMessageModel.message = conversation.files.get(0).documentOriginalName;
+                sendMessageModel.receiverConnectionId = common.getConnectionID(mContext);
+                sendMessageModel.receiverName = conversation.customerName;
+                sendMessageModel.isFromWidget = true;
+                sendMessageModel.type = type;
+                sendMessageModel.groupId = conversation.groupId;
+                sendMessageModel.timestamp = conversation.timestamp;
+                sendMessageModel.conversationType = type.equalsIgnoreCase("file") ? "multimedia" : "text";
+                sendMessageModel.documentName = conversation.files.get(0).documentName;
+                sendMessageModel.documentOrignalname = conversation.files.get(0).documentOriginalName;
+                sendMessageModel.documentType = conversation.files.get(0).type;
+                sendMessageModel.fileUrl = conversation.files.get(0).url;
+                sendMessageModel.icon = "";
+                sendMessageModel.pageId = "";
+                sendMessageModel.pageName = "";
+                sendMessageModel.caption = caption;
+                sendMessageModel.timezone = "UTC";
+                EventBus.getDefault().post(new SendChatEvent(sendMessageModel, "SendNewMessage"));
             }
         }else{
             SendMessageModel sendMessageModel = new SendMessageModel();
@@ -2416,35 +2424,44 @@ public class ConversationsDetailFragment extends Fragment{
                                         mContext.getContentResolver().getType(uri).equalsIgnoreCase("image/png")) {
                                     File compressedImageFile = null;
 //                                    try {
-                                        try {
-                                            fileTemp = FileUtil.from(mContext, uri);
-                                            Log.d("file", "File...:::: uti - " + fileTemp.getPath() + " file -" + fileTemp + " : " + fileTemp.exists());
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
+                                    try {
+                                        fileTemp = FileUtil.from(mContext, uri);
+                                        Log.d("file", "File...:::: uti - " + fileTemp.getPath() + " file -" + fileTemp + " : " + fileTemp.exists());
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
 
-                                        if (FileUtil.getFileTypeFromUri(mContext,uri)!=null){
-                                            fileType = FileUtil.getFileTypeFromUri(mContext,uri);
-                                        }else{
-                                            String result = fileTemp.getAbsolutePath().substring(fileTemp.getAbsolutePath().lastIndexOf("."));
-                                            String finalresult= result.replace(".", "");
-                                            fileType = "image/"+finalresult;
-                                        }
-                                        String tempChatID = UUID.randomUUID().toString();
+                                    if (FileUtil.getFileTypeFromUri(mContext,uri)!=null){
+                                        fileType = FileUtil.getFileTypeFromUri(mContext,uri);
+                                    }else{
+                                        String result = fileTemp.getAbsolutePath().substring(fileTemp.getAbsolutePath().lastIndexOf("."));
+                                        String finalresult= result.replace(".", "");
+                                        fileType = "image/"+finalresult;
+                                    }
+                                    String tempChatID = UUID.randomUUID().toString();
+
 //                                        compressedImageFile =  isFileAttach ? fileTemp : new Compressor(getContext()).compressToFile(fileTemp);
-                                        filesNames.add(new FileDataClass(compressedImageFile.getName(),common.getFolderSizeLabel(compressedImageFile),FileUtil.getFileTypeFromUri(mContext,uri),uri.toString(),tempChatID));
-                                        String base64Str = "";
-                                        try {
-                                            base64Str  = common.convertFileToBase64(compressedImageFile.getAbsolutePath());
-                                        } catch (Exception e) {
-                                            throw new RuntimeException(e);
-                                        }
-                                        fileUploadArrayList.add(new UploadFilesDataModel(tempChatID,base64Str,compressedImageFile.getName(),fileType,conversationByUID,""));
+                                    try {
+                                        ImageCompressor imageCompressor = new ImageCompressor();
+                                        compressedImageFile = isFileAttach ? fileTemp : imageCompressor.compressImageFile(getContext(), fileTemp);
+                                        // Use the compressedImageFile as needed
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
 
-                                        fileUri = uri.toString();
-                                        fileName = compressedImageFile.getName();
+                                    filesNames.add(new FileDataClass(compressedImageFile.getName(),common.getFolderSizeLabel(compressedImageFile),FileUtil.getFileTypeFromUri(mContext,uri),uri.toString(),tempChatID));
+                                    String base64Str = "";
+                                    try {
+                                        base64Str  = common.convertFileToBase64(compressedImageFile.getAbsolutePath());
+                                    } catch (Exception e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                    fileUploadArrayList.add(new UploadFilesDataModel(tempChatID,base64Str,compressedImageFile.getName(),fileType,conversationByUID,""));
 
-                                        selectedPreviewData = new selectedFilePreviewData(fileType,fileUri,fileName,common.getFolderSizeLabel(fileTemp),tempChatID,"");
+                                    fileUri = uri.toString();
+                                    fileName = compressedImageFile.getName();
+
+                                    selectedPreviewData = new selectedFilePreviewData(fileType,fileUri,fileName,common.getFolderSizeLabel(fileTemp),tempChatID,"");
 
 //                                    } catch (IOException e) {
 //                                        e.printStackTrace();
@@ -2482,11 +2499,9 @@ public class ConversationsDetailFragment extends Fragment{
                                     } else {
                                         Toast.makeText(mContext, "File size exceeded from 2.5 mb", Toast.LENGTH_SHORT).show();
                                     }
-
                                 }
                                 arrayListData.add(selectedPreviewData);
                             }
-
                         } else {
                             // Getting the URI of the selected file and logging into logcat at debug level
                             Uri uri = data.getData();
@@ -2495,35 +2510,43 @@ public class ConversationsDetailFragment extends Fragment{
                                     mContext.getContentResolver().getType(uri).equalsIgnoreCase("image/png")) {
                                 //uris.add(uri);
                                 File compressedImageFile = null;
+                                ImageCompressor imageCompressor = new ImageCompressor();
 //                                try {
-                                    try {
-                                        fileTemp = FileUtil.from(mContext, uri);
-                                        Log.d("file", "File...:::: uti - " + fileTemp.getPath() + " file -" + fileTemp + " : " + fileTemp.exists());
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
+                                try {
+                                    fileTemp = FileUtil.from(mContext, uri);
+                                    Log.d("file", "File...:::: uti - " + fileTemp.getPath() + " file -" + fileTemp + " : " + fileTemp.exists());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
 
-                                    if (FileUtil.getFileTypeFromUri(mContext,uri)!=null){
-                                        fileType = FileUtil.getFileTypeFromUri(mContext,uri);
-                                    }else{
-                                        String result = fileTemp.getAbsolutePath().substring(fileTemp.getAbsolutePath().lastIndexOf("."));
-                                        String finalresult= result.replace(".", "");
-                                        fileType = "image/"+finalresult;
-                                    }
+                                if (FileUtil.getFileTypeFromUri(mContext,uri)!=null){
+                                    fileType = FileUtil.getFileTypeFromUri(mContext,uri);
+                                }else{
+                                    String result = fileTemp.getAbsolutePath().substring(fileTemp.getAbsolutePath().lastIndexOf("."));
+                                    String finalresult= result.replace(".", "");
+                                    fileType = "image/"+finalresult;
+                                }
 //                                    compressedImageFile =  isFileAttach ? fileTemp : new Compressor(getContext()).compressToFile(fileTemp);
-                                    String tempChatID = UUID.randomUUID().toString();
-                                    String base64Str = "";
-                                    try {
-                                        base64Str  = common.convertFileToBase64(compressedImageFile.getAbsolutePath());
-                                    } catch (Exception e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                    fileUploadArrayList.add(new UploadFilesDataModel(tempChatID,base64Str,compressedImageFile.getName(),fileType,conversationByUID,""));
-                                    filesNames.add(new FileDataClass(compressedImageFile.getName(),common.getFolderSizeLabel(compressedImageFile),FileUtil.getFileTypeFromUri(mContext,uri),uri.toString(),tempChatID));
-                                    fileUri = uri.toString();
-                                    fileName = compressedImageFile.getName();
-                                    selectedPreviewData = new selectedFilePreviewData(fileType,fileUri,fileName,common.getFolderSizeLabel(fileTemp),tempChatID,"");
-                                    arrayListData.add(selectedPreviewData);
+                                try {
+                                    compressedImageFile = isFileAttach ? fileTemp : imageCompressor.compressImageFile(getContext(), fileTemp);
+                                    // Use the compressedImageFile as needed
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+                                String tempChatID = UUID.randomUUID().toString();
+                                String base64Str = "";
+                                try {
+                                    base64Str  = common.convertFileToBase64(compressedImageFile.getAbsolutePath());
+                                } catch (Exception e) {
+                                    throw new RuntimeException(e);
+                                }
+                                fileUploadArrayList.add(new UploadFilesDataModel(tempChatID,base64Str,compressedImageFile.getName(),fileType,conversationByUID,""));
+                                filesNames.add(new FileDataClass(compressedImageFile.getName(),common.getFolderSizeLabel(compressedImageFile),FileUtil.getFileTypeFromUri(mContext,uri),uri.toString(),tempChatID));
+                                fileUri = uri.toString();
+                                fileName = compressedImageFile.getName();
+                                selectedPreviewData = new selectedFilePreviewData(fileType,fileUri,fileName,common.getFolderSizeLabel(fileTemp),tempChatID,"");
+                                arrayListData.add(selectedPreviewData);
 
 //                                } catch (IOException e) {
 //                                    e.printStackTrace();
@@ -2604,6 +2627,15 @@ public class ConversationsDetailFragment extends Fragment{
                             }
 
 //                            compressedImageFile = new Compressor(getContext()).compressToFile(fileTemp);
+
+                            ImageCompressor imageCompressor = new ImageCompressor();
+                            try {
+                                compressedImageFile = imageCompressor.compressImageFile(getContext(), fileTemp);
+                                // Use the compressedImageFile as needed
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
                             String tempChatID = UUID.randomUUID().toString();
                             String base64Str = "";
                             try {
@@ -2687,7 +2719,6 @@ public class ConversationsDetailFragment extends Fragment{
             }
         }
     }
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(SyncChatRecieveResponse event) {
         if(event!=null) {
