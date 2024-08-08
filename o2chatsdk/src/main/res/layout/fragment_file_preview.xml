@@ -151,48 +151,11 @@
                     android:layout_width="match_parent"
                     android:orientation="vertical">
 
-                    <!--                    <RelativeLayout-->
-                    <!--                        android:id="@+id/rlPreviousImageClick"-->
-                    <!--                        android:layout_width="@dimen/_40sdp"-->
-                    <!--                        android:layout_height="@dimen/_40sdp"-->
-                    <!--                        android:layout_centerVertical="true"-->
-                    <!--                        android:layout_marginStart="@dimen/_20sdp">-->
-
-                    <!--                        <ImageView-->
-                    <!--                            android:layout_width="35dp"-->
-                    <!--                            android:layout_height="@dimen/_25sdp"-->
-                    <!--                            android:layout_centerInParent="true"-->
-                    <!--                            android:scaleType="fitCenter"-->
-                    <!--                            android:src="@drawable/ic_back_arrow"-->
-                    <!--                            android:visibility="visible"-->
-                    <!--                            app:tint="@color/white_chat" />-->
-
-                    <!--                    </RelativeLayout>-->
-
-                    <!--                    <RelativeLayout-->
-                    <!--                        android:id="@+id/rlNextImageClick"-->
-                    <!--                        android:layout_width="@dimen/_40sdp"-->
-                    <!--                        android:layout_height="@dimen/_40sdp"-->
-                    <!--                        android:layout_centerVertical="true"-->
-                    <!--                        android:layout_alignParentEnd="true"-->
-                    <!--                        android:layout_marginEnd="@dimen/_20sdp">-->
-
-                    <!--                        <ImageView-->
-                    <!--                            android:layout_width="35dp"-->
-                    <!--                            android:layout_height="@dimen/_25sdp"-->
-                    <!--                            android:visibility="visible"-->
-                    <!--                            android:layout_centerInParent="true"-->
-                    <!--                            android:src="@drawable/ic_next_image_click"-->
-                    <!--                            android:scaleType="fitCenter"-->
-                    <!--                            app:tint="@color/white_chat" />-->
-
-                    <!--                    </RelativeLayout>-->
-
                     <androidx.viewpager.widget.ViewPager
                         android:id="@+id/ViewPagerSlider"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginTop="5dp"
                         android:visibility="gone"
                         android:scrollbars="none"
                         tools:ignore="SpeakableTextPresentCheck" />
