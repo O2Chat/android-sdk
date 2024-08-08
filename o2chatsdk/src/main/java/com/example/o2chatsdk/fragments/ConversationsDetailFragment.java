@@ -1,4 +1,5 @@
 package com.example.o2chatsdk.fragments;
+
 import static com.example.o2chatsdk.commons.Constants.COLOR_CODE_KEY;
 import static com.example.o2chatsdk.commons.Constants.HIDE_TOOLBAR;
 import static com.example.o2chatsdk.commons.Constants.NAME_KEY;
@@ -108,7 +109,7 @@ import com.download.library.DownloadListenerAdapter;
 import com.download.library.Extra;
 import com.example.o2chatsdk.R;
 import com.example.o2chatsdk.databinding.FragmentConversationsDetailBinding;
-import com.example.signalrtestandroid.commons.KeyboardVisibilityUtils;
+import com.example.o2chatsdk.commons.KeyboardVisibilityUtils;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;

@@ -13,7 +13,7 @@ import com.example.o2chatsdk.databinding.FragmentFilePreviewBinding;
 import com.example.o2chatsdk.fragments.ConversationsDetailFragment;
 import com.example.o2chatsdk.model.chat.selectedFilePreviewData;
 
-import com.example.signalrtestandroid.commons.KeyboardVisibilityUtils;
+import com.example.o2chatsdk.commons.KeyboardVisibilityUtils;
 import com.vanniktech.emoji.EmojiPopup;
 //import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 

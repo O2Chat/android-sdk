@@ -120,7 +120,7 @@ import com.vanniktech.emoji.EmojiManager;
 import com.vanniktech.emoji.EmojiPopup;
 import com.vanniktech.emoji.google.GoogleEmojiProvider;
 
-//import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
+// import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
