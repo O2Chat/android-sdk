@@ -216,7 +216,6 @@
 
             </LinearLayout>
 
-
             <ProgressBar
                 android:layout_marginTop="5dp"
                 android:layout_centerHorizontal="true"

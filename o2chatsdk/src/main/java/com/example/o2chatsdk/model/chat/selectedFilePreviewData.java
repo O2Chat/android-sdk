@@ -5,7 +5,6 @@ import android.os.Parcelable;
 
 public class selectedFilePreviewData implements Parcelable {
 
-
     String fileType = "";
     String fileUri = "";
     String fileName = "";

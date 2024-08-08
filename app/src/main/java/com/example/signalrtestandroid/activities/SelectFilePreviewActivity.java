@@ -30,10 +30,10 @@ public class SelectFilePreviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MainActivityChat.isPause = false;
         binding = FragmentFilePreviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        MainActivityChat.isPause = false;
         final EmojiPopup popup = EmojiPopup.Builder.fromRootView(binding.getRoot()).build(binding.edtMessage);
 
         if (getIntent()!=null){
@@ -146,9 +146,8 @@ public class SelectFilePreviewActivity extends AppCompatActivity {
 //    @Override
 //    public void onPageChanged(int page, int pageCount) {
 //        Log.d("","index---->"+binding.ViewPagerSlider.getCurrentItem());
-//
 //    }
-//
+
 //    @Override
 //    public void loadComplete(int nbPages) {
 //

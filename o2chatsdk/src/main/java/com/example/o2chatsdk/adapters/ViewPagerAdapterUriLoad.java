@@ -136,7 +136,7 @@ public class ViewPagerAdapterUriLoad extends PagerAdapter
 //    public void loadComplete(int nbPages) {
 //
 //    }
-//
+
 //    @Override
 //    public void onPageError(int page, Throwable t) {
 //
