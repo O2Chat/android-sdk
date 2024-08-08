@@ -66,6 +66,7 @@ public class SelectFilePreviewActivity extends AppCompatActivity {
                 binding.ivKeyboard.setVisibility(View.VISIBLE);
             } else {
                 binding.ivSmile.setVisibility(View.VISIBLE);
+                binding.ivKeyboard.setVisibility(View.GONE);
             }
         });
 

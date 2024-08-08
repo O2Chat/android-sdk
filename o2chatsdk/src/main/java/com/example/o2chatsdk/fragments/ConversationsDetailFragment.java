@@ -1,4 +1,5 @@
 package com.example.o2chatsdk.fragments;
+
 import static com.example.o2chatsdk.commons.Constants.COLOR_CODE_KEY;
 import static com.example.o2chatsdk.commons.Constants.HIDE_TOOLBAR;
 import static com.example.o2chatsdk.commons.Constants.NAME_KEY;
