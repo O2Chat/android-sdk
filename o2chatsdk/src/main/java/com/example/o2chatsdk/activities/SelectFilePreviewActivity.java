@@ -30,6 +30,8 @@ public class SelectFilePreviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Initialize binding
         binding = FragmentFilePreviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -37,12 +39,11 @@ public class SelectFilePreviewActivity extends AppCompatActivity {
 
         final EmojiPopup popup = EmojiPopup.Builder.fromRootView(binding.getRoot()).build(binding.edtMessage);
 
-        if (getIntent()!=null){
+        if (getIntent() != null) {
             intent1 = getIntent();
             receivedList = intent1.getParcelableArrayListExtra("arrayListData");
 
-            if(receivedList.size()>0)
-            {
+            if (receivedList != null && receivedList.size() > 0) {
                 uriLoadImageSlider(receivedList);
             }
         }
@@ -61,7 +62,7 @@ public class SelectFilePreviewActivity extends AppCompatActivity {
 
         // Set keyboard visibility listener
         KeyboardVisibilityUtils.setKeyboardVisibilityListener(this, isOpen -> {
-            if (isOpen){
+            if (isOpen) {
                 binding.ivSmile.setVisibility(View.GONE);
                 binding.ivKeyboard.setVisibility(View.VISIBLE);
             } else {
@@ -86,20 +87,18 @@ public class SelectFilePreviewActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 // This method will be called when a new page becomes selected
-
                 if (lastPosition > position) {
                     // Left Swipe
                     receivedList.get(currentPage).setMessage(binding.edtMessage.getText().toString());
                     currentPage = binding.ViewPagerSlider.getCurrentItem();
                     slideViewPager(binding.ViewPagerSlider.getCurrentItem());
-                }else if (lastPosition < position) {
-                    //  Right Swipe
+                } else if (lastPosition < position) {
+                    // Right Swipe
                     receivedList.get(currentPage).setMessage(binding.edtMessage.getText().toString());
                     currentPage = binding.ViewPagerSlider.getCurrentItem();
                     slideViewPager(binding.ViewPagerSlider.getCurrentItem());
                 }
                 lastPosition = position;
-
             }
 
             @Override
@@ -109,52 +108,37 @@ public class SelectFilePreviewActivity extends AppCompatActivity {
         });
 
         binding.sendMessage.setOnClickListener(v -> {
-
-            String message = "";
-            message = binding.edtMessage.getText().toString();
-            receivedList.get(currentPage).setMessage(binding.edtMessage.getText().toString());
+            String message = binding.edtMessage.getText().toString();
+            receivedList.get(currentPage).setMessage(message);
             ConversationsDetailFragment.isCalledFromPreviewActivity = true;
-            SendFileAfterPreview sendFileAfterPreview = new SendFileAfterPreview(message,receivedList,"fileUri","","","SendFileAfterPreview");
+            SendFileAfterPreview sendFileAfterPreview = new SendFileAfterPreview(message, receivedList, "fileUri", "", "", "SendFileAfterPreview");
             ConversationsDetailFragment.sendFileAfterPreview = sendFileAfterPreview;
             MainActivityChat.isPause = true;
             finish();
-
         });
     }
 
     public void uriLoadImageSlider(ArrayList<selectedFilePreviewData> receivedList) {
-
         binding.ViewPagerSlider.setVisibility(View.VISIBLE);
-
-        if(receivedList.size()>0){
-            mImageAdapter = new ViewPagerAdapterUriLoad(SelectFilePreviewActivity.this,receivedList,SelectFilePreviewActivity.this);
+        if (receivedList != null && receivedList.size() > 0) {
+            mImageAdapter = new ViewPagerAdapterUriLoad(SelectFilePreviewActivity.this, receivedList, SelectFilePreviewActivity.this);
             try {
                 binding.ViewPagerSlider.setAdapter(mImageAdapter);
-            } catch (Exception e){e.printStackTrace();}
-        }
-    }
-
-    private void slideViewPager(int selectCurrentPage) {
-
-        if (currentPage >=0 &&  currentPage <= binding.ViewPagerSlider.getAdapter().getCount()) {
-            if (receivedList.get(selectCurrentPage).getMessage() != null && !receivedList.get(selectCurrentPage).getMessage().isEmpty()) {
-                    binding.edtMessage.setText(receivedList.get(selectCurrentPage).getMessage());
-            }else{
-                binding.edtMessage.setText("");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
 
-//    @Override
-//    public void onPageChanged(int page, int pageCount) {
-//        Log.d("","index---->"+binding.ViewPagerSlider.getCurrentItem());
-//
-//    }
-//
-//    @Override
-//    public void loadComplete(int nbPages) {
-//
-//    }
+    private void slideViewPager(int selectCurrentPage) {
+        if (currentPage >= 0 && currentPage <= binding.ViewPagerSlider.getAdapter().getCount()) {
+            if (receivedList.get(selectCurrentPage).getMessage() != null && !receivedList.get(selectCurrentPage).getMessage().isEmpty()) {
+                binding.edtMessage.setText(receivedList.get(selectCurrentPage).getMessage());
+            } else {
+                binding.edtMessage.setText("");
+            }
+        }
+    }
 
     @Override
     protected void onDestroy() {
@@ -162,14 +146,8 @@ public class SelectFilePreviewActivity extends AppCompatActivity {
         MainActivityChat.isPause = false;
     }
 
-//    @Override
-//    public void onPageError(int page, Throwable t) {
-//
-//    }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
-
 }

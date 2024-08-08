@@ -1,11 +1,8 @@
 package com.example.o2chatsdk.adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.pdf.PdfRenderer;
 import android.net.Uri;
-import android.os.ParcelFileDescriptor;
+
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +18,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.o2chatsdk.activities.SelectFilePreviewActivity;
 import com.example.o2chatsdk.model.chat.selectedFilePreviewData;
-import com.example.signalrtestandroid.R;
+import com.example.o2chatsdk.R;
 
 import java.io.IOException;
 import java.util.ArrayList;
