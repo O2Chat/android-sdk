@@ -579,7 +579,6 @@ public class ConversationsDetailFragment extends Fragment{
             });
         });
 
-
         fragmentConversationsBinding.edtMessage.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

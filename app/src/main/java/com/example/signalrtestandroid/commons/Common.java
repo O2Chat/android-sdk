@@ -864,7 +864,7 @@ public class Common {
 
     public String getCustomerEmail(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("saveCustomerEmail", MODE_PRIVATE);
-        String TaxFormString = prefs.getString("CustomerEmailAddress", "bhom.test@yahoo.com");
+        String TaxFormString = prefs.getString("CustomerEmailAddress", "bhom108@gmail.com");
         return TaxFormString;
     }
 

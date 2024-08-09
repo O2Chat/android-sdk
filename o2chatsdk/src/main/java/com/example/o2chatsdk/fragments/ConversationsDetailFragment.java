@@ -243,6 +243,8 @@ public class ConversationsDetailFragment extends Fragment{
         // Inflate the layout for this fragment
         fragmentConversationsBinding = FragmentConversationsDetailBinding.inflate(getLayoutInflater());
         View view = fragmentConversationsBinding.getRoot();
+
+
         dbchat = AppDatabase.getAppDatabase(getContext().getApplicationContext());
         common = new Common();
         filesNames = new ArrayList<>();
@@ -521,6 +523,8 @@ public class ConversationsDetailFragment extends Fragment{
         fragmentConversationsBinding.ivMenuTopic.setOnClickListener(view12 -> {
             if (!topicArrayList.isEmpty()){
                 LoadTopics();
+            }else{
+                Toast.makeText(mContext, "Topic not found", Toast.LENGTH_SHORT).show();
             }
         });
 
