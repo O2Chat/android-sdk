@@ -56,7 +56,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         commons.saveFcmToken(getApplicationContext(),token);
                     }
 
-
                     // Log and toast
                     Log.d("FCM:", token);
         });

@@ -852,19 +852,19 @@ public class Common {
     }
     public String getFirstName(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("CustomerNamePreference", MODE_PRIVATE);
-        String TaxFormString = prefs.getString("CustomerName", "test o2chat acc");
+        String TaxFormString = prefs.getString("CustomerName", "Bhom Singh");
         return TaxFormString;
     }
 
     public String getCustomerCnic(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("saveCnicNumber", MODE_PRIVATE);
-        String TaxFormString = prefs.getString("CustomerCnicNumber", "4677976454887");
+        String TaxFormString = prefs.getString("CustomerCnicNumber", "1234567890123");
         return TaxFormString;
     }
 
     public String getCustomerEmail(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("saveCustomerEmail", MODE_PRIVATE);
-        String TaxFormString = prefs.getString("CustomerEmailAddress", "bhom108@gmail.com");
+        String TaxFormString = prefs.getString("CustomerEmailAddress", "bhomsingh@gmail.com");
         return TaxFormString;
     }
 

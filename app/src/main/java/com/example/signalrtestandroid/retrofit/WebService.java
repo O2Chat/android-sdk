@@ -44,7 +44,7 @@ public interface WebService {
 
    /* Three endpoints added:
     GetTopicsByEmail
-            GetCustomerConversationsByEmail
+           GetCustomerConversationsByEmail
     GetCustomerAllConversationsByEmail*/
 
     @POST("Chat/UploadFilesNew")
