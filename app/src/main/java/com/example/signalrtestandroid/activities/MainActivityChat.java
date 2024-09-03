@@ -1012,6 +1012,7 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
 
         });
     }
+
     public void getAccessTokenByChannelId(String channelId){
 
         new ApiClient(mContext).getWebService().getAccessTokenByChannelId(channelId).enqueue(new Callback<WebResponse>() {
