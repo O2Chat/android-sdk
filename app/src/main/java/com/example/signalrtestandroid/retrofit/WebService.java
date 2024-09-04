@@ -53,7 +53,6 @@ public interface WebService {
     @GET("UserManagement/GetUserById")
     Call<WebResponse<UserProfile>> getUserById(@Query("userId") String userId);
 
-
     @GET("UserManagement/GetAllGroups")
     Call<WebResponse<ArrayList<GroupsDataModel>>> getAllGroups(@Query("isActive") boolean isActive);
 

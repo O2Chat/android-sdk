@@ -20,7 +20,7 @@ android {
             }
         }
     }
-c
+
     buildTypes {
         release {
             minifyEnabled true

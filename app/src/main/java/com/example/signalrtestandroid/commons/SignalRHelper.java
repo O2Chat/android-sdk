@@ -35,7 +35,8 @@ public class SignalRHelper {
                 }).blockingAwait();
                 hubConnection.setKeepAliveInterval(2000);
 //                hubConnection.invoke("AgentJoined",agentId);
-                hubConnection.invoke("CustomerJoinedFromMobile","6901b42a-0776-41d2-ac76-6cb6f3029d53",customerId,mobileToken,"3");
+                hubConnection.invoke("CustomerJoinedFromMobile","6901b42a-0776-41d2-ac76-6cb6f3029d53",customerId,mobileToken);
+//                hubConnection.invoke("CustomerJoinedFromMobile","6901b42a-0776-41d2-ac76-6cb6f3029d53",customerId,mobileToken,"3");
                 common.saveConnectionId(context,hubConnection.getConnectionId());
                 if (isConnected[0]){
                     return true;
@@ -45,7 +46,7 @@ public class SignalRHelper {
             } catch (Exception e) {
                 e.printStackTrace();
                 if (e.getMessage().equalsIgnoreCase("Unexpected status code returned from negotiate: 401 Unauthorized.")){
-                    //logout callhere
+                    //logout call here
                     Common common = new Common();
                     common.savePermission(context,"");
                     common.saveIsSuperAdmin(context,"");

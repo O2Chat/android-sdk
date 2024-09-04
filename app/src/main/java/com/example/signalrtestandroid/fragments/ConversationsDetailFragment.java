@@ -408,7 +408,6 @@ public class ConversationsDetailFragment extends Fragment{
             }else{
                 Toast.makeText(getActivity(), "Please type a message", Toast.LENGTH_SHORT).show();
             }
-
         });
 
         fragmentConversationsBinding.ivSendAuidoChat.setOnClickListener(new View.OnClickListener() {
@@ -920,7 +919,7 @@ public class ConversationsDetailFragment extends Fragment{
         new ApiClient(mContext).getWebService().getConversationByUID(pageNumber,pageSize,conversationByUUID,customerId,customerEmail).enqueue(new Callback<WebResponse2<ArrayList<ConversationByUID>>>() {
             @Override
             public void onResponse(Call<WebResponse2<ArrayList<ConversationByUID>>> call, Response<WebResponse2<ArrayList<ConversationByUID>>> response) {
-                if(response.code()==200){
+                if(response.code() == 200){
                     if(response.body().getResult().size()>0){
 
                         if (response != null && response.body() != null
@@ -2167,6 +2166,7 @@ public class ConversationsDetailFragment extends Fragment{
             EventBus.getDefault().post(new SendChatEvent(sendMessageModel,"SendNewMessage"));
         }
     }
+
     private void uploadImageDialog(final Context context) {
         Dialog dialog = new Dialog(context);
         View newUserView;
@@ -2843,8 +2843,6 @@ public class ConversationsDetailFragment extends Fragment{
             }
         }
     }
-
-
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(ConversationEvent event) {
