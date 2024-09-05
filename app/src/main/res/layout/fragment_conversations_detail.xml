@@ -280,7 +280,7 @@
                                 android:layout_height="wrap_content"
                                 android:hint="Type a message here"
                                 android:padding="10dp"
-                                android:textSize="13sp"
+                                android:textSize="15sp"
                                 android:background="@android:color/transparent"
                                 android:maxLines="6"
                                 android:lines="6"
