@@ -85,7 +85,7 @@ dependencies {
     implementation 'net.danlew:android.joda:2.12.1.1'
     implementation 'com.github.Justson:Downloader:v5.0.4-androidx'
 
-//  implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC2'
+  implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC2'
     
     implementation 'com.karumi:dexter:6.2.2'
     implementation 'com.github.curioustechizen.android-ago:library:1.4.0'
