@@ -472,7 +472,6 @@ public class ConversationsDetailFragment extends Fragment{
             MainActivityChat.isPause = false;
             MainActivityChat.isLoadChat = true;
             storagePermission(false,true,null);
-
         });
 
         fragmentConversationsBinding.ivSmile.setOnClickListener(v -> {
