@@ -27,6 +27,7 @@
 #-keep class com.example.o2chatsdk.** { *; }
 -keep class com.example.o2chatsdk.commons.Common{ *; }
 -keep class com.example.o2chatsdk.activities.MainActivityChat{ *; }
+-keep class com.example.o2chatsdk.O2ChatConfig
 #-keep interface com.example.o2chatsdk.** { *; }
 -keep class net.sqlcipher.** { *; }
 -dontwarn net.sqlcipher.**
