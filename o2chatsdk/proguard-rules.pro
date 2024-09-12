@@ -31,7 +31,7 @@
                                                            <fields>;
                                                            }
 
--keep class com.example.signalrtestandroid.retrofit.** { *; }
+-keep class com.example.o2chatsdk.retrofit.** { *; }
 
 -keep class com.example.o2chatsdk.activities.MainActivityChat
 #-keep class com.example.o2chatsdk.O2ChatConfig
