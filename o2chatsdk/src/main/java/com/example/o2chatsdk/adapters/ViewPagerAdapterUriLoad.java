@@ -20,7 +20,6 @@ import com.example.o2chatsdk.activities.SelectFilePreviewActivity;
 import com.example.o2chatsdk.model.chat.selectedFilePreviewData;
 import com.example.o2chatsdk.R;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class ViewPagerAdapterUriLoad extends PagerAdapter

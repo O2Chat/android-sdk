@@ -2,22 +2,13 @@ package com.example.o2chatsdk.activities;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.o2chatsdk.commons.Common;
 import com.example.o2chatsdk.commons.Utils;
-import com.example.o2chatsdk.model.chat.UserProfile;
-import com.example.o2chatsdk.retrofit.ApiClient;
-import com.example.o2chatsdk.retrofit.WebResponse;
 import com.example.o2chatsdk.R;
 import com.example.o2chatsdk.databinding.ActivityProfileUpdateBinding;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class UserProfileActivity extends AppCompatActivity {
 
