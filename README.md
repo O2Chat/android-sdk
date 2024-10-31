@@ -42,7 +42,7 @@ To use the library in your project, follow these steps:
    Use the following methods to save user details:
 
    ```java
-   common.saveChannelID(context, "f26a33d9-5b2e-4227-a456-eab45924a1d3");
+   common.saveChannelID(context, "example-5b2e-4227-a456-eab45924a1d3");
    common.saveFirstName(context, "First Name");
    common.saveCustomerEmail(context, "Email Address");
    common.saveCustomerMobileNumber(context, "Phone Number");
