@@ -23,6 +23,42 @@ dependencies {
 }
 ```
 
+## Step 2: Sync Project
+
+After adding the dependency, click on "Sync Now" in the notification bar to sync your project with the updated Gradle files.
+
+## Step 3: Initialize and Use the Library
+
+To use the library in your project, follow these steps:
+
+1. **Create an instance of `Common`:**
+
+   ```java
+   Common common = new Common();
+   ```
+
+2. **Save Channel ID and User Information:**
+
+   Use the following methods to save user details:
+
+   ```java
+   common.saveChannelID(context, "f26a33d9-5b2e-4227-a456-eab45924a1d3");
+   common.saveFirstName(context, "First Name");
+   common.saveCustomerEmail(context, "Email Address");
+   common.saveCustomerMobileNumber(context, "Phone Number");
+   common.saveCnicNumber(context, "Cnic");
+   ```
+
+
+## Step 4: Permissions
+
+Ensure that you have the necessary permissions in your `AndroidManifest.xml` if your library requires them.
+
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+```
+
+
 ## Updating to newer versions of SDK
 ### [Changelog](https://github.com/02chat/android-sdk/blob/master/CHANGELOG.md)
 
