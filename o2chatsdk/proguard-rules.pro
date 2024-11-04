@@ -28,7 +28,7 @@
 
 -keep class com.arittek.o2chatsdk.commons.O2ChatConfig.** { *; }
 
--keep class com.arittek.o2chatsdk.commons.Common{  <methods>;
+-keep class com.arittek.o2chatsdk.commons.O2ChatConfig{  <methods>;
                                                            <fields>;
                                                            }
 
