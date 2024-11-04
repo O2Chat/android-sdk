@@ -5,6 +5,8 @@ import static android.content.Context.MODE_PRIVATE;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.arittek.o2chatsdk.localDB.AppDatabase;
+
 public class O2ChatConfig {
 
     public String getChannelID(Context context) {
@@ -85,6 +87,24 @@ public class O2ChatConfig {
         return TaxFormString;
     }
 
+    public void deleteChatLocalDB(Context context){
+        if (context!=null){
+            AppDatabase dbchat = AppDatabase.getAppDatabase(context.getApplicationContext());
+            dbchat.conversationDetailDao().deleteAllConversation();
+            dbchat.conversationDetailDao().deleteConversationFilesData();
+            SharedPreferences pref = context.getSharedPreferences("isfirstTimeWelcomeMessage3",0);
+            SharedPreferences.Editor editorfirsttime= pref.edit();
+            editorfirsttime.putBoolean("firstTimeWelcomeMessage3", true);
+            SharedPreferences prefWelcome = context.getSharedPreferences("isfirstTimeWelcomeMessage",0);
+            SharedPreferences.Editor editorwelcome= prefWelcome.edit();
+            editorwelcome.putBoolean("firstTimeWelcomeMessage", true);
+            SharedPreferences prefWelcome3 = context.getSharedPreferences("isfirstTimeWelcomeMessage3",0);
+            SharedPreferences.Editor editorwelcome3= prefWelcome3.edit();
+            editorwelcome3.putBoolean("firstTimeWelcomeMessage3", true);
+            new Common().saveConversationUID(context,"");
+            new Common().saveCustomerId(context,0);
 
+        }
+    }
 
 }

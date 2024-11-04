@@ -25,7 +25,8 @@
 
 # Keep all interfaces in com.example.o2chatsdk package
 #-keep class com.example.o2chatsdk.** { *; }
--keep class com.arittek.o2chatsdk.commons.Common.** { *; }
+
+-keep class com.arittek.o2chatsdk.commons.O2ChatConfig.** { *; }
 
 -keep class com.arittek.o2chatsdk.commons.Common{  <methods>;
                                                            <fields>;
