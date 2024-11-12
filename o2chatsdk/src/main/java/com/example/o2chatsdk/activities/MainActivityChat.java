@@ -31,6 +31,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+
 import com.bumptech.glide.Glide;
 import com.example.o2chatsdk.Events.appEvents.CustomerFeedBackEvent;
 import com.example.o2chatsdk.Events.appEvents.MessageEvent;
@@ -46,6 +47,7 @@ import com.example.o2chatsdk.Events.chatEvents.SendFileAfterPreview;
 import com.example.o2chatsdk.Events.chatEvents.SendNewChatEvent;
 import com.example.o2chatsdk.Events.chatEvents.SendNewChatResponseEvent;
 import com.example.o2chatsdk.Events.chatEvents.SendTypingIndicatorResponse;
+
 
 import com.example.o2chatsdk.R;
 import com.example.o2chatsdk.baseClasses.BaseActivity;
