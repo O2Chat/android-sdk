@@ -41,3 +41,5 @@
 -keep class com.arittek.o2chatsdk.model.** { *; }
 -keep class net.sqlcipher.** { *; }
 -dontwarn net.sqlcipher.**
+
+-keep class com.arittek.o2chatsdk.** { *; }
