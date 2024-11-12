@@ -19,7 +19,7 @@ allprojects {
 App Module gradle file **(app/build.gradle)** 
 ```
 dependencies {
-	implementation 'com.github.O2Chat:android-sdk:1.0.1'
+	implementation 'com.github.O2Chat:android-sdk:1.0.5'
 }
 ```
 
@@ -31,10 +31,10 @@ After adding the dependency, click on "Sync Now" in the notification bar to sync
 
 To use the library in your project, follow these steps:
 
-1. **Create an instance of `Common`:**
+1. **Create an instance of `O2ChatConfig`:**
 
    ```java
-   Common common = new Common();
+   O2ChatConfig o2chatConfig = new O2ChatConfig();
    ```
 
 2. **Save Channel ID and User Information:**
@@ -42,15 +42,24 @@ To use the library in your project, follow these steps:
    Use the following methods to save user details:
 
    ```java
-   common.saveChannelID(context, "example-5b2e-4227-a456-eab45924a1d3");
-   common.saveFirstName(context, "First Name");
-   common.saveCustomerEmail(context, "Email Address");
-   common.saveCustomerMobileNumber(context, "Phone Number");
-   common.saveCnicNumber(context, "Cnic");
+   o2chatConfig.saveChannelID(context, "example-5b2e-4227-a456-eab45924a1d3");
+   o2chatConfig.saveFirstName(context, "First Name");
+   o2chatConfig.saveCustomerEmail(context, "Email Address");
+   o2chatConfig.saveCustomerMobileNumber(context, "Phone Number");
+   o2chatConfig.saveCnicNumber(context, "Cnic");
    ```
 
+## Step 4: Declare activity 
 
-## Step 4: Permissions
+Ensure that you have declared MainActivityChat in `AndroidManifest.xml`.
+
+```xml
+ <activity
+            android:name="com.arittek.o2chatsdk.activities.MainActivityChat"
+            android:exported="false" />
+```
+
+## Step 5: Permissions
 
 Ensure that you have the necessary permissions in your `AndroidManifest.xml` if your library requires them.
 
