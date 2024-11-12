@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg_conversation_messages"
-    tools:context="com.arittek.signalrtestandroid.activities.SelectFilePreviewActivity"
+    tools:context="com.example.signalrtestandroid.activities.SelectFilePreviewActivity"
     android:orientation="vertical">
 
     <RelativeLayout

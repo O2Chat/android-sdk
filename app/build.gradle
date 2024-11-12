@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace 'com.arittek.signalrtestandroid'
+    namespace 'com.example.signalrtestandroid'
     compileSdk 34
 
     defaultConfig {

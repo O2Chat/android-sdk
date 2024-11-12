@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="140dp"
     android:layout_height="50dp"
-    tools:context="com.arittek.o2chatsdk.fragments.ConversationsFragment"
+    tools:context="com.example.o2chatsdk.fragments.ConversationsFragment"
     android:background="@drawable/selectfile_background"
     android:layout_marginEnd="5dp"
     >
