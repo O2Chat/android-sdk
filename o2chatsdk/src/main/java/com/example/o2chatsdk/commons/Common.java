@@ -830,7 +830,9 @@ public class Common {
     public String getCustomerMobileNumber(Context context)
     {
         SharedPreferences prefs = context.getSharedPreferences("saveCustomerMobileNumber", MODE_PRIVATE);
-        String TaxFormString = prefs.getString("CustomerMobileNumber", "");
+        //String TaxFormString = prefs.getString("CustomerMobileNumber", "");
+        String TaxFormString = prefs.getString("CustomerCnicNumber", "1234567890123");
+
         return TaxFormString;
     }
 
@@ -846,7 +848,9 @@ public class Common {
 
     public String getFirstName(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("CustomerNamePreference", MODE_PRIVATE);
-        String TaxFormString = prefs.getString("CustomerName", "test o2chat acc");
+      //  String TaxFormString = prefs.getString("CustomerName", "test o2chat acc");
+        String TaxFormString = prefs.getString("CustomerName", "Bhom Singh");
+
         return TaxFormString;
     }
 
@@ -858,7 +862,9 @@ public class Common {
 
     public String getCustomerEmail(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("saveCustomerEmail", MODE_PRIVATE);
-        String TaxFormString = prefs.getString("CustomerEmailAddress", "chat321o2chat@gmail.com");
+    //    String TaxFormString = prefs.getString("CustomerEmailAddress", "chat321o2chat@gmail.com");
+        String TaxFormString = prefs.getString("CustomerEmailAddress", "bhomsingh@gmail.com");
+
         return TaxFormString;
     }
 
@@ -897,7 +903,9 @@ public class Common {
 
     public String getChannelID(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("chnlIdPref", MODE_PRIVATE);
-        String TaxFormString = prefs.getString("chnlId", "");
+    //    String TaxFormString = prefs.getString("chnlId", "");
+        String TaxFormString = prefs.getString("chnlId", "f26a33d9-5b2e-4227-a456-eab45924a1d3");
+
         return TaxFormString;
     }
 
