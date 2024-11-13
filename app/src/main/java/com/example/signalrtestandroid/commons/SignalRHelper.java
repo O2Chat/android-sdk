@@ -10,6 +10,8 @@ import com.microsoft.signalr.HubConnectionBuilder;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.concurrent.TimeUnit;
+
 import io.reactivex.Single;
 
 public class SignalRHelper {
@@ -17,7 +19,7 @@ public class SignalRHelper {
 
     public HubConnection createChatHubConnection(String accessToken, Context context){
         HubConnection hubConnection =
-                HubConnectionBuilder.create(new Common().getBaseUrlChat(context)+"chatHub").withAccessTokenProvider(Single.defer(() -> {
+                HubConnectionBuilder.create(new Common().getBaseUrlChat(context)+"chatHub").withHandshakeResponseTimeout(9000).withAccessTokenProvider(Single.defer(() -> {
                     // Your logic here.
                     return Single.just(accessToken);
                 })).build();
