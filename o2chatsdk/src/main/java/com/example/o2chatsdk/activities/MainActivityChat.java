@@ -1049,6 +1049,8 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
                             }
                             hubConnection.onClosed(exception -> {
                                 if (exception != null) {
+                                    Log.d("hubConnection","Error: "+exception.getMessage());
+
                                     isSignalRConnected = false;
                                     scheduleApiSignalRConnection();
                                 }
