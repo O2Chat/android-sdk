@@ -156,13 +156,12 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
         icSource = findViewById(R.id.icSource);
         txtStatus = findViewById(R.id.txtStatus);
         Glide.with(mContext).load(R.drawable.connecting).into(icSource);
-        channelId  = "f26a33d9-5b2e-4227-a456-eab45924a1d3"; //common.getChannelID(mContext);
-
+        channelId  = common.getChannelID(mContext);
         signalRHelper = new SignalRHelper();
 //      getAccessTokenByChannelId("f26a33d9-5b2e-4227-a456-eab45924a1d3");
 //      O2ChatConfig config = O2ChatConfig.getInstance(MainActivityChat.this);
 
-        getAccessTokenByChannelId(channelId);
+         getAccessTokenByChannelId("f26a33d9-5b2e-4227-a456-eab45924a1d3");
 
         if (!common.getUserId(this).isEmpty()) {
             agentId = Integer.parseInt(common.getUserId(this));
