@@ -156,7 +156,7 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
         icSource = findViewById(R.id.icSource);
         txtStatus = findViewById(R.id.txtStatus);
         Glide.with(mContext).load(R.drawable.connecting).into(icSource);
-        channelId  = common.getChannelID(mContext);
+        channelId  = "f26a33d9-5b2e-4227-a456-eab45924a1d3"; //common.getChannelID(mContext);
 
         signalRHelper = new SignalRHelper();
 //      getAccessTokenByChannelId("f26a33d9-5b2e-4227-a456-eab45924a1d3");
