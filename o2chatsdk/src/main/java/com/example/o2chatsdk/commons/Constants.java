@@ -3,6 +3,7 @@ package com.example.o2chatsdk.commons;
 public class Constants {
 
     //CHAT HUB CONNECTION URL
+
     public static String ChatHubUrl = "https://secure-befiler.o2chat.io/";
 //    public static String ChatHubUrl = "http://175.107.196.226:5003/";
 
