@@ -67,7 +67,7 @@ dependencies {
     implementation "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0"
     implementation 'com.auth0.android:jwtdecode:1.1.1'
 //    implementation 'com.microsoft.signalr:signalr:5.0.10'
-    implementation 'com.microsoft.signalr:signalr:5.0.11'
+    implementation 'com.microsoft.signalr:signalr:9.0.0-preview.7.24406.2'
     implementation 'org.ocpsoft.prettytime:prettytime:5.0.4.Final'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation "com.github.marlonlom:timeago:4.0.3"
