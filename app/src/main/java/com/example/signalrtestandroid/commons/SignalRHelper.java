@@ -19,10 +19,10 @@ public class SignalRHelper {
 
     public HubConnection createChatHubConnection(String accessToken, Context context){
         HubConnection hubConnection =
-                HubConnectionBuilder.create( "wss://secure-befiler.o2chat.io/"/*new Common().getBaseUrlChat(context)*/+"chatHub").withHandshakeResponseTimeout(9000).withAccessTokenProvider(Single.defer(() -> {
+                HubConnectionBuilder.create(new Common().getBaseUrlChat(context)+"chatHub").withHandshakeResponseTimeout(9000).withAccessTokenProvider(Single.defer(() -> {
                     // Your logic here.
                     return Single.just(accessToken);
-                })).build();
+                })) .build();
         return hubConnection;
     }
 
@@ -34,7 +34,7 @@ public class SignalRHelper {
                 Common common = new Common();
                 hubConnection.start().doOnComplete(() -> {
                     isConnected[0] = true;
-                }).blockingAwait();
+                }).doOnError(Throwable::printStackTrace).blockingAwait();
                 hubConnection.setKeepAliveInterval(2000);
 //                hubConnection.invoke("AgentJoined",agentId);
                 hubConnection.invoke("CustomerJoinedFromMobile","6901b42a-0776-41d2-ac76-6cb6f3029d53",customerId,mobileToken);
