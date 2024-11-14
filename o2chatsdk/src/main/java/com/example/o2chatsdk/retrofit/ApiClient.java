@@ -52,7 +52,7 @@ public class ApiClient {
                         .authenticator(new TokenAuthenticator(context));
 
         if(commons!=null){
-            //commons.initSSL(httpClientBuilder,context,false);
+            commons.initSSL(httpClientBuilder,context);
         }
 
         // Live Server Https use
