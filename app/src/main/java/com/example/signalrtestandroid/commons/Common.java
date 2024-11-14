@@ -667,7 +667,7 @@ public class Common {
     public static void initSSL(OkHttpClient.Builder httpClientBuilder, Context context) {
         SSLContext sslContext = null;
         try {
-            sslContext = createCertificate(context.getResources().openRawResource(R.raw.meintaxi));
+            sslContext = createCertificate(context.getResources().openRawResource(R.raw.o2chat_io));
         } catch (CertificateException | IOException | KeyStoreException | KeyManagementException | NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
