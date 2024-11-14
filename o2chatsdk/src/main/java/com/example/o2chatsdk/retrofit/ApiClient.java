@@ -51,9 +51,8 @@ public class ApiClient {
                         .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                         .authenticator(new TokenAuthenticator(context));
 
-        if(commons!=null){
-            commons.initSSL(httpClientBuilder,context);
-        }
+
+            new Common().initSSL(httpClientBuilder,context);
 
         // Live Server Https use
         retrofit = new Retrofit.Builder()
