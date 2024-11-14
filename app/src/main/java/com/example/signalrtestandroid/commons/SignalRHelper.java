@@ -19,7 +19,7 @@ public class SignalRHelper {
 
     public HubConnection createChatHubConnection(String accessToken, Context context){
         HubConnection hubConnection =
-                HubConnectionBuilder.create(new Common().getBaseUrlChat(context)+"chatHub").withHandshakeResponseTimeout(9000).withAccessTokenProvider(Single.defer(() -> {
+                HubConnectionBuilder.create( "wss://secure-befiler.o2chat.io/"/*new Common().getBaseUrlChat(context)*/+"chatHub").withHandshakeResponseTimeout(9000).withAccessTokenProvider(Single.defer(() -> {
                     // Your logic here.
                     return Single.just(accessToken);
                 })).build();
