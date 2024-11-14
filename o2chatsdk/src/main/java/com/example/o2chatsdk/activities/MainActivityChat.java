@@ -147,6 +147,8 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
         intent1 = getIntent();
         common = new Common();
 
+        System.setProperty("javax.net.debug", "ssl,handshake,verbose");
+
         common.saveBaseUrlChat(mContext,Constants.ChatHubUrl);
         ReplaceFragment(new ConversationsDetailFragment(), false, new Bundle(), true);
 //      getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
