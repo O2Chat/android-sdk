@@ -24,18 +24,16 @@
             <LinearLayout
                 android:elevation="5dp"
                 android:orientation="vertical"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:id="@+id/layoutFileShow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|right"
                 android:gravity="center"
-                android:background="@drawable/message_user_background"
-
->
+                android:background="@drawable/message_nouser_background">
 
                 <LinearLayout
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:id="@+id/lnAudio"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"
@@ -176,9 +174,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/message_user_background"
-
-                >
+                android:background="@drawable/bg_menu_name">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="180dp"
