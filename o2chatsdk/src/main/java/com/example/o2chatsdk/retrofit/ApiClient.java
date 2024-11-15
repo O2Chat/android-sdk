@@ -51,20 +51,17 @@ public class ApiClient {
                         .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                         .authenticator(new TokenAuthenticator(context));
 
-           // new Common().initSSL(httpClientBuilder,context);
+        if(commons!=null){
+            //commons.initSSL(httpClientBuilder,context,false);
+        }
 
         // Live Server Https use
-        try {
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(ip + "api/")
-                    .client(NetworkClient.createHttpClient(context))
-    //                .client(httpClientBuilder.build())
-                    .addConverterFactory(ScalarsConverterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .build();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        retrofit = new Retrofit.Builder()
+                .baseUrl(ip + "api/")
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(httpClientBuilder.build())
+                .build();
         webService = retrofit.create(WebService.class);
 
     } // close the Retrofit Static Methord
