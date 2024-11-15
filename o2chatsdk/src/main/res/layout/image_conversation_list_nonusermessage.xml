@@ -30,7 +30,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|right"
                 android:gravity="center"
-                android:background="@drawable/message_nouser_background">
+                android:background="@drawable/message_user_background"
+
+>
 
                 <LinearLayout
                     android:visibility="gone"
@@ -174,7 +176,9 @@
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_menu_name">
+                android:background="@drawable/message_user_background"
+
+                >
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="180dp"

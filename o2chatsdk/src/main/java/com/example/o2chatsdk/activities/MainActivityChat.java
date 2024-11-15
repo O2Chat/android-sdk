@@ -210,8 +210,7 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
     }
 
     private void recordAudioPermission() {
-
-        com.example.signalrtestandroid.commons.PermissionHelper.grantPermission(this, Manifest.permission.RECORD_AUDIO, new com.example.signalrtestandroid.commons.PermissionHelper.PermissionInterface() {
+        PermissionHelper.grantPermission(this, Manifest.permission.RECORD_AUDIO, new PermissionHelper.PermissionInterface() {
             @Override
             public void onSuccess() {
 
@@ -219,9 +218,11 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
 
             @Override
             public void onError() {
-                ReplaceFragment(new com.example.signalrtestandroid.fragments.ConversationsFragment(), false, null, true);
+                ReplaceFragment(new ConversationsFragment(), false, null, true);
             }
         });
+
+
     }
 
     private void notificationPermission() {
