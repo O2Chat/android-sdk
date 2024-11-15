@@ -919,6 +919,7 @@ public class ConversationsDetailFragment extends Fragment{
             @Override
             public void onResponse(Call<WebResponse2<ArrayList<ConversationByUID>>> call, Response<WebResponse2<ArrayList<ConversationByUID>>> response) {
                 if(response.code() == 200){
+                    if (null != response.body().getResult())
                     if(response.body().getResult().size()>0){
 
                         if (response != null && response.body() != null

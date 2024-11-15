@@ -33,7 +33,7 @@
                 android:background="@drawable/message_nouser_background">
 
                 <LinearLayout
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:id="@+id/lnAudio"
                     android:layout_margin="5dp"
                     android:orientation="horizontal"

@@ -87,7 +87,7 @@ dependencies {
 
   implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC2'
     
-    implementation 'com.karumi:dexter:6.2.2'
+    implementation 'com.karumi:dexter:6.2.3'
     implementation 'com.github.curioustechizen.android-ago:library:1.4.0'
     implementation 'com.github.rbague:ScreenshotCallback:v1.0'
     implementation 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'

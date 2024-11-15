@@ -175,12 +175,28 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
         common.saveNotificationCount(getApplicationContext(),"");
 
          startConnectionCheckService();
+         recordAudioPermission();
          if (Build.VERSION.SDK_INT >= 32) {
             notificationPermission();
          }
         if (common!=null && mContext!=null){
             common.setIsConversationOpen(mContext,true);
         }
+    }
+
+    private void recordAudioPermission() {
+
+        PermissionHelper.grantPermission(this, Manifest.permission.RECORD_AUDIO, new PermissionHelper.PermissionInterface() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError() {
+                ReplaceFragment(new ConversationsFragment(), false, null, true);
+            }
+        });
     }
 
     @Override
