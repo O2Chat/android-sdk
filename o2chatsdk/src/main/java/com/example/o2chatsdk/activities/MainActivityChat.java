@@ -145,6 +145,8 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
         intent1 = getIntent();
         common = new Common();
 
+        System.setProperty("javax.net.debug", "ssl,handshake,verbose");
+
         common.saveBaseUrlChat(mContext,Constants.ChatHubUrl);
         ReplaceFragment(new ConversationsDetailFragment(), false, new Bundle(), true);
 //      getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
@@ -155,7 +157,6 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
         txtStatus = findViewById(R.id.txtStatus);
         Glide.with(mContext).load(R.drawable.connecting).into(icSource);
         channelId  = common.getChannelID(mContext);
-
         signalRHelper = new SignalRHelper();
 //      getAccessTokenByChannelId("f26a33d9-5b2e-4227-a456-eab45924a1d3");
 //      O2ChatConfig config = O2ChatConfig.getInstance(MainActivityChat.this);
@@ -178,6 +179,7 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
 
         common.saveNotificationCount(getApplicationContext(),"");
 
+        recordAudioPermission();
          startConnectionCheckService();
          if (Build.VERSION.SDK_INT >= 32) {
             notificationPermission();
@@ -204,6 +206,22 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
                 ReplaceFragmentWithoutClearBackStack(new ConversationsDetailFragment(), true, bundle, true);
             }
         }
+    }
+
+    private void recordAudioPermission() {
+
+        PermissionHelper.grantPermission(this, Manifest.permission.RECORD_AUDIO, new PermissionHelper.PermissionInterface() {
+
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError() {
+               // ReplaceFragment(new ConversationsFragment(), false, null, true);
+            }
+        });
     }
 
     private void notificationPermission() {
@@ -1048,6 +1066,8 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
                             }
                             hubConnection.onClosed(exception -> {
                                 if (exception != null) {
+                                    Log.d("hubConnection","Error: "+exception.getMessage());
+
                                     isSignalRConnected = false;
                                     scheduleApiSignalRConnection();
                                 }

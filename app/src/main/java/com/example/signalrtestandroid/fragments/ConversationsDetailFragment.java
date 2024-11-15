@@ -339,7 +339,7 @@ public class ConversationsDetailFragment extends Fragment{
 
             // Check and request RECORD_AUDIO permission
             ArrayList<String> permissionList = new ArrayList<>();
-            permissionList.add(Manifest.permission.RECORD_AUDIO);
+         //   permissionList.add(Manifest.permission.RECORD_AUDIO);
             permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
             permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
             PermissionHelper.grantMultiplePermissions(getContext(), permissionList, new PermissionHelper.PermissionInterface() {

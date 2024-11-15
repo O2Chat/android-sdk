@@ -10,6 +10,8 @@ import com.microsoft.signalr.HubConnectionBuilder;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.concurrent.TimeUnit;
+
 import io.reactivex.Single;
 
 public class SignalRHelper {
@@ -32,7 +34,7 @@ public class SignalRHelper {
                 Common common = new Common();
                 hubConnection.start().doOnComplete(() -> {
                     isConnected[0] = true;
-                }).blockingAwait();
+                }).doOnError(Throwable::printStackTrace).blockingAwait();
                 hubConnection.setKeepAliveInterval(2000);
 //                hubConnection.invoke("AgentJoined",agentId);
                 hubConnection.invoke("CustomerJoinedFromMobile","6901b42a-0776-41d2-ac76-6cb6f3029d53",customerId,mobileToken);
