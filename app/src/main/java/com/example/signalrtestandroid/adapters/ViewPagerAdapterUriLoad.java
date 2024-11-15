@@ -1,11 +1,7 @@
 package com.example.signalrtestandroid.adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.pdf.PdfRenderer;
 import android.net.Uri;
-import android.os.ParcelFileDescriptor;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +19,6 @@ import com.example.signalrtestandroid.activities.SelectFilePreviewActivity;
 import com.example.signalrtestandroid.model.chat.selectedFilePreviewData;
 import com.example.signalrtestandroid.R;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class ViewPagerAdapterUriLoad extends PagerAdapter

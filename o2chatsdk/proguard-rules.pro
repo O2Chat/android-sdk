@@ -24,6 +24,24 @@
 #-keep class com.example.o2chatsdk.** { *; }
 
 # Keep all interfaces in com.example.o2chatsdk package
+#-keep class com.example.o2chatsdk.** { *; }
+
+#-keep class com.example.o2chatsdk.commons.Common** { *; }
+
+#-keep class com.example.o2chatsdk.commons.Common{  <methods>; <fields>;}
+
+#-keep class com.example.o2chatsdk.retrofit.** { *; }
+#-keep class com.example.o2chatsdk.Events.**{*;}
+#-keep class com.example.o2chatsdk.activities.MainActivityChat
+##-keep class com.example.o2chatsdk.O2ChatConfig
+##-keep class com.example.o2chatsdk.localDB.**{*;}
+##-keep interface com.example.o2chatsdk.** { *; }
+#-keep class com.example.o2chatsdk.model.** { *; }
+#-keep class net.sqlcipher.** { *; }
+#-dontwarn net.sqlcipher.**
+
+#-keep class com.example.o2chatsdk.** { *; }
+
 -keep class com.example.o2chatsdk.** { *; }
 -keep interface com.example.o2chatsdk.** { *; }
 -keep class net.sqlcipher.** { *; }
