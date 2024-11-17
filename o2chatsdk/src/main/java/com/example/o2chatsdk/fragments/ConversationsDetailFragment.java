@@ -319,7 +319,7 @@ public class ConversationsDetailFragment extends Fragment{
 
             if(!handleBackPress())
             {
-                EventBus.getDefault().post(new com.example.signalrtestandroid.Events.appEvents.MessageEvent("SwitchToConversationList"));
+                EventBus.getDefault().post(new MessageEvent("SwitchToConversationList"));
 
             }
 
