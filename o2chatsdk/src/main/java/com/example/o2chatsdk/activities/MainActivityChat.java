@@ -31,7 +31,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.arittek.o2chatsdk.R;
+import com.example.o2chatsdk.R;
 import com.example.o2chatsdk.commons.O2ChatConfig;
 import com.bumptech.glide.Glide;
 import com.example.o2chatsdk.Events.appEvents.CustomerFeedBackEvent;
