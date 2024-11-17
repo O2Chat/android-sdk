@@ -36,6 +36,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -275,6 +277,25 @@ public class ConversationsDetailFragment extends Fragment{
         if (common!=null){
             cusId = common.getCustomerID(mContext);
         }
+        requireActivity().getOnBackPressedDispatcher().addCallback(
+                getViewLifecycleOwner(),
+                new OnBackPressedCallback(true) {
+                    @Override
+                    public void handleOnBackPressed() {
+                        if (fragmentConversationsBinding.lbTopicChannel.getVisibility() == View.VISIBLE)
+                        {
+                            hideAndShowTopicMenu(true);
+                        }
+
+                        else {
+                           // requireActivity().finish();
+                            EventBus.getDefault().post(new MessageEvent("SwitchToConversationList"));
+                        }
+
+
+                    }
+                }
+        );
 
         if (getArguments()!=null){
             Bundle bundle = getArguments();
