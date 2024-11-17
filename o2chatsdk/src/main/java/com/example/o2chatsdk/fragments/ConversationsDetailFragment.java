@@ -277,25 +277,6 @@ public class ConversationsDetailFragment extends Fragment{
         if (common!=null){
             cusId = common.getCustomerID(mContext);
         }
-        requireActivity().getOnBackPressedDispatcher().addCallback(
-                getViewLifecycleOwner(),
-                new OnBackPressedCallback(true) {
-                    @Override
-                    public void handleOnBackPressed() {
-                        if (fragmentConversationsBinding.lbTopicChannel.getVisibility() == View.VISIBLE)
-                        {
-                            hideAndShowTopicMenu(true);
-                        }
-
-                        else {
-                           // requireActivity().finish();
-                            EventBus.getDefault().post(new MessageEvent("SwitchToConversationList"));
-                        }
-
-
-                    }
-                }
-        );
 
         if (getArguments()!=null){
             Bundle bundle = getArguments();
@@ -335,7 +316,13 @@ public class ConversationsDetailFragment extends Fragment{
         // getConversationByUID(isLocalChatLoaded,pageNumber,pageSize,common.getConversationUUId(mContext),cusId,false);
 
         fragmentConversationsBinding.ivImageMenu.setOnClickListener(v -> {
-            EventBus.getDefault().post(new MessageEvent("SwitchToConversationList"));
+
+            if(!handleBackPress())
+            {
+                EventBus.getDefault().post(new com.example.signalrtestandroid.Events.appEvents.MessageEvent("SwitchToConversationList"));
+
+            }
+
         });
 
         fragmentConversationsBinding.rvConversations.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -662,6 +649,14 @@ public class ConversationsDetailFragment extends Fragment{
         }, 500);
 
         return view;
+    }
+
+    public boolean handleBackPress() {
+        if (fragmentConversationsBinding.lbTopicChannel.getVisibility() == View.VISIBLE) {
+            hideAndShowTopicMenu(true);
+            return true; // Back press handled
+        }
+        return false; // Not handled, let activity decide
     }
 
     private void startRecording() {

@@ -990,7 +990,16 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
             if (common!=null && mContext!=null){
                 common.setIsConversationOpen(mContext,false);
             }
-            finish();
+
+
+            boolean isHandled = ((ConversationsDetailFragment) fragInstance).handleBackPress();
+            if (isHandled) {
+                return; // Fragment handled the back press
+            }
+            else {
+                finish();
+
+            }
         }
 
     }
