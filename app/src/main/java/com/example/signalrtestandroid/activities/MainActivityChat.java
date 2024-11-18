@@ -7,14 +7,17 @@ import static com.example.signalrtestandroid.commons.Constants.SOURCE_KEY;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +31,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -99,6 +103,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivityChat extends BaseActivity implements ConnectionService.ConnectionServiceCallback {
+
+    private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
+    private boolean permissionToRecordAccepted = false;
+    private String[] permissions = {Manifest.permission.RECORD_AUDIO};
 
     public static boolean isPause = false;
     public static boolean isLoadChat = false;
@@ -174,8 +182,13 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
         }
 
         common.saveNotificationCount(getApplicationContext(),"");
+        //recordAudioPermission();
 
-         startConnectionCheckService();
+        requestAudioPermission();
+       // ActivityCompat.requestPermissions(this, permissions, REQUEST_RECORD_AUDIO_PERMISSION);
+
+
+        startConnectionCheckService();
          if (Build.VERSION.SDK_INT >= 32) {
             notificationPermission();
          }
@@ -202,6 +215,21 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
             }
         }
     }
+
+/*    private void recordAudioPermission() {
+
+        PermissionHelper.grantPermission(this, Manifest.permission.RECORD_AUDIO, new PermissionHelper.PermissionInterface() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError() {
+               // ReplaceFragment(new ConversationsFragment(), false, null, true);
+            }
+        });
+    }*/
 
     private void notificationPermission() {
 
@@ -1105,5 +1133,50 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         MainActivityChat.isPause = false;
+    }
+
+    private void requestAudioPermission() {
+        ActivityCompat.requestPermissions(this, permissions, REQUEST_RECORD_AUDIO_PERMISSION);
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_RECORD_AUDIO_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                permissionToRecordAccepted = true;
+            } else {
+                permissionToRecordAccepted = false;
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.RECORD_AUDIO)) {
+                    // Show rationale and re-request permission
+                    showPermissionRationale();
+                } else {
+                    // User selected "Don't ask again". Guide to settings
+                    showSettingsDialog();
+                }
+            }
+    }
+    }
+
+    private void showPermissionRationale() {
+        new AlertDialog.Builder(this)
+                .setTitle("Permission Needed")
+                .setMessage("This app requires audio recording permission to function properly.")
+                .setPositiveButton("Grant", (dialog, which) -> requestAudioPermission())
+                .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                .show();
+    }
+
+    private void showSettingsDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Permission Denied")
+                .setMessage("Permission has been denied permanently. Please enable it in the app settings.")
+                .setPositiveButton("Go to Settings", (dialog, which) -> {
+                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    Uri uri = Uri.fromParts("package", getPackageName(), null);
+                    intent.setData(uri);
+                    startActivity(intent);
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                .show();
     }
 }
