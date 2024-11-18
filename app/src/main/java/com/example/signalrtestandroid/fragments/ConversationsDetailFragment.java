@@ -779,12 +779,24 @@ public class ConversationsDetailFragment extends Fragment{
     }
 
     private void stopPlaying() {
-        if (mediaPlayer != null) {
-            mediaPlayer.release();
-            mediaPlayer = null;
+
+        try {
+            if (mediaPlayer != null) {
+                mediaPlayer.release();
+                mediaPlayer = null;
+            }
+            if (handler != null)
+            {
+                handler.removeCallbacks(updateTimeRunnable);
+                //fragmentConversationsBinding.timerTextView.setText("00:00");
+            }
+
         }
-        handler.removeCallbacks(updateTimeRunnable);
-        //fragmentConversationsBinding.timerTextView.setText("00:00");
+        catch (Exception e){
+
+        }
+
+
     }
 
     private String formatTime(int millis) {
