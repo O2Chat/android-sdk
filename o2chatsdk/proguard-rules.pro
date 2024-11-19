@@ -24,7 +24,27 @@
 #-keep class com.example.o2chatsdk.** { *; }
 
 # Keep all interfaces in com.example.o2chatsdk package
--keep class com.example.o2chatsdk.** { *; }
--keep interface com.example.o2chatsdk.** { *; }
+#-keep class com.example.o2chatsdk.** { *; }
+
+-keep class com.example.o2chatsdk.commons.O2ChatConfig.** { *; }
+-keep class com.example.o2chatsdk.commons.O2ChatConfig{  <methods>;
+                                                           <fields>;
+                                                           }
 -keep class net.sqlcipher.** { *; }
 -dontwarn net.sqlcipher.**
+-keep class com.example.o2chatsdk.Events.**{*;}
+-keep class com.example.o2chatsdk.activities.MainActivityChat
+-keep class com.example.o2chatsdk.localDB.**{*;}
+-keep class com.example.o2chatsdk.retrofit.** { *; }
+-keep class com.example.o2chatsdk.model.** { *; }
+
+-keep class com.microsoft.signalr.** { *; }
+-keep interface com.microsoft.signalr.** { *; }
+
+-keep class com.karumi.dexter.** { *; }
+-keep interface com.karumi.dexter.** { *; }
+-keepclasseswithmembernames class com.karumi.dexter.** { *; }
+-keepclasseswithmembernames interface com.karumi.dexter.** { *; }
+
+
+
