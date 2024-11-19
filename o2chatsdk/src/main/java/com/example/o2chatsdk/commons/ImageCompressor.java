@@ -9,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.UUID;
 
 public class ImageCompressor {
 
@@ -42,7 +43,11 @@ public class ImageCompressor {
 
     private File saveBitmapToFile(Context context, Bitmap bitmap) throws IOException {
         // Create a file to save the compressed image
-        File file = new File(context.getCacheDir(), "compressed_image.jpg");
+
+        String uniqueFileName = "compressed_image_" + UUID.randomUUID().toString() + ".jpg";
+
+
+        File file = new File(context.getCacheDir(), uniqueFileName);
 
         // Save the bitmap to the file
         FileOutputStream fos = new FileOutputStream(file);
