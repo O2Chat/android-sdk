@@ -15,7 +15,7 @@ public class ImageCompressor {
         Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
 
         // Compress the Bitmap
-        Bitmap compressedBitmap = compressBitmap(bitmap, 200, 200, 75);
+        Bitmap compressedBitmap = compressBitmap(bitmap, 512, 512, 90);
 
         // Save the compressed Bitmap to a new file
         File compressedFile = saveBitmapToFile(context, compressedBitmap);
