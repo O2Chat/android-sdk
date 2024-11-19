@@ -46,3 +46,8 @@
 -keep interface com.example.o2chatsdk.** { *; }
 -keep class net.sqlcipher.** { *; }
 -dontwarn net.sqlcipher.**
+
+-keep class com.download.library.** { *; }
+-keep interface com.download.library.** { *; }
+-keepclasseswithmembernames class com.download.library.** { *; }
+-keepclasseswithmembernames interface com.download.library.** { *; }
