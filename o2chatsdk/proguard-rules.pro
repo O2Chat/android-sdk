@@ -24,7 +24,7 @@
 #-keep class com.example.o2chatsdk.** { *; }
 
 # Keep all interfaces in com.example.o2chatsdk package
--keep class com.arittek.o2chatsdk.** { *; }
--keep interface com.arittek.o2chatsdk.** { *; }
+-keep class com.example.o2chatsdk.** { *; }
+-keep interface com.example.o2chatsdk.** { *; }
 -keep class net.sqlcipher.** { *; }
 -dontwarn net.sqlcipher.**

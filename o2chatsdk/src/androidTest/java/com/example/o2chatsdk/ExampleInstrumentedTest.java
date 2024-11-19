@@ -1,4 +1,4 @@
-package com.arittek.o2chatsdk;
+package com.example.o2chatsdk;
 
 import android.content.Context;
 

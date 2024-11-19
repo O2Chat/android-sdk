@@ -27,7 +27,7 @@
     </queries>
 
     <application
-        android:name="com.arittek.signalrtestandroid.ChatApplication"
+        android:name="com.example.signalrtestandroid.ChatApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -42,11 +42,11 @@
         android:requestLegacyExternalStorage="true">
         <uses-library android:name ="org.apache.http.legacy" android:required ="false"/>
 
-        <service android:name="com.arittek.signalrtestandroid.commons.ConnectionService"
+        <service android:name="com.example.signalrtestandroid.commons.ConnectionService"
             android:exported="true"
             />
         <activity
-            android:name="com.arittek.signalrtestandroid.activities.SplashActivityCHat"
+            android:name="com.example.signalrtestandroid.activities.SplashActivityCHat"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.SignalRTestAndroid.NoActionBar">
@@ -61,13 +61,13 @@
         </activity>
 
         <activity
-            android:name="com.arittek.signalrtestandroid.activities.UserProfileActivity"
+            android:name="com.example.signalrtestandroid.activities.UserProfileActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.SignalRTestAndroid.NoActionBar"
             android:exported="true"/>
 
         <activity
-            android:name="com.arittek.signalrtestandroid.activities.MainActivityChat"
+            android:name="com.example.signalrtestandroid.activities.MainActivityChat"
             android:label="@string/app_name"
             android:theme="@style/Theme.SignalRTestAndroid.NoActionBar"
             android:exported="true"
@@ -82,7 +82,7 @@
         </activity>
 
         <activity
-            android:name="com.arittek.signalrtestandroid.activities.SelectFilePreviewActivity"
+            android:name="com.example.signalrtestandroid.activities.SelectFilePreviewActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.SignalRTestAndroid.NoActionBar"
             android:exported="true"/>
