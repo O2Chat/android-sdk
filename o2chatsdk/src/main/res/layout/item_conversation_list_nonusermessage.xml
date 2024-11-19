@@ -15,10 +15,10 @@
 
         <LinearLayout
             android:id="@+id/lnProfileUser"
-            android:layout_weight="0.3"
+            android:layout_weight="0.25"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:gravity="center|right"
+            android:gravity="center"
             >
 
             <RelativeLayout
