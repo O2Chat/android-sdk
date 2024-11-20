@@ -2263,6 +2263,8 @@ public class ConversationsDetailFragment extends Fragment{
                             root.mkdirs();
                         }
                         File f = new File(rootPath + messageEventFileDownload.documentName);
+                        Log.d("FilePath", "Expected Path: " + f.getAbsolutePath());
+
                         if (f.exists()) {
                             //open file here
                             try {
@@ -2287,6 +2289,8 @@ public class ConversationsDetailFragment extends Fragment{
                                             @Override
                                             public void onStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength, Extra extra) {
                                                 super.onStart(url, userAgent, contentDisposition, mimetype, contentLength, extra);
+                                                Log.d("Download", "Download started: " + url);
+
                                                 if (messageEventFileDownload.conversationByUID!=null){
                                                     conversationByUID.isDownloading = true;
                                                     conversationByUID.isShowLocalFiles = false;
@@ -2300,11 +2304,19 @@ public class ConversationsDetailFragment extends Fragment{
                                             public void onProgress(String url, long downloaded, long length, long usedTime) {
                                                 super.onProgress(url, downloaded, length, usedTime);
                                                 //Log.i("TAG", " progress:" + downloaded + " url:" + url);
+                                                Log.d("Download", "Progress: " + downloaded + " / " + length);
+
                                             }
 
                                             @Override
                                             public boolean onResult(Throwable throwable, Uri path, String url, Extra extra) {
 
+                                                Log.d("FilePath", "Downloaded Path: " + path.getPath());
+                                                if (throwable != null) {
+                                                    Log.e("DownloadError", "Failed to download file: " + throwable.getMessage());
+                                                    Toast.makeText(mContext, "File download failed.", Toast.LENGTH_SHORT).show();
+                                                    return false;
+                                                }
                                                 handler = new Handler();
                                                 myRunnable = () -> {
                                                     // Things to be done
@@ -2468,6 +2480,10 @@ public class ConversationsDetailFragment extends Fragment{
                                         mContext.getContentResolver().getType(uri).equalsIgnoreCase("image/jpg") ||
                                         mContext.getContentResolver().getType(uri).equalsIgnoreCase("image/png")) {
                                     File compressedImageFile = null;
+                                    if (fileTemp == null || !fileTemp.exists()) {
+                                        Log.e("FileCheck", "Temporary file does not exist or is null");
+                                        return;
+                                    }
 //                                    try {
                                         try {
                                             fileTemp = FileUtil.from(mContext, uri);
@@ -2490,15 +2506,23 @@ public class ConversationsDetailFragment extends Fragment{
                                             ImageCompressor imageCompressor = new ImageCompressor();
                                             compressedImageFile = isFileAttach ? fileTemp : imageCompressor.compressImageFile(getContext(), fileTemp);
                                             // Use the compressedImageFile as needed
+                                            Log.d("Compression", "File compressed successfully: " + compressedImageFile.getAbsolutePath());
                                         } catch (IOException e) {
+                                            Log.e("Compression", "Compression failed", e);
                                             e.printStackTrace();
                                         }
+                                    if (compressedImageFile == null || !compressedImageFile.exists()) {
+                                        Log.e("FileCheck", "Compressed file does not exist or is null");
+                                        return;
+                                    }
 
                                          filesNames.add(new FileDataClass(compressedImageFile.getName(),common.getFolderSizeLabel(compressedImageFile),FileUtil.getFileTypeFromUri(mContext,uri),uri.toString(),tempChatID));
                                         String base64Str = "";
                                         try {
                                             base64Str  = common.convertFileToBase64(compressedImageFile.getAbsolutePath());
+                                            Log.d("Base64", "Base64 String length: " + base64Str.length());
                                         } catch (Exception e) {
+                                            Log.e("Base64", "Conversion failed", e);
                                             throw new RuntimeException(e);
                                         }
                                         fileUploadArrayList.add(new UploadFilesDataModel(tempChatID,base64Str,compressedImageFile.getName(),fileType,conversationByUID,""));
