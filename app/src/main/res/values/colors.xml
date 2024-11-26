@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#bb1823</color>
+    <color name="purple_200">#7dc8fa</color>
     <color name="purple_500">#0c83fa</color>
-    <color name="purple_700">#bb1823</color>
+    <color name="purple_700">#7dc8fa</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
@@ -24,5 +24,70 @@
     <color name="blue_color">#E61E84F2</color>
     <color name="rating_color">#ffa534</color>
     <color name="audio_player_color">#868A8D</color>
+
+
+
+
+
+    <color name="bg_transparent_90">#B3272727</color>
+    <color name="blue_color_dark">#331E84F2</color>
+    <color name="yellow_color_dark">#FCF1E3</color>
+    <color name="view_color">#E6E6E6</color>
+    <color name="base_chat_color">#e6e6e6</color>
+    <color name="chat_box">#f2f2f2</color>
+    <color name="send_icon_color">#2c6bd1</color>
+    <color name="sp_color_view">#EEF1F6</color>
+    <color name="shimmerbg">#dddddd</color>
+    <color name="audio_default_color_gray">#D7CED0D1</color>
+    <color name="shimmer_color">#b3d5ef</color>
+
+    <color name="status_bar_color">#7dc8fa</color>
+
+    <color name="light_grey_view">#DCDCDC</color>
+
+    <color name="tool_bar_color">#e6e6e6</color>
+    <color name="tool_bar_view">#ABABAB</color>
+
+
+    <color name="drawer_head_bg">#D9ECFD</color>
+    <color name="count_bg">#D9ECFD</color>
+
+    <color name="conversation_bg">#00000000</color>
+    <color name="conversation_receive_bg">#FFFFFFFF</color>
+    <color name="write_message_bg">#f2f2f2</color>
+
+
+    <color name="conversation_list_bg">#00000000</color>
+
+    <color name="count_circle">#0d6efd</color>
+
+
+    <color name="chat_sender_bubble_bg">#D9ECFD</color>
+
+    <!--
+    <color name="chat_sender_bubble_bg">#b3d5ef</color>
+-->
+
+    <color name="time_details_bg">#000000</color>
+
+    <color name="conversation_details_bg">@color/grey</color>
+
+
+    <color name="message_deliver_bg">#00000000</color>
+
+    <color name="grey_text_color">#969696</color>
+
+
+
+    <color name="filter_by_tags_bg">#D9ECFD</color>
+
+
+    <color name="black_only">#FF000000</color>
+
+    <color name="switch_track_enabled">#7dc8fa</color>
+
+    <color name="switch_track_disabled">#969696</color>
+
+    <color name="dark_gray_black">#252222</color>
 
 </resources>

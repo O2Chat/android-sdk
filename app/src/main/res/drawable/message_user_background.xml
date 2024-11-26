@@ -6,6 +6,6 @@ android:shape="rectangle">
         android:topLeftRadius="0dp"
         android:topRightRadius="4dp"
         />
-    <solid android:color="@color/white_chat"/>
-    <stroke android:color="@color/white_chat" android:width="0.5dp"/>
+    <solid android:color="@color/conversation_receive_bg"/>
+    <stroke android:color="@color/conversation_receive_bg" android:width="0.5dp"/>
 </shape>

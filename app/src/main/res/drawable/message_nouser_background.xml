@@ -6,6 +6,6 @@ android:shape="rectangle">
         android:topLeftRadius="4dp"
         android:topRightRadius="0dp"
         />
-    <solid android:color="@color/bg_agent_message"/>
-    <stroke android:color="@color/bg_agent_message" android:width="0.5dp"/>
+    <solid android:color="@color/chat_sender_bubble_bg"/>
+    <stroke android:color="@color/chat_sender_bubble_bg" android:width="0.5dp"/>
 </shape>

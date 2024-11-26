@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.o2chatsdk.fragments.ConversationsFragment"
+
      android:layout_width="match_parent"
     android:background="@android:color/transparent"
     >
@@ -29,7 +29,7 @@
             android:layout_marginTop="@dimen/_7sdp"
             android:layout_marginStart="@dimen/_7sdp"
             android:layout_marginEnd="@dimen/_7sdp"
-            android:textColor="@color/emoji_black"
+            android:textColor="@color/black"
             android:maxWidth="@dimen/_230sdp"
             android:textSize="@dimen/_13ssp" />
         <RelativeLayout
