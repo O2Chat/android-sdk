@@ -31,6 +31,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -150,6 +151,9 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
             final Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         }
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+
 
         mContext = MainActivityChat.this;
         dbchat = AppDatabase.getAppDatabase(mContext.getApplicationContext());
