@@ -266,11 +266,18 @@ public class Common {
         conversation = gson.fromJson(json, type);
         return conversation;
     }
-
+//save token for client
     public String getFcmToken(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("FcmTokenString", MODE_PRIVATE);
         String TaxFormString = prefs.getString("fcm_tokenString", "");
         return TaxFormString;
+    }
+
+    //get token for client
+    public void saveFcmToken(Context context,String saveToken) {
+        SharedPreferences.Editor editor = context.getSharedPreferences("FcmTokenString", MODE_PRIVATE).edit();
+        editor.putString("fcm_tokenString", saveToken);
+        editor.apply();
     }
 
     // get banner login list
