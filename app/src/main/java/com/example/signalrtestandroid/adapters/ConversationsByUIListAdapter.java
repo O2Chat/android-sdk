@@ -108,69 +108,85 @@ public class ConversationsByUIListAdapter extends RecyclerView.Adapter<RecyclerV
                 if (conversation.files != null && conversation.files.size()>0) {
 
                         if(!conversation.files.get(0).url.isEmpty() && conversation.files.get(0).type!=null){
-                            if (conversation.files.get(0).type.equalsIgnoreCase("zip") || conversation.files.get(0).type.equalsIgnoreCase("application/zip")){
+                            if (conversation.files.get(0).type.equalsIgnoreCase("zip")
+                                    || conversation.files.get(0).type.equalsIgnoreCase("application/zip")){
                                 viewHolderForChatImagesAndFile.layoutFileShow.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnOtherFiles.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnAudio.setVisibility(View.GONE);
                                 viewHolderForChatImagesAndFile.layoutImage.setVisibility(View.GONE);
                                 viewHolderForChatImagesAndFile.ivMultimedia.setImageResource(R.drawable.zip);
                             }
-                            else if (conversation.files.get(0).type.equalsIgnoreCase("rar") || conversation.files.get(0).type.equalsIgnoreCase("application/rar")){
+                            else if (conversation.files.get(0).type.equalsIgnoreCase("rar")
+                                    || conversation.files.get(0).type.equalsIgnoreCase("application/rar")){
                                 viewHolderForChatImagesAndFile.layoutFileShow.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnOtherFiles.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnAudio.setVisibility(View.GONE);
                                 viewHolderForChatImagesAndFile.layoutImage.setVisibility(View.GONE);
                                 viewHolderForChatImagesAndFile.ivMultimedia.setImageResource(R.drawable.rar);
                             }
-                           else if (conversation.files.get(0).type.equalsIgnoreCase("7z") || conversation.files.get(0).type.equalsIgnoreCase("application/7z")){
+                           else if (conversation.files.get(0).type.equalsIgnoreCase("7z")
+                                    || conversation.files.get(0).type.equalsIgnoreCase("application/7z")){
                                 viewHolderForChatImagesAndFile.layoutFileShow.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnOtherFiles.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnAudio.setVisibility(View.GONE);
                                 viewHolderForChatImagesAndFile.layoutImage.setVisibility(View.GONE);
                                 viewHolderForChatImagesAndFile.ivMultimedia.setImageResource(R.drawable.sevenz);
                             }
-                            else if (conversation.files.get(0).type.equalsIgnoreCase("txt") || conversation.files.get(0).type.equalsIgnoreCase("application/txt")){
+                            else if (conversation.files.get(0).type.equalsIgnoreCase("txt")
+                                    || conversation.files.get(0).type.equalsIgnoreCase("application/txt")){
                                 viewHolderForChatImagesAndFile.layoutFileShow.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnOtherFiles.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnAudio.setVisibility(View.GONE);
                                 viewHolderForChatImagesAndFile.layoutImage.setVisibility(View.GONE);
                                 viewHolderForChatImagesAndFile.ivMultimedia.setImageResource(R.drawable.txt);
                             }
-                            else if (conversation.files.get(0).type.equalsIgnoreCase("pdf") || conversation.files.get(0).type.equalsIgnoreCase("application/pdf")){
+                            else if (conversation.files.get(0).type.equalsIgnoreCase("pdf")
+                                    || conversation.files.get(0).type.equalsIgnoreCase("application/pdf")){
                                 viewHolderForChatImagesAndFile.layoutFileShow.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnOtherFiles.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnAudio.setVisibility(View.GONE);
                                 viewHolderForChatImagesAndFile.layoutImage.setVisibility(View.GONE);
                                 viewHolderForChatImagesAndFile.ivMultimedia.setImageResource(R.drawable.pdf);
                             }
-                            else if ( conversation.files.get(0).type.equalsIgnoreCase("msword")  || conversation.files.get(0).type.equalsIgnoreCase("application/msword") || conversation.files.get(0).type.equalsIgnoreCase("docx") || conversation.files.get(0).type.equalsIgnoreCase("application/docx") || conversation.files.get(0).type.equalsIgnoreCase("doc") || conversation.files.get(0).type.equalsIgnoreCase("application/doc") || conversation.files.get(0).type.equalsIgnoreCase("application/vnd.openxmlformats-officedocument.wordprocessingml.document")){
+                            else if ( conversation.files.get(0).type.equalsIgnoreCase("msword")
+                                    || conversation.files.get(0).type.equalsIgnoreCase("docx")
+                                    || conversation.files.get(0).type.equalsIgnoreCase("application/docx")
+                                    || conversation.files.get(0).type.equalsIgnoreCase("doc")
+                                    || conversation.files.get(0).type.equalsIgnoreCase("application/doc")
+                                    || conversation.files.get(0).type.equalsIgnoreCase("application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+                                    || conversation.files.get(0).type.equalsIgnoreCase("application/msword")
+                            ){
                                 viewHolderForChatImagesAndFile.layoutFileShow.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnOtherFiles.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.layoutImage.setVisibility(View.GONE);
                                 viewHolderForChatImagesAndFile.lnAudio.setVisibility(View.GONE);
                                 viewHolderForChatImagesAndFile.ivMultimedia.setImageResource(R.drawable.doc);
                             }
-                            else if (conversation.files.get(0).type.equalsIgnoreCase("xls") || conversation.files.get(0).type.equalsIgnoreCase("application/xls")){
+                            else if (conversation.files.get(0).type.equalsIgnoreCase("xls")
+                                    || conversation.files.get(0).type.equalsIgnoreCase("application/xls")){
                                 viewHolderForChatImagesAndFile.layoutFileShow.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnOtherFiles.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnAudio.setVisibility(View.GONE);
                                 viewHolderForChatImagesAndFile.layoutImage.setVisibility(View.GONE);
                                 viewHolderForChatImagesAndFile.ivMultimedia.setImageResource(R.drawable.xls);
                             }
-                            else if (conversation.files.get(0).type.equalsIgnoreCase("xlsx") || conversation.files.get(0).type.equalsIgnoreCase("application/xlsx")){
+                            else if (conversation.files.get(0).type.equalsIgnoreCase("xlsx")
+                                    || conversation.files.get(0).type.equalsIgnoreCase("application/xlsx")){
                                 viewHolderForChatImagesAndFile.layoutFileShow.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnOtherFiles.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnAudio.setVisibility(View.GONE);
                                 viewHolderForChatImagesAndFile.layoutImage.setVisibility(View.GONE);
                                 viewHolderForChatImagesAndFile.ivMultimedia.setImageResource(R.drawable.xlsx);
                             }
-                            else if (conversation.files.get(0).type.equalsIgnoreCase("csv") || conversation.files.get(0).type.equalsIgnoreCase("application/csv")){
+                            else if (conversation.files.get(0).type.equalsIgnoreCase("csv")
+                                    || conversation.files.get(0).type.equalsIgnoreCase("application/csv")){
                                 viewHolderForChatImagesAndFile.layoutFileShow.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnOtherFiles.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnAudio.setVisibility(View.GONE);
                                 viewHolderForChatImagesAndFile.layoutImage.setVisibility(View.GONE);
                                 viewHolderForChatImagesAndFile.ivMultimedia.setImageResource(R.drawable.xls);
-                            }else if (conversation.files.get(0).type.equalsIgnoreCase("mp3") || conversation.files.get(0).type.equalsIgnoreCase("application/mp3")) {
+                            }else if (conversation.files.get(0).type.equalsIgnoreCase("mp3")
+                                    || conversation.files.get(0).type.equalsIgnoreCase("application/mp3")) {
                                 viewHolderForChatImagesAndFile.layoutFileShow.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnAudio.setVisibility(View.VISIBLE);
                                 viewHolderForChatImagesAndFile.lnOtherFiles.setVisibility(View.GONE);
