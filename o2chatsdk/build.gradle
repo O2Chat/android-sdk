@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace 'com.example.o2chatsdk'
+    namespace 'com.arittek.o2chatsdk'
     compileSdk 34
 
     defaultConfig {
