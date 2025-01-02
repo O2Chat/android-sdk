@@ -49,15 +49,13 @@ To use the library in your project, follow these steps:
    o2chatConfig.saveCnicNumber(context, "Cnic");
    ```
 
-## Step 4: Declare activity 
+## Step 4: Start Chat Activity 
 
-Ensure that you have declared MainActivityChat in `AndroidManifest.xml`.
+   Use the following method to start chat`.
 
-```xml
- <activity
-            android:name="com.arittek.o2chatsdk.activities.MainActivityChat"
-            android:exported="false" />
-```
+  ```java
+        startActivity(new Intent(this, MainActivityChat.class));
+   ```
 
 ## Step 5: Permissions
 
