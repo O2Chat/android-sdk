@@ -89,7 +89,3 @@
 -keep class okio.** { *; }
 -keep class okhttp3.** { *; }
 -keep class com.google.gson.** { *; }
-
-#androidx
--keep class androidx.** { *; }
--keep public class * extends androidx.**

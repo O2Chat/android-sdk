@@ -2,8 +2,6 @@ plugins {
     id 'com.android.library'
     id 'maven-publish'
 
-    id 'org.jetbrains.kotlin.android'
-
 }
 
 android {
@@ -41,9 +39,6 @@ android {
 }
 
 dependencies {
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.10"
-    
 
     implementation 'org.greenrobot:eventbus:3.3.1'
     implementation 'androidx.appcompat:appcompat:1.6.0'
