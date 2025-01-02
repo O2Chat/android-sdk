@@ -3,21 +3,15 @@
     <application>
         <activity
             android:name="com.arittek.o2chatsdk.activities.SelectFilePreviewActivity"
-            android:exported="false"
-            android:theme="@style/Theme.SignalRTestAndroid"
-            />
+            android:exported="false"/>
 
         <activity
             android:name="com.arittek.o2chatsdk.activities.UserProfileActivity"
-            android:exported="false"
-            android:theme="@style/Theme.SignalRTestAndroid"
-            />
+            android:exported="false"/>
 
         <activity
             android:name="com.arittek.o2chatsdk.activities.MainActivityChat"
-            android:exported="false"
-            android:theme="@style/Theme.SignalRTestAndroid"
-            />
+            android:exported="false" />
     </application>
 
 </manifest>
