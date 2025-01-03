@@ -1,0 +1,124 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.SignalRTestAndroid" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!--    <style name="Theme.SignalRTestAndroid" parent="Theme.MaterialComponents.Light.NoActionBar">-->
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white_chat</item>
+
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/purple_500</item>
+        <item name="colorSecondaryVariant">@color/purple_500</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.SignalRTestAndroid.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="HintText" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:textColor">@color/purple_500</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="Theme.SignalRTestAndroid.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.SignalRTestAndroid.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Widget.MaterialComponents.TextInputLayout.OutlinedBox" parent="Base.Widget.MaterialComponents.TextInputLayout">
+        <item name="materialThemeOverlay">
+            @style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox
+        </item>
+        <item name="boxCollapsedPaddingTop">0dp</item>
+    </style>
+
+
+    <style name="AppBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottomsheet_background</item>
+    </style>
+
+
+</resources>
+
+
+<!--
+
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+    &lt;!&ndash; Base application theme. &ndash;&gt;
+    <style name="Theme.SignalRTestAndroid" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        &lt;!&ndash; Primary brand color. &ndash;&gt;
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        &lt;!&ndash; Secondary brand color. &ndash;&gt;
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        &lt;!&ndash; Status bar color. &ndash;&gt;
+        <item name="android:statusBarColor">@color/status_bar_color</item>
+        <item name="android:switchStyle">@style/SwitchTheme</item>
+        &lt;!&ndash;        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>&ndash;&gt;
+     &lt;!&ndash;   <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>&ndash;&gt;
+
+        &lt;!&ndash; Customize your theme here. &ndash;&gt;
+    </style>
+
+    <style name="Theme.SignalRTestAndroid.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.SignalRTestAndroid.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.SignalRTestAndroid.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Widget.App.CheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.CheckBox</item>
+    </style>
+
+    <style name="ThemeOverlay.App.CheckBox" parent="">
+        <item name="colorOnSurface">@color/purple_500</item>
+        <item name="colorSecondary">@color/purple_500</item>
+    </style>
+
+
+&lt;!&ndash;    <style name="CustomSpinner" parent="Widget.AppCompat.Spinner">
+        <item name="android:background">@drawable/spinner_background</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:spinnerDropDownItemStyle">@style/CustomSpinnerDropDown</item>
+    </style>
+
+    <style name="CustomSpinnerDropDown" parent="Widget.AppCompat.Spinner.DropDown">
+        <item name="android:background">@drawable/spinner_background</item>
+        <item name="android:padding">8dp</item>
+    </style>&ndash;&gt;
+
+    <style name="SwitchTheme" parent="Widget.AppCompat.CompoundButton.Switch">
+        &lt;!&ndash; active thumb & track color (30% transparency) &ndash;&gt;
+        <item name="colorControlActivated">@color/purple_500</item>
+
+        &lt;!&ndash; inactive thumb color &ndash;&gt;
+        <item name="colorSwitchThumbNormal">@color/switch_track_disabled
+        </item>
+
+        &lt;!&ndash; inactive track color (30% transparency) &ndash;&gt;
+        <item name="android:colorForeground">@color/grey_bg
+        </item>
+    </style>
+
+
+</resources>-->
