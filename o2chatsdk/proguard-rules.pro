@@ -84,3 +84,10 @@
 -keep class androidx.room.** { *; }
 -keepattributes Signature
 -keepattributes *Annotation*
+-dontwarn android.arch.util.paging.CountedDataSource
+-dontwarn android.arch.persistence.room.paging.LimitOffsetDataSource
+
+
+
+
+
