@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
-    id("androidx.room")
+
 
 }
 
@@ -41,9 +41,7 @@ android {
         viewBinding true
     }
 
-    room {
-        schemaDirectory("$projectDir/schemas")
-    }
+
 }
 // Testing
 dependencies {
