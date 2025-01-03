@@ -47,45 +47,40 @@
 -keepclasseswithmembernames interface com.karumi.dexter.** { *; }
 
 
--keep class com.download.library.** { *; }
--keep interface com.download.library.** { *; }
--keepclasseswithmembernames class com.download.library.** { *; }
--keepclasseswithmembernames interface com.download.library.** { *; }
 
 
 
 
--keep class com.downloader.** {*;}
+
 
 
 #download library
 
 # Keep all classes and members in the `com.download.library` package
+
+
+-keepclasseswithmembernames class com.download.library.** { *; }
+-keepclasseswithmembernames interface com.download.library.** { *; }
+-keep class com.downloader.** {*;}
 -keep class com.download.library.** { *; }
-
-# Keep all interfaces in the `com.download.library` package
 -keep interface com.download.library.** { *; }
-
-# Prevent ProGuard from removing any classes with specific member names
 -keepclasseswithmembers class com.download.library.** {
     *;
 }
-
-# Preserve annotations used by the library (if any)
 -keep @interface com.download.library.**
-
-# Preserve all generic signatures for the package
 -keepattributes Signature,RuntimeVisibleAnnotations,AnnotationDefault
-
-# Prevent the stripping of enums
 -keepclassmembers enum com.download.library.** {
     *;
 }
-
-# Preserve any classes that are dynamically loaded via reflection
 -keepnames class com.download.library.**
 
 # Keep dependencies (if the library uses third-party code)
 -keep class okio.** { *; }
 -keep class okhttp3.** { *; }
 -keep class com.google.gson.** { *; }
+
+# Room database rules
+-keep class androidx.room.RoomDatabase { *; }
+-keep class androidx.room.** { *; }
+-keepattributes Signature
+-keepattributes *Annotation*
