@@ -852,7 +852,7 @@ public class Common {
     }
     public String getFirstName(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("CustomerNamePreference", MODE_PRIVATE);
-        String TaxFormString = prefs.getString("CustomerName", "Bhom Singh");
+        String TaxFormString = prefs.getString("CustomerName", "Umair Abbasi");
         return TaxFormString;
     }
 
@@ -864,7 +864,7 @@ public class Common {
 
     public String getCustomerEmail(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("saveCustomerEmail", MODE_PRIVATE);
-        String TaxFormString = prefs.getString("CustomerEmailAddress", "bhomsingh@gmail.com");
+        String TaxFormString = prefs.getString("CustomerEmailAddress", "umair   @gmail.com");
         return TaxFormString;
     }
 
