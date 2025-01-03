@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'maven-publish'
 
+
 }
 
 android {
@@ -77,12 +78,12 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'androidx.appcompat:appcompat:1.6.1'
 
-//    implementation 'android.arch.persistence.room:runtime:1.1.1'
-  //  annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
 
-    def room_version = "2.3.0"
+/*    def room_version = "2.3.0"
     implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"*/
 
     implementation "net.zetetic:android-database-sqlcipher:4.4.2"
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
