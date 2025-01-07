@@ -1,7 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
-
+    id 'kotlin-android'
+    id 'kotlin-kapt'
 
 }
 
@@ -27,8 +28,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     java {
@@ -84,7 +85,7 @@ dependencies {
     // If this project only uses Java source, use the Java annotationProcessor
     // No additional plugins are necessary
     def room_version = "2.6.1"
-    annotationProcessor("androidx.room:room-compiler:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
 
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:$room_version")
