@@ -40,6 +40,10 @@ android {
         viewBinding true
     }
 
+    packagingOptions {
+        doNotStrip "*/libsqlcipher.so"
+    }
+
 
     
 }
