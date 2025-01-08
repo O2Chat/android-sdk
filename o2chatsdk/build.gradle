@@ -24,8 +24,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
-            //proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -38,10 +38,6 @@ android {
     }
     buildFeatures {
         viewBinding true
-    }
-
-    packagingOptions {
-        doNotStrip "*/libsqlcipher.so"
     }
 
 
@@ -166,7 +162,7 @@ afterEvaluate {
                 from components.findByName('release')
                 groupId = 'com.o2chat.consumer.sdk'
                 artifactId = 'o2chatsdk'
-                version = '1.0.1' // Ensure this is correctly set
+                version = '1.0.0' // Ensure this is correctly set
                 artifact("$buildDir/outputs/aar/${project.name}-release.aar")
             }
         }
