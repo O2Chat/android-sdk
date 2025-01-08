@@ -1,8 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
 
 }
 
@@ -32,13 +30,10 @@ android {
         targetCompatibility JavaVersion.VERSION_11
     }
 
- /*   java {
+    java {
         toolchain {
             languageVersion = JavaLanguageVersion.of(17)
         }
-    }*/
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11
     }
 
     buildFeatures {
@@ -74,20 +69,14 @@ dependencies {
     implementation "com.github.marlonlom:timeago:4.0.3"
     implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
     implementation "io.reactivex.rxjava2:rxjava:2.1.1"
-
-    //implementation 'android.arch.persistence.room:runtime:1.1.1'
-    //annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
-
-    def room_version = "2.3.0"
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
-
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
 
     implementation 'net.zetetic:android-database-sqlcipher:4.5.0'
 
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
     implementation 'com.github.bumptech.glide:glide:4.14.2'
-    kapt 'com.github.bumptech.glide:compiler:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
     implementation 'com.vanniktech:emoji-google:0.7.0'
     implementation 'com.vanniktech:emoji-ios:0.6.0'
