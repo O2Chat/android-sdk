@@ -82,7 +82,8 @@ import com.arittek.signalrtestandroid.model.chat.TypingIndicatorListenerModel;
 import com.arittek.signalrtestandroid.retrofit.ApiClient;
 import com.arittek.signalrtestandroid.retrofit.WebResponse;
 
-import com.arittek.signalrtestandroid.R;
+
+import com.example.signalrtestandroid.R;
 import com.google.gson.Gson;
 import com.microsoft.signalr.HubConnection;
 

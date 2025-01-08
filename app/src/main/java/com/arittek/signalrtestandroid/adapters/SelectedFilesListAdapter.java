@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.arittek.signalrtestandroid.Events.appEvents.FileDeleteEvent;
 import com.arittek.signalrtestandroid.commons.Common;
-import com.arittek.signalrtestandroid.R;
+import com.example.signalrtestandroid.R;
 
 import org.greenrobot.eventbus.EventBus;
 

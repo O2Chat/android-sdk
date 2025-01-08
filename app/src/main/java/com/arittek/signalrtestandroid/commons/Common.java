@@ -38,7 +38,7 @@ import com.arittek.signalrtestandroid.model.chat.RecieveMessage;
 import com.arittek.signalrtestandroid.model.login.LoginResponseData;
 import com.arittek.signalrtestandroid.retrofit.ApiClient;
 import com.arittek.signalrtestandroid.retrofit.WebResponse;
-import com.arittek.signalrtestandroid.R;
+import com.example.signalrtestandroid.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -852,7 +852,7 @@ public class Common {
     }
     public String getFirstName(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("CustomerNamePreference", MODE_PRIVATE);
-        String TaxFormString = prefs.getString("CustomerName", "Bhom Singh");
+        String TaxFormString = prefs.getString("CustomerName", "Umair Abbasi");
         return TaxFormString;
     }
 
@@ -864,7 +864,7 @@ public class Common {
 
     public String getCustomerEmail(Context context) {
         SharedPreferences prefs = context.getSharedPreferences("saveCustomerEmail", MODE_PRIVATE);
-        String TaxFormString = prefs.getString("CustomerEmailAddress", "bhomsingh@gmail.com");
+        String TaxFormString = prefs.getString("CustomerEmailAddress", "umairabbasi@gmail.com");
         return TaxFormString;
     }
 

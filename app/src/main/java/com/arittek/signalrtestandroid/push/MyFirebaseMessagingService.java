@@ -17,7 +17,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.arittek.signalrtestandroid.activities.MainActivityChat;
 import com.arittek.signalrtestandroid.commons.Common;
-import com.arittek.signalrtestandroid.R;
+import com.example.signalrtestandroid.R;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;

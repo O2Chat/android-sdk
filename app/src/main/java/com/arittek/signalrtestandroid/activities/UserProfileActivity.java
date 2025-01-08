@@ -12,8 +12,9 @@ import com.arittek.signalrtestandroid.commons.Utils;
 import com.arittek.signalrtestandroid.model.chat.UserProfile;
 import com.arittek.signalrtestandroid.retrofit.ApiClient;
 import com.arittek.signalrtestandroid.retrofit.WebResponse;
-import com.arittek.signalrtestandroid.R;
-import com.arittek.signalrtestandroid.databinding.ActivityProfileUpdateBinding;
+import com.example.signalrtestandroid.R;
+import com.example.signalrtestandroid.databinding.ActivityProfileUpdateBinding;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;

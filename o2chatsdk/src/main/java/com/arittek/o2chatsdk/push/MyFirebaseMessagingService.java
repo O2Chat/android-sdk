@@ -17,7 +17,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.arittek.o2chatsdk.activities.MainActivityChat;
 import com.arittek.o2chatsdk.commons.Common;
-import com.arittek.signalrtestandroid.R;
+import com.arittek.o2chatsdk.R;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -219,10 +219,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
             notificationBuilder.setColor(getResources().getColor(com.google.android.material.R.color.design_default_color_on_primary));
-            return R.mipmap.ic_launcher;
+            return  R.drawable.message_notification; //R.mipmap.ic_launcher;
 
         }
-        return R.mipmap.ic_launcher;
+        return  R.drawable.message_notification; //R.mipmap.ic_launcher;
     }
     @Override
     public void onNewToken(String token) {

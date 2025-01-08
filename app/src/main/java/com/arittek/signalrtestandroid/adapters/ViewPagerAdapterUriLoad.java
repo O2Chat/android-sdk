@@ -17,7 +17,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.arittek.signalrtestandroid.activities.SelectFilePreviewActivity;
 import com.arittek.signalrtestandroid.model.chat.selectedFilePreviewData;
-import com.arittek.signalrtestandroid.R;
+import com.example.signalrtestandroid.R;
 
 import java.util.ArrayList;
 

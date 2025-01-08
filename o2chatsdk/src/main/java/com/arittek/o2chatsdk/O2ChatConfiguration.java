@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.arittek.o2chatsdk.commons.Common;
 
-public final class O2ChatConfig {
+public final class O2ChatConfiguration {
 
     private String domain;
     private String appId = "";
@@ -30,10 +30,10 @@ public final class O2ChatConfig {
 
     private Context mContext;
 
-    private static O2ChatConfig instance;
+    private static O2ChatConfiguration instance;
 
     // Private constructor to prevent direct instantiation
-    private O2ChatConfig(@NonNull Context context, @NonNull String appId, @NonNull String appKey) {
+    private O2ChatConfiguration(@NonNull Context context, @NonNull String appId, @NonNull String appKey) {
         mContext = context;
         this.appId = appId.trim();
         this.appKey = appKey.trim();
@@ -41,9 +41,9 @@ public final class O2ChatConfig {
     }
 
     // Public method to provide access to the instance
-    public static synchronized O2ChatConfig getInstance(@NonNull Context context, @NonNull String appId, @NonNull String appKey) {
+    public static synchronized O2ChatConfiguration getInstance(@NonNull Context context, @NonNull String appId, @NonNull String appKey) {
         if (instance == null) {
-            instance = new O2ChatConfig(context, appId, appKey);
+            instance = new O2ChatConfiguration(context, appId, appKey);
         }
         return instance;
     }
@@ -54,7 +54,7 @@ public final class O2ChatConfig {
     }
 
     // Public method to provide access to the instance without creating new instance
-    public static synchronized O2ChatConfig getInstance(@NonNull Context context) {
+    public static synchronized O2ChatConfiguration getInstance(@NonNull Context context) {
         if (instance == null) {
             throw new IllegalStateException("O2ChatConfig is not initialized, call getInstance(context, appId, appKey) first");
         }
@@ -108,7 +108,7 @@ public final class O2ChatConfig {
         return this.teamMemberInfoVisible;
     }
 
-    public O2ChatConfig setTeamMemberInfoVisible(boolean visible) {
+    public O2ChatConfiguration setTeamMemberInfoVisible(boolean visible) {
         this.teamMemberInfoVisible = visible;
         return this;
     }
@@ -117,7 +117,7 @@ public final class O2ChatConfig {
         return this.responseExpectationEnabled;
     }
 
-    public O2ChatConfig setResponseExpectationEnabled(boolean enabled) {
+    public O2ChatConfiguration setResponseExpectationEnabled(boolean enabled) {
         this.responseExpectationEnabled = enabled;
         return this;
     }
@@ -126,7 +126,7 @@ public final class O2ChatConfig {
         return this.cameraCaptureEnabled;
     }
 
-    public O2ChatConfig setCameraCaptureEnabled(boolean enable) {
+    public O2ChatConfiguration setCameraCaptureEnabled(boolean enable) {
         this.cameraCaptureEnabled = enable;
         return this;
     }
@@ -135,7 +135,7 @@ public final class O2ChatConfig {
         return this.gallerySelectionEnabled;
     }
 
-    public O2ChatConfig setGallerySelectionEnabled(boolean enable) {
+    public O2ChatConfiguration setGallerySelectionEnabled(boolean enable) {
         this.gallerySelectionEnabled = enable;
         return this;
     }

@@ -4,7 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.arittek.signalrtestandroid.commons.Common;
-import com.arittek.signalrtestandroid.databinding.ActivitySplashBinding;
+import com.example.signalrtestandroid.databinding.ActivitySplashBinding;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 

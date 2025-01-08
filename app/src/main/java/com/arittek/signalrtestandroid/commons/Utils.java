@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
-import com.arittek.signalrtestandroid.R;
+import com.example.signalrtestandroid.R;
 
 import java.io.File;
 import java.io.InputStream;

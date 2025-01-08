@@ -41,8 +41,9 @@ import com.arittek.signalrtestandroid.model.chat.ConversationsCountModel;
 import com.arittek.signalrtestandroid.model.chat.EngageListener;
 import com.arittek.signalrtestandroid.retrofit.ApiClient;
 import com.arittek.signalrtestandroid.retrofit.WebResponse2;
-import com.arittek.signalrtestandroid.R;
-import com.arittek.signalrtestandroid.databinding.FragmentConversationsBinding;
+import com.example.signalrtestandroid.R;
+
+import com.example.signalrtestandroid.databinding.FragmentConversationsBinding;
 import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;

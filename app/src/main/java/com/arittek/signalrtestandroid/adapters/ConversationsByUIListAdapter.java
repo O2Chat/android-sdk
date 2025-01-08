@@ -31,7 +31,7 @@ import com.arittek.signalrtestandroid.Events.chatEvents.FileResendEvent;
 import com.arittek.signalrtestandroid.commons.Common;
 import com.arittek.signalrtestandroid.commons.Utils;
 import com.arittek.signalrtestandroid.model.chat.ConversationByUID;
-import com.arittek.signalrtestandroid.R;
+import com.example.signalrtestandroid.R;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;

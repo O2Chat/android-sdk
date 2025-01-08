@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.arittek.signalrtestandroid.Events.chatEvents.TopicSelectEvent;
 import com.arittek.signalrtestandroid.model.chat.GetTopicsByConversationModel;
-import com.arittek.signalrtestandroid.R;
+import com.example.signalrtestandroid.R;
 
 import org.greenrobot.eventbus.EventBus;
 

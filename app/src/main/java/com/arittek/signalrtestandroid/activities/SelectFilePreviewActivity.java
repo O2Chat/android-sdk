@@ -12,8 +12,9 @@ import com.arittek.signalrtestandroid.adapters.ViewPagerAdapterUriLoad;
 import com.arittek.signalrtestandroid.commons.KeyboardVisibilityUtils;
 import com.arittek.signalrtestandroid.fragments.ConversationsDetailFragment;
 import com.arittek.signalrtestandroid.model.chat.selectedFilePreviewData;
-import com.arittek.signalrtestandroid.databinding.FragmentFilePreviewBinding;
 
+
+import com.example.signalrtestandroid.databinding.FragmentFilePreviewBinding;
 import com.vanniktech.emoji.EmojiPopup;
 import java.util.ArrayList;
 

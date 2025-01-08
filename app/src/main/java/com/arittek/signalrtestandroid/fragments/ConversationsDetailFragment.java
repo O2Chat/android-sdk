@@ -109,9 +109,10 @@ import com.arittek.signalrtestandroid.retrofit.WebResponseBusinessHour;
 import com.download.library.DownloadImpl;
 import com.download.library.DownloadListenerAdapter;
 import com.download.library.Extra;
-import com.arittek.signalrtestandroid.R;
-import com.arittek.signalrtestandroid.databinding.FragmentConversationsDetailBinding;
+import com.example.signalrtestandroid.R;
+
 import com.arittek.signalrtestandroid.commons.KeyboardVisibilityUtils;
+import com.example.signalrtestandroid.databinding.FragmentConversationsDetailBinding;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;

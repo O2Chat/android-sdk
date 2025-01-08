@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#000000</color>
+    <color name="black">#FFFFFF</color>
+    <color name="base_chat_color">#525252</color>
+    <color name="light_grey">#797979</color>
+    <color name="status_bar_color">#000000</color>
+    <color name="light_grey_view">#3E3E3E</color>
+    <color name="tool_bar_color">#000000</color>
+    <color name="tool_bar_view">#000000</color>
+    <color name="drawer_head_bg">#000000</color>
+
+    <color name="count_bg">#CACACA</color>
+    <color name="conversation_bg">#000000</color>
+<!--
+    <color name="conversation_receive_bg">#525252</color>
+-->
+    <color name="conversation_receive_bg">#333333</color>
+
+
+    <color name="write_message_bg">#525252</color>
+<!--
+    <color name="conversation_list_bg">#364147</color>
+-->
+    <color name="conversation_list_bg">#1A1A1A</color>
+
+
+    <color name="count_circle">#0d6efd</color>
+    <color name="yellow_color_dark">#ffde64</color>
+
+<!--
+    <color name="chat_sender_bubble_bg">#6492B9</color>
+-->
+    <color name="chat_sender_bubble_bg">#2D88FF</color>
+
+    <color name="time_details_bg">#B3B3B3</color>
+    <color name="message_deliver_bg">#B3B3B3</color>
+
+    <color name="grey_text_color">#6B6B6B</color>
+
+    <color name="sp_color_view">#525252</color>
+
+    <color name="chat_box">#f2f2f2</color>
+
+    <color name="view_color">#525252</color>
+
+    <color name="filter_by_tags_bg">#3E3E3E</color>
+    <color name="black_only">#FF000000</color>
+
+    <color name="switch_track_enabled">#969696</color>
+
+
+
+</resources>
