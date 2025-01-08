@@ -164,6 +164,12 @@ afterEvaluate {
                 artifactId = 'o2chatsdk'
                 version = '1.0.2' // Ensure this is correctly set
                 artifact("$buildDir/outputs/aar/${project.name}-release.aar")
+
+                pom {
+                    name = 'O2Chat SDK'
+                    description = 'A description of your SDK'
+                    url = 'https://github.com/O2Chat/android-sdk'
+                }
             }
         }
 
