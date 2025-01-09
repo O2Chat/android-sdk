@@ -170,7 +170,9 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
         LayoutReconnecting = findViewById(R.id.LayoutReconnecting);
         icSource = findViewById(R.id.icSource);
         txtStatus = findViewById(R.id.txtStatus);
-        Glide.with(mContext).load(R.drawable.connecting).into(icSource);
+        if(icSource!=null){
+            Glide.with(mContext).load(R.drawable.connecting).into(icSource);
+        }
         channelId  = o2ChatConfig.getChannelID(mContext); //common.getChannelID(mContext);
 
         signalRHelper = new SignalRHelper();
@@ -315,7 +317,9 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
                     isReconnecting = true;
                     txtStatus.setText("Connected");
                     checkQueueConversation(common.getCustomerID(getApplicationContext()),common.getLastConversationId(getApplicationContext()));
-                    Glide.with(getApplicationContext()).load(R.drawable.wifi).into(icSource);
+                    if(icSource!=null){
+                        Glide.with(getApplicationContext()).load(R.drawable.wifi).into(icSource);
+                    }
                     Handler handler = new Handler(Looper.getMainLooper());
                     handler.postDelayed(() -> {
                         //Do something after 100ms
