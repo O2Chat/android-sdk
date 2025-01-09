@@ -179,6 +179,7 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
 //      getAccessTokenByChannelId("f26a33d9-5b2e-4227-a456-eab45924a1d3");
 //      O2ChatConfig config = O2ChatConfig.getInstance(MainActivityChat.this);
 
+
         getAccessTokenByChannelId(channelId);
 
         if (!common.getUserId(this).isEmpty()) {
