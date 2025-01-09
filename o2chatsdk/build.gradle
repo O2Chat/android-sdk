@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'maven-publish'
    // id "androidx.room"
+    id 'kotlin-android'
 
 }
 
@@ -151,7 +152,7 @@ afterEvaluate {
                 version = '1.0.1' // Ensure this is correctly set
                 artifact("$buildDir/outputs/aar/${project.name}-release.aar")
 
-                pom.withXml {
+               /* pom.withXml {
                     // for dependencies and exclusions
                     def dependenciesNode = asNode().appendNode('dependencies')
                     configurations.api.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
@@ -168,7 +169,7 @@ afterEvaluate {
                                 exclusion.appendNode('groupId', ex.group)
                                 exclusion.appendNode('artifactId', ex.module)
                             }
-                        }}}
+                        }}}*/
 
 
 /*                pom {
