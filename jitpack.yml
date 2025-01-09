@@ -1,5 +1,2 @@
 jdk:
   - openjdk11
-# Optional: Specify the Gradle version if needed
-gradle:
-  wrapper: true  # Use the project's Gradle wrapper
