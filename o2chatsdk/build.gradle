@@ -2,7 +2,7 @@ plugins {
     id 'com.android.library'
     id 'maven-publish'
    // id "androidx.room"
-    id 'org.jetbrains.kotlin.android'
+
 }
 
 android {
@@ -30,11 +30,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = "17"
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     buildFeatures {
@@ -85,10 +82,10 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'androidx.appcompat:appcompat:1.6.1'
 
-    implementation 'android.arch.persistence.room:runtime:1.1.1'
-    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
+    //implementation 'android.arch.persistence.room:runtime:1.1.1'
+    //annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
 
-   /* def room_version = "2.6.1"
+    def room_version = "2.5.2"
 
     implementation("androidx.room:room-runtime:$room_version")
 
@@ -97,7 +94,7 @@ dependencies {
     implementation "androidx.room:room-rxjava2:$room_version"
 
     // optional - RxJava3 support for Room
-    implementation "androidx.room:room-rxjava3:$room_version"*/
+    implementation "androidx.room:room-rxjava3:$room_version"
 
     implementation "net.zetetic:android-database-sqlcipher:4.4.2"
     implementation 'com.google.android.flexbox:flexbox:3.0.0'

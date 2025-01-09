@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
 //    id "androidx.room"
+    id 'org.jetbrains.kotlin.android'
+
 }
 
 android {
@@ -39,7 +41,9 @@ android {
     buildFeatures {
         viewBinding true
     }
-
+    kotlinOptions {
+        jvmTarget = "11"
+    }
   /*  room {
         schemaDirectory("$projectDir/schemas")
     }*/
