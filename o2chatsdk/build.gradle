@@ -154,7 +154,7 @@ afterEvaluate {
                 pom.withXml {
                     // for dependencies and exclusions
                     def dependenciesNode = asNode().appendNode('dependencies')
-                    configurations.implementation.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
+                    configurations.api.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
                         def dependencyNode = dependenciesNode.appendNode('dependency')
                         dependencyNode.appendNode('groupId', dp.group)
                         dependencyNode.appendNode('artifactId', dp.name)
