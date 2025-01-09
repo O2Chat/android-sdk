@@ -171,7 +171,7 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
         icSource = findViewById(R.id.icSource);
         txtStatus = findViewById(R.id.txtStatus);
         if(icSource!=null){
-            Glide.with(mContext).load(R.drawable.connecting).into(icSource);
+            Glide.with(MainActivityChat.this).load(R.drawable.connecting).into(icSource);
         }
         channelId  = o2ChatConfig.getChannelID(mContext); //common.getChannelID(mContext);
 
@@ -851,7 +851,7 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
                         txtStatus.setText("Connected");
                     }
                     if(icSource!=null){
-                        Glide.with(mContext).load(R.drawable.wifi).into(icSource);
+                        Glide.with(getApplicationContext()).load(R.drawable.wifi).into(icSource);
                     }
                     EventBus.getDefault().post(new ReLoadConversationEvent("ReloadConversationWhenConnect"));
                     Handler handler = new Handler(Looper.getMainLooper());
