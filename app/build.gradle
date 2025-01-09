@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
-    id "androidx.room"
+//    id "androidx.room"
 }
 
 android {
@@ -40,9 +40,9 @@ android {
         viewBinding true
     }
 
-    room {
+  /*  room {
         schemaDirectory("$projectDir/schemas")
-    }
+    }*/
 }
 // Testing
 dependencies {
@@ -75,12 +75,12 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:2.1.1"
 
 
-    //  implementation 'android.arch.persistence.room:runtime:1.1.1'
-//    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
 
 
 
-    def room_version = "2.6.1"
+  /*  def room_version = "2.6.1"
 
     implementation("androidx.room:room-runtime:$room_version")
 
@@ -89,7 +89,7 @@ dependencies {
     implementation "androidx.room:room-rxjava2:$room_version"
 
     // optional - RxJava3 support for Room
-    implementation "androidx.room:room-rxjava3:$room_version"
+    implementation "androidx.room:room-rxjava3:$room_version"*/
 
     implementation 'net.zetetic:android-database-sqlcipher:4.5.0'
 
