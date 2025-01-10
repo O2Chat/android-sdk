@@ -6,3 +6,11 @@ plugins {
     id 'com.google.gms.google-services' version '4.3.15' apply false
   //  id("androidx.room") version "2.6.1" apply false
 }
+allprojects {
+    configurations.all {
+        resolutionStrategy {
+            force "org.jetbrains.kotlin:kotlin-stdlib:1.6.0"
+            force "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0"
+        }
+    }
+}
