@@ -31,8 +31,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 
@@ -137,17 +137,6 @@ dependencies {
     }
 }
 
-task sourceJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    archiveClassifier = "sources"
-}
-
-task listDependencies() {
-    // Curious, "implementation" also contains "api"...
-    configurations.implementation.allDependencies.each { dep -> println "Implementation: ${dep}" }
-    configurations.api.allDependencies.each { dep -> println "Api: ${dep}" }
-}
-
 tasks.register("createReleaseAAR", Copy) {
     dependsOn 'assembleRelease'
     from("$buildDir/outputs/aar")
@@ -182,7 +171,7 @@ afterEvaluate {
                             }
                 }*/
 
-                 pom.withXml {
+/*                 pom.withXml {
      // for dependencies and exclusions
      def dependenciesNode = asNode().appendNode('dependencies')
      configurations.api.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
@@ -199,7 +188,7 @@ afterEvaluate {
                  exclusion.appendNode('groupId', ex.group)
                  exclusion.appendNode('artifactId', ex.module)
              }
-         }}}
+         }}}*/
 
 
             }
