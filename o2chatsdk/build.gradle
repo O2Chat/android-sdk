@@ -137,6 +137,17 @@ dependencies {
     }
 }
 
+task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    archiveClassifier = "sources"
+}
+
+task listDependencies() {
+    // Curious, "implementation" also contains "api"...
+    configurations.implementation.allDependencies.each { dep -> println "Implementation: ${dep}" }
+    configurations.api.allDependencies.each { dep -> println "Api: ${dep}" }
+}
+
 tasks.register("createReleaseAAR", Copy) {
     dependsOn 'assembleRelease'
     from("$buildDir/outputs/aar")
@@ -154,158 +165,27 @@ afterEvaluate {
                 version = '1.0.1' // Ensure this is correctly set
                 artifact("$buildDir/outputs/aar/${project.name}-release.aar")
 
-               /* pom.withXml {
-                    // for dependencies and exclusions
+
+                pom.withXml {
                     def dependenciesNode = asNode().appendNode('dependencies')
-                    configurations.api.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
-                        def dependencyNode = dependenciesNode.appendNode('dependency')
-                        dependencyNode.appendNode('groupId', dp.group)
-                        dependencyNode.appendNode('artifactId', dp.name)
-                        dependencyNode.appendNode('version', dp.version)
-
-                        // for exclusions
-                        if (dp.excludeRules.size() > 0) {
-                            def exclusions = dependencyNode.appendNode('exclusions')
-                            dp.excludeRules.each { ExcludeRule ex ->
-                                def exclusion = exclusions.appendNode('exclusion')
-                                exclusion.appendNode('groupId', ex.group)
-                                exclusion.appendNode('artifactId', ex.module)
+                    configurations.api.allDependencies
+                            .findAll { dependency -> dependency.name != "unspecified" }
+                            .each { dependency ->
+                                addDependency(dependenciesNode.appendNode('dependency'), dependency, "compile")
                             }
-                        }}}*/
 
-
-/*                pom {
-                    name.set('O2Chat SDK')
-                    description.set('A chat SDK for Android.')
-                    url.set('https://github.com/O2Chat/android-sdk') // Replace with your actual repo URL
-                    licenses {
-                        license {
-                            name.set('The Apache License, Version 2.0')
-                            url.set('http://www.apache.org/licenses/LICENSE-2.0.txt')
-                        }
-                    }
-                    dependencies {
-                        dependency {
-                            groupId = 'org.greenrobot'
-                            artifactId = 'eventbus'
-                            version = '3.3.1'
-                            scope = 'compile'
-                        }
-                        dependency {
-                            groupId = 'androidx.appcompat'
-                            artifactId = 'appcompat'
-                            version = '1.6.1'
-                            scope = 'compile'
-                        }
-                        dependency {
-                            groupId = 'com.google.android.material'
-                            artifactId = 'material'
-                            version = '1.8.0'
-                            scope = 'compile'
-                        }
-                        dependency {
-                            groupId = 'androidx.constraintlayout'
-                            artifactId = 'constraintlayout'
-                            version = '2.1.4'
-                            scope = 'compile'
-                        }
-                        dependency {
-                            groupId = 'androidx.navigation'
-                            artifactId = 'navigation-fragment'
-                            version = '2.5.3'
-                            scope = 'compile'
-                        }
-                        dependency {
-                            groupId = 'androidx.navigation'
-                            artifactId = 'navigation-ui'
-                            version = '2.5.3'
-                            scope = 'compile'
-                        }
-                        dependency {
-                            groupId = 'androidx.lifecycle'
-                            artifactId = 'lifecycle-livedata-ktx'
-                            version = '2.5.1'
-                            scope = 'compile'
-                        }
-                        dependency {
-                            groupId = 'androidx.lifecycle'
-                            artifactId = 'lifecycle-viewmodel-ktx'
-                            version = '2.5.1'
-                            scope = 'compile'
-                        }
-                        dependency {
-                            groupId = 'com.squareup.retrofit2'
-                            artifactId = 'retrofit'
-                            version = '2.9.0'
-                            scope = 'compile'
-                        }
-                        dependency {
-                            groupId = 'com.squareup.retrofit2'
-                            artifactId = 'converter-gson'
-                            version = '2.9.0'
-                            scope = 'compile'
-                        }
-                        dependency {
-                            groupId = 'com.squareup.okhttp3'
-                            artifactId = 'okhttp'
-                            version = '4.9.0'
-                            scope = 'compile'
-                        }
-                        dependency {
-                            groupId = 'com.squareup.okhttp3'
-                            artifactId = 'logging-interceptor'
-                            version = '4.9.0'
-                            scope = 'compile'
-                        }
-                        dependency {
-                            groupId = 'androidx.room'
-                            artifactId = 'room-runtime'
-                            version = '2.5.2'
-                            scope = 'compile'
-                        }
-                        dependency {
-                            groupId = 'com.github.bumptech.glide'
-                            artifactId = 'glide'
-                            version = '4.16.0'
-                            scope = 'compile'
-                        }
-                        dependency {
-                            groupId = 'com.microsoft.signalr'
-                            artifactId = 'signalr'
-                            version = '5.0.11'
-                            scope = 'compile'
-                        }
-                        dependency {
-                            groupId = 'androidx.swiperefreshlayout'
-                            artifactId = 'swiperefreshlayout'
-                            version = '1.1.0'
-                            scope = 'compile'
-                        }
-                        dependency {
-                            groupId = 'io.reactivex.rxjava2'
-                            artifactId = 'rxjava'
-                            version = '2.1.1'
-                            scope = 'compile'
-                        }
-                        dependency {
-                            groupId = 'io.reactivex.rxjava2'
-                            artifactId = 'rxandroid'
-                            version = '2.1.1'
-                            scope = 'compile'
-                        }
-                        dependency {
-                            groupId = 'com.github.Justson'
-                            artifactId = 'Downloader'
-                            version = 'v5.0.4-androidx'
-                            scope = 'compile'
-                        }
-
-                    }
+                    configurations.implementation.allDependencies
+                            .findAll { dependency -> !configurations.api.allDependencies.contains(dependency) }
+                            .findAll { dependency -> dependency.name != "unspecified" }
+                            .each { dependency ->
+                                addDependency(dependenciesNode.appendNode('dependency'), dependency, "runtime")
+                            }
+                }
 
 
 
-                }*/
             }
+
         }
 
         repositories {
@@ -315,10 +195,28 @@ afterEvaluate {
                 url = uri(layout.buildDirectory.dir("wight_imp_create_sdk").get().asFile.toURI())
             }
         }
+
+
     }
 
     tasks.named("publishReleasePublicationToMavenLocal") {
         dependsOn(tasks.named("bundleReleaseAar"))
     }
 
+
+
+    allprojects {
+        configurations.all() {
+            // to make sure SNAPSHOTS are fetched again each time
+            resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+            resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+        }
+        // more stuff here
+    }
+   /* def addDependency(dependencyNode, dependency, scope) {
+        dependencyNode.appendNode('groupId', dependency.group)
+        dependencyNode.appendNode('artifactId', dependency.name)
+        dependencyNode.appendNode('version', dependency.version)
+        dependencyNode.appendNode('scope', scope)
+    }*/
 }
