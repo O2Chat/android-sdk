@@ -1,8 +1,6 @@
 plugins {
     id 'com.android.library'
     id 'maven-publish'
-   // id "androidx.room"
-  //  id 'kotlin-android'
 
 }
 
@@ -35,15 +33,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-
-
     buildFeatures {
         viewBinding true
     }
-
-   /* room {
-        schemaDirectory("$projectDir/schemas")
-    }*/
 }
 
 dependencies {
@@ -208,17 +200,6 @@ afterEvaluate {
 
     tasks.named("publishReleasePublicationToMavenLocal") {
         dependsOn(tasks.named("bundleReleaseAar"))
-    }
-
-
-
-    allprojects {
-        configurations.all() {
-            // to make sure SNAPSHOTS are fetched again each time
-            resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
-            resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-        }
-        // more stuff here
     }
 
 }
