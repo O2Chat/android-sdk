@@ -163,7 +163,7 @@ afterEvaluate {
                             }
                 }*/
 
-/*                 pom.withXml {
+                 pom.withXml {
      // for dependencies and exclusions
      def dependenciesNode = asNode().appendNode('dependencies')
      configurations.api.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
@@ -180,7 +180,7 @@ afterEvaluate {
                  exclusion.appendNode('groupId', ex.group)
                  exclusion.appendNode('artifactId', ex.module)
              }
-         }}}*/
+         }}}
 
 
             }
