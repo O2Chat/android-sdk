@@ -166,7 +166,7 @@ afterEvaluate {
                 artifact("$buildDir/outputs/aar/${project.name}-release.aar")
 
 
-                pom.withXml {
+/*                pom.withXml {
                     def dependenciesNode = asNode().appendNode('dependencies')
                     configurations.api.allDependencies
                             .findAll { dependency -> dependency.name != "unspecified" }
@@ -180,8 +180,26 @@ afterEvaluate {
                             .each { dependency ->
                                 addDependency(dependenciesNode.appendNode('dependency'), dependency, "runtime")
                             }
-                }
+                }*/
 
+                /* pom.withXml {
+     // for dependencies and exclusions
+     def dependenciesNode = asNode().appendNode('dependencies')
+     configurations.api.allDependencies.withType(ModuleDependency) { ModuleDependency dp ->
+         def dependencyNode = dependenciesNode.appendNode('dependency')
+         dependencyNode.appendNode('groupId', dp.group)
+         dependencyNode.appendNode('artifactId', dp.name)
+         dependencyNode.appendNode('version', dp.version)
+
+         // for exclusions
+         if (dp.excludeRules.size() > 0) {
+             def exclusions = dependencyNode.appendNode('exclusions')
+             dp.excludeRules.each { ExcludeRule ex ->
+                 def exclusion = exclusions.appendNode('exclusion')
+                 exclusion.appendNode('groupId', ex.group)
+                 exclusion.appendNode('artifactId', ex.module)
+             }
+         }}}*/
 
 
             }
@@ -213,10 +231,5 @@ afterEvaluate {
         }
         // more stuff here
     }
-   /* def addDependency(dependencyNode, dependency, scope) {
-        dependencyNode.appendNode('groupId', dependency.group)
-        dependencyNode.appendNode('artifactId', dependency.name)
-        dependencyNode.appendNode('version', dependency.version)
-        dependencyNode.appendNode('scope', scope)
-    }*/
+
 }
