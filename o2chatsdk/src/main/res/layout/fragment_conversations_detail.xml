@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg_conversation_messages"
-    tools:context="com.example.o2chatsdk.fragments.ConversationsFragment"
+    tools:context="com.arittek.o2chatsdk.fragments.ConversationsFragment"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -19,7 +19,7 @@
             android:orientation="horizontal"
             android:visibility="visible"
             android:weightSum="2"
-            android:background="@color/purple_200">
+            android:background="@color/white_chat">
 
             <LinearLayout
                 android:id="@+id/ll_selectedProfile"
@@ -45,7 +45,6 @@
                         android:visibility="visible"
                         android:src="@drawable/ic_arrow"
                         android:scaleType="fitCenter"
-                        app:tint="@color/white"
                         tools:ignore="MissingConstraints"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -100,7 +99,7 @@
                         android:layout_marginStart="5dp"
                         android:id="@+id/orgName"
                         android:ellipsize="end"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="13sp"
                         android:maxLines="1"
                         android:textStyle="bold"
@@ -110,7 +109,7 @@
                         android:layout_height="15dp"
                         android:layout_marginStart="5dp"
                         android:id="@+id/tvCustomText"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="12sp"
                         android:maxLines="1"
                         />
