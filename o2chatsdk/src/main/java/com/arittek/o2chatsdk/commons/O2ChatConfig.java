@@ -8,6 +8,14 @@ import android.content.SharedPreferences;
 import com.arittek.o2chatsdk.localDB.AppDatabase;
 
 public class O2ChatConfig {
+
+    //get token for client
+    public void saveFcmToken(Context context,String saveToken) {
+        SharedPreferences.Editor editor = context.getSharedPreferences("FcmTokenString", MODE_PRIVATE).edit();
+        editor.putString("fcm_tokenString", saveToken);
+        editor.apply();
+    }
+
     public void saveCustomerMobileNumber(Context context, String customerMobileNumber) {
         if(context != null)
         {
