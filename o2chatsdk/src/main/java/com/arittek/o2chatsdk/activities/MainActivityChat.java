@@ -37,6 +37,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 
+import com.arittek.o2chatsdk.commons.O2ChatConfig;
 import com.bumptech.glide.Glide;
 import com.arittek.o2chatsdk.Events.appEvents.CustomerFeedBackEvent;
 import com.arittek.o2chatsdk.Events.appEvents.MessageEvent;
@@ -117,6 +118,8 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
     public static boolean isComingFromChat = false;
     Timer timer = null;
     Common common;
+    O2ChatConfig o2ChatConfig;
+
     public boolean isAlreadyConnected = true;
     public boolean isSignalRConnected;
     public boolean isReconnecting = true ;
@@ -158,6 +161,7 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
         dbchat = AppDatabase.getAppDatabase(mContext.getApplicationContext());
         intent1 = getIntent();
         common = new Common();
+        o2ChatConfig = new O2ChatConfig();
 
         System.setProperty("javax.net.debug", "ssl,handshake,verbose");
 
@@ -169,12 +173,9 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
         LayoutReconnecting = findViewById(R.id.LayoutReconnecting);
         icSource = findViewById(R.id.icSource);
         txtStatus = findViewById(R.id.txtStatus);
-        if (icSource != null)
-        {
-            Glide.with(MainActivityChat.this).load(R.drawable.connecting).into(icSource);
+        Glide.with(mContext).load(R.drawable.connecting).into(icSource);
+        channelId  = o2ChatConfig.getChannelID(mContext); //common.getChannelID(mContext);
 
-        }
-        channelId  = common.getChannelID(mContext);
         signalRHelper = new SignalRHelper();
 //      getAccessTokenByChannelId("f26a33d9-5b2e-4227-a456-eab45924a1d3");
 //      O2ChatConfig config = O2ChatConfig.getInstance(MainActivityChat.this);
@@ -333,12 +334,7 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
                     isReconnecting = true;
                     txtStatus.setText("Connected");
                     checkQueueConversation(common.getCustomerID(getApplicationContext()),common.getLastConversationId(getApplicationContext()));
-                    if (icSource != null)
-                    {
-                        Glide.with(getApplicationContext()).load(R.drawable.connecting).into(icSource);
-
-                    }
-                    // Glide.with(getApplicationContext()).load(R.drawable.wifi).into(icSource);
+                    Glide.with(getApplicationContext()).load(R.drawable.wifi).into(icSource);
                     Handler handler = new Handler(Looper.getMainLooper());
                     handler.postDelayed(() -> {
                         //Do something after 100ms
@@ -869,7 +865,7 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
                         txtStatus.setText("Connected");
                     }
                     if(icSource!=null){
-                        Glide.with(getApplicationContext()).load(R.drawable.wifi).into(icSource);
+                        Glide.with(mContext).load(R.drawable.wifi).into(icSource);
                     }
                     EventBus.getDefault().post(new ReLoadConversationEvent("ReloadConversationWhenConnect"));
                     Handler handler = new Handler(Looper.getMainLooper());

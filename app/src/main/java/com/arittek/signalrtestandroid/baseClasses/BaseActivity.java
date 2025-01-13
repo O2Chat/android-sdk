@@ -10,9 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
+import  com.arittek.signalrtestandroid.R;
 import com.arittek.signalrtestandroid.activities.MainActivityChat;
-import com.arittek.signalrtestandroid.R;
+
 
 public abstract class BaseActivity extends AppCompatActivity {
 

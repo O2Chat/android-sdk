@@ -29,6 +29,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.FileProvider;
 
 import com.arittek.signalrtestandroid.Events.appEvents.MessageEvent;
+import com.arittek.signalrtestandroid.R;
 import com.arittek.signalrtestandroid.activities.MainActivityChat;
 import com.arittek.signalrtestandroid.localDB.AppDatabase;
 import com.arittek.signalrtestandroid.model.chat.Conversation;
@@ -39,7 +40,6 @@ import com.arittek.signalrtestandroid.model.login.LoginResponseData;
 import com.arittek.signalrtestandroid.retrofit.ApiClient;
 import com.arittek.signalrtestandroid.retrofit.WebResponse;
 
-import com.example.signalrtestandroid.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

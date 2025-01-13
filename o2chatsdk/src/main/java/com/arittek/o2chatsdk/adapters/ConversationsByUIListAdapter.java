@@ -24,6 +24,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.arittek.o2chatsdk.commons.O2ChatConfig;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.arittek.o2chatsdk.Events.appEvents.MessageEventFileDownload;
@@ -46,6 +47,9 @@ public class ConversationsByUIListAdapter extends RecyclerView.Adapter<RecyclerV
 
     private final Context mcontex;
     private final Common common;
+
+    private final O2ChatConfig o2ChatConfig;
+
     private int viewTypeSenderMessage = 0;
     private int viewTypeReceiverMessage = 1;
     private int viewTypeSystemMessage = 2;
@@ -65,6 +69,7 @@ public class ConversationsByUIListAdapter extends RecyclerView.Adapter<RecyclerV
         this.mcontex = contex;
         this.item_list = item_list;
         this.common = new Common();
+        this.o2ChatConfig = new O2ChatConfig();
     }
 
     @Override
@@ -443,8 +448,8 @@ public class ConversationsByUIListAdapter extends RecyclerView.Adapter<RecyclerV
                     float rating= Float.parseFloat(conversation.rating);
                     if(rating != 0 ) {
                         vh.lnChatResloved.setVisibility(View.VISIBLE);
-                        if(common.getFirstName(mcontex) != null) {
-                            vh.txtUserName.setText(common.getFirstName(mcontex));
+                        if(/*common.getFirstName(mcontex)*/o2ChatConfig.getFirstName(mcontex) != null) {
+                            vh.txtUserName.setText(o2ChatConfig.getFirstName(mcontex)/*common.getFirstName(mcontex)*/);
                         }
                         if(conversation.feedback != null) {
                             vh.txtRatingFeedback.setText(conversation.feedback);
