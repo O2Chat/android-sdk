@@ -2,13 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application>
         <activity
-            android:name="com.example.o2chatsdk.activities.SelectFilePreviewActivity"
+            android:name="com.arittek.o2chatsdk.activities.SelectFilePreviewActivity"
             android:exported="false"/>
 
         <activity
-            android:name="com.example.o2chatsdk.activities.UserProfileActivity"
+            android:name="com.arittek.o2chatsdk.activities.UserProfileActivity"
             android:exported="false"/>
 
+        <activity
+            android:name="com.arittek.o2chatsdk.activities.MainActivityChat"
+            android:exported="false"
+            android:theme="@style/Theme.SignalRTestAndroid"
+
+            />
     </application>
 
 </manifest>

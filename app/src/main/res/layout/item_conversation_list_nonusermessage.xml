@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.o2chatsdk.fragments.ConversationsFragment"
+    tools:context="com.arittek.o2chatsdk.fragments.ConversationsFragment"
     android:background="@android:color/transparent"
     >
     <LinearLayout
@@ -15,10 +15,10 @@
 
         <LinearLayout
             android:id="@+id/lnProfileUser"
-            android:layout_weight="0.3"
+            android:layout_weight="0.25"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:gravity="center|right"
+            android:gravity="center"
             >
 
             <RelativeLayout
@@ -91,7 +91,7 @@
                     android:layout_marginStart="@dimen/_7sdp"
                     android:layout_marginEnd="@dimen/_7sdp"
                     android:layout_marginBottom="@dimen/_7sdp"
-                    android:textColor="@color/emoji_black"
+                    android:textColor="@color/black"
                     android:maxWidth="@dimen/_200sdp"
                     android:textSize="@dimen/_13ssp" />
 

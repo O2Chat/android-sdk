@@ -4,8 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_margin="@dimen/_5sdp"
     android:layout_height="@dimen/_25sdp"
-    tools:context="com.example.o2chatsdk.fragments.ConversationsFragment"
-    android:background="@drawable/bg_topiclist"
+    android:background="@drawable/message_nouser_background"
     >
 
     <LinearLayout

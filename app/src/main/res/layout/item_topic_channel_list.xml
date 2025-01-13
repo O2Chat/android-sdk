@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.o2chatsdk.fragments.ConversationsFragment"
+    tools:context="com.arittek.o2chatsdk.fragments.ConversationsFragment"
     android:background="@android:color/transparent">
 
     <LinearLayout
