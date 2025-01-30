@@ -64,6 +64,7 @@ import com.arittek.signalrtestandroid.Events.chatEvents.SendNewChatResponseEvent
 import com.arittek.signalrtestandroid.Events.chatEvents.SendTypingIndicatorResponse;
 import com.arittek.signalrtestandroid.Events.chatEvents.TopicSelectEvent;
 
+import com.arittek.signalrtestandroid.R;
 import com.arittek.signalrtestandroid.activities.MainActivityChat;
 import com.arittek.signalrtestandroid.activities.SelectFilePreviewActivity;
 import com.arittek.signalrtestandroid.adapters.ConversationsByUIListAdapter;
@@ -109,9 +110,9 @@ import com.arittek.signalrtestandroid.retrofit.WebResponseBusinessHour;
 import com.download.library.DownloadImpl;
 import com.download.library.DownloadListenerAdapter;
 import com.download.library.Extra;
-import com.arittek.signalrtestandroid.R;
-import com.arittek.signalrtestandroid.databinding.FragmentConversationsDetailBinding;
 import com.arittek.signalrtestandroid.commons.KeyboardVisibilityUtils;
+
+import com.arittek.signalrtestandroid.databinding.FragmentConversationsDetailBinding;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
@@ -944,7 +945,6 @@ public class ConversationsDetailFragment extends Fragment{
             @Override
             public void onResponse(Call<WebResponse2<ArrayList<ConversationByUID>>> call, Response<WebResponse2<ArrayList<ConversationByUID>>> response) {
                 if(response.code() == 200){
-                    if (null != response.body().getResult())
                     if(response.body().getResult().size()>0){
 
                         if (response != null && response.body() != null
