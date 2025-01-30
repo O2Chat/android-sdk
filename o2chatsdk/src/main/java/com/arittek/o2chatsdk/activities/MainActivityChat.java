@@ -254,7 +254,7 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
 
             @Override
             public void onError() {
-                ReplaceFragment(new ConversationsFragment(), false, null, true);
+            //    ReplaceFragment(new ConversationsFragment(), false, null, true);
             }
         });
     }
