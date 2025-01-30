@@ -265,7 +265,7 @@ public class ConversationsDetailFragment extends Fragment{
         topicArrayList = new ArrayList<>();
         conversation = common.getConversationData(mContext);
 
-        applyTitleBarColor(fragmentConversationsBinding.layouttoolbar);
+        applyTitleBarColor();
 
 
         // Install the EmojiProvider
@@ -672,13 +672,16 @@ public class ConversationsDetailFragment extends Fragment{
         return view;
     }
 
-    private void applyTitleBarColor(View layoutView) {
+    private void applyTitleBarColor() {
 
         try {
-            layoutView.setBackgroundColor(Color.parseColor(o2ChatConfig.getTitleColor(requireActivity())));
+            fragmentConversationsBinding.layouttoolbar.setBackgroundColor(Color.parseColor(o2ChatConfig.getTitleBarColor(requireActivity())));
+            fragmentConversationsBinding.ivImageMenu.setBackgroundColor(Color.parseColor(o2ChatConfig.getTitleTextColor(requireActivity())));
+            fragmentConversationsBinding.tvCustomText.setBackgroundColor(Color.parseColor(o2ChatConfig.getTitleTextColor(requireActivity())));
+
         } catch (IllegalArgumentException e) {
             Log.e("COLOR", "Invalid color code: " );
-            layoutView.setBackgroundColor(Color.WHITE); // Fallback to white
+            fragmentConversationsBinding.layouttoolbar.setBackgroundColor(Color.WHITE); // Fallback to white
         }
     }
 
