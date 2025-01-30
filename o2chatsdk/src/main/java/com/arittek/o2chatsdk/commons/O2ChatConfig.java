@@ -9,7 +9,25 @@ import com.arittek.o2chatsdk.localDB.AppDatabase;
 
 public class O2ChatConfig {
 
-    public void setTitleColor(Context context,String colorCode)
+    public void setTitleTextColor(Context context,String colorCode)
+    {
+        if(context != null)
+        {
+            SharedPreferences.Editor editor = context.getSharedPreferences("setTextColor", MODE_PRIVATE).edit();
+            editor.putString("TitleTextColor", colorCode);
+            editor.apply();
+        }
+    }
+    public String getTitleTextColor(Context context)
+    {
+
+        SharedPreferences prefs = context.getSharedPreferences("setTextColor", MODE_PRIVATE);
+        String TaxFormString = prefs.getString("TitleTextColor", "#FF000000");
+        return TaxFormString;
+
+    }
+
+    public void setTitleBarColor(Context context,String colorCode)
     {
         if(context != null)
         {
@@ -18,7 +36,7 @@ public class O2ChatConfig {
             editor.apply();
         }
     }
-    public String getTitleColor(Context context)
+    public String getTitleBarColor(Context context)
     {
 
             SharedPreferences prefs = context.getSharedPreferences("setTitleColor", MODE_PRIVATE);
