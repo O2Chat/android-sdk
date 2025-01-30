@@ -4,9 +4,9 @@ public class Constants {
 
     //CHAT HUB CONNECTION URL
 
-    public static String ChatHubUrl = "https://secure-befiler.o2chat.io/";
+//    public static String ChatHubUrl = "https://secure-befiler.o2chat.io/";
    //  public static String ChatHubUrl =  "https://2896-202-47-59-83.ngrok-free.app/";
-  //    public static String ChatHubUrl =  "http://175.107.196.226:5003/";
+      public static String ChatHubUrl =  "https://uat.o2chat.io/";
 
 
     //SELECTED MENU KEYS OR MENU NAMES
