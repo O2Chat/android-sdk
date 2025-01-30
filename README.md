@@ -19,7 +19,7 @@ allprojects {
 App Module gradle file **(app/build.gradle)** 
 ```
 dependencies {
-	implementation 'com.github.O2Chat:android-sdk:1.0.5'
+	implementation 'com.github.O2Chat:android-sdk:1.0.6'
 }
 ```
 
@@ -49,15 +49,13 @@ To use the library in your project, follow these steps:
    o2chatConfig.saveCnicNumber(context, "Cnic");
    ```
 
-## Step 4: Declare activity 
+## Step 4: Start Chat Activity 
 
-Ensure that you have declared MainActivityChat in `AndroidManifest.xml`.
+   Use the following method to start chat`.
 
-```xml
- <activity
-            android:name="com.arittek.o2chatsdk.activities.MainActivityChat"
-            android:exported="false" />
-```
+  ```java
+        startActivity(new Intent(this, MainActivityChat.class));
+   ```
 
 ## Step 5: Permissions
 
