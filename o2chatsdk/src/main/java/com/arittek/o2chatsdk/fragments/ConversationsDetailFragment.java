@@ -265,6 +265,9 @@ public class ConversationsDetailFragment extends Fragment{
         topicArrayList = new ArrayList<>();
         conversation = common.getConversationData(mContext);
 
+        applyTitleBarColor(fragmentConversationsBinding.layouttoolbar);
+
+
         // Install the EmojiProvider
         EmojiManager.install(new GoogleEmojiProvider());
 
@@ -667,6 +670,16 @@ public class ConversationsDetailFragment extends Fragment{
         }, 500);
 
         return view;
+    }
+
+    private void applyTitleBarColor(View layoutView) {
+
+        try {
+            layoutView.setBackgroundColor(Color.parseColor(o2ChatConfig.getTitleColor(requireActivity())));
+        } catch (IllegalArgumentException e) {
+            Log.e("COLOR", "Invalid color code: " );
+            layoutView.setBackgroundColor(Color.WHITE); // Fallback to white
+        }
     }
 
     public boolean handleBackPress() {
