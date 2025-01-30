@@ -9,6 +9,24 @@ import com.arittek.o2chatsdk.localDB.AppDatabase;
 
 public class O2ChatConfig {
 
+    public void setTitleColor(Context context,String colorCode)
+    {
+        if(context != null)
+        {
+            SharedPreferences.Editor editor = context.getSharedPreferences("setTitleColor", MODE_PRIVATE).edit();
+            editor.putString("TitleColor", colorCode);
+            editor.apply();
+        }
+    }
+    public String getTitleColor(Context context)
+    {
+
+            SharedPreferences prefs = context.getSharedPreferences("setTitleColor", MODE_PRIVATE);
+            String TaxFormString = prefs.getString("TitleColor", "#FFFFFFFF");
+            return TaxFormString;
+
+    }
+
     //get token for client
     public void saveFcmToken(Context context,String saveToken) {
         SharedPreferences.Editor editor = context.getSharedPreferences("FcmTokenString", MODE_PRIVATE).edit();
