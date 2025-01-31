@@ -669,7 +669,9 @@ public class ConversationsDetailFragment extends Fragment{
 
         try {
             fragmentConversationsBinding.layouttoolbar.setBackgroundColor(Color.parseColor(o2ChatConfig.getTitleBarColor(requireActivity())));
-            fragmentConversationsBinding.tvCustomText.setBackgroundColor(Color.parseColor(o2ChatConfig.getTitleTextColor(requireActivity())));
+            fragmentConversationsBinding.tvCustomText.setTextColor(Color.parseColor(o2ChatConfig.getTitleTextColor(requireActivity())));
+            fragmentConversationsBinding.orgName.setTextColor(Color.parseColor(o2ChatConfig.getTitleTextColor(requireActivity())));
+
             fragmentConversationsBinding.ivImageMenu.setColorFilter(Color.parseColor(o2ChatConfig.getTitleTextColor(requireActivity())), PorterDuff.Mode.SRC_IN);
 
 
