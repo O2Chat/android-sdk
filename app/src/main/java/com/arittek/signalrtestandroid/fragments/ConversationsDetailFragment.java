@@ -12,6 +12,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
@@ -265,6 +266,8 @@ public class ConversationsDetailFragment extends Fragment{
         customerMobileNumber = common.getCustomerMobileNumber(mContext);
         customerEmail = common.getCustomerEmail(mContext);
         conversationByUID = common.getConversationUUId(mContext);
+
+        applyTitleBarColor();
 
         if (common!=null){
             cusId = common.getCustomerID(mContext);
@@ -634,6 +637,20 @@ public class ConversationsDetailFragment extends Fragment{
         }, 500);
 
         return view;
+    }
+
+    private void applyTitleBarColor() {
+
+        try {
+            fragmentConversationsBinding.layouttoolbar.setBackgroundColor(Color.parseColor(common.getTitleBarColor(requireActivity())));
+            fragmentConversationsBinding.tvCustomText.setBackgroundColor(Color.parseColor(common.getTitleTextColor(requireActivity())));
+            fragmentConversationsBinding.ivImageMenu.setColorFilter(Color.parseColor(common.getTitleTextColor(requireActivity())), PorterDuff.Mode.SRC_IN);
+
+
+        } catch (IllegalArgumentException e) {
+            Log.e("COLOR", "Invalid color code: " );
+            //fragmentConversationsBinding.layouttoolbar.setBackgroundColor(Color.WHITE); // Fallback to white
+        }
     }
 
 

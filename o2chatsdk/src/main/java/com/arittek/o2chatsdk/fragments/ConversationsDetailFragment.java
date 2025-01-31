@@ -12,6 +12,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
@@ -668,12 +669,13 @@ public class ConversationsDetailFragment extends Fragment{
 
         try {
             fragmentConversationsBinding.layouttoolbar.setBackgroundColor(Color.parseColor(o2ChatConfig.getTitleBarColor(requireActivity())));
-            fragmentConversationsBinding.ivImageMenu.setBackgroundColor(Color.parseColor(o2ChatConfig.getTitleTextColor(requireActivity())));
             fragmentConversationsBinding.tvCustomText.setBackgroundColor(Color.parseColor(o2ChatConfig.getTitleTextColor(requireActivity())));
+            fragmentConversationsBinding.ivImageMenu.setColorFilter(Color.parseColor(o2ChatConfig.getTitleTextColor(requireActivity())), PorterDuff.Mode.SRC_IN);
+
 
         } catch (IllegalArgumentException e) {
             Log.e("COLOR", "Invalid color code: " );
-            fragmentConversationsBinding.layouttoolbar.setBackgroundColor(Color.WHITE); // Fallback to white
+            //fragmentConversationsBinding.layouttoolbar.setBackgroundColor(Color.WHITE); // Fallback to white
         }
     }
 
