@@ -37,9 +37,9 @@
         <activity
             android:name="com.arittek.o2chatsdk.activities.MainActivityChat"
             android:exported="false"
-            android:theme="@style/Theme.SignalRTestAndroid"
+
 
             />
     </application>
-
+<!--    android:theme="@style/Theme.SignalRTestAndroid"-->
 </manifest>
