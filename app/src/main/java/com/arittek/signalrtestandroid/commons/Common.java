@@ -97,6 +97,44 @@ public class Common {
     private static final int DAY_MILLIS = 24 * HOUR_MILLIS;
 
     // is isValidate Foreign Assets Wealth Statement
+
+
+    public void setTitleTextColor(Context context,String colorCode)
+    {
+        if(context != null)
+        {
+            SharedPreferences.Editor editor = context.getSharedPreferences("setTextColor", MODE_PRIVATE).edit();
+            editor.putString("TitleTextColor", "colorCode");
+            editor.apply();
+        }
+    }
+    public String getTitleTextColor(Context context)
+    {
+
+        SharedPreferences prefs = context.getSharedPreferences("setTextColor", MODE_PRIVATE);
+        String TaxFormString = prefs.getString("TitleTextColor", "#FF000000");
+        return TaxFormString;
+
+    }
+
+    public void setTitleBarColor(Context context,String colorCode)
+    {
+        if(context != null)
+        {
+            SharedPreferences.Editor editor = context.getSharedPreferences("setTitleColor", MODE_PRIVATE).edit();
+            editor.putString("TitleColor", colorCode);
+            editor.apply();
+        }
+    }
+    public String getTitleBarColor(Context context)
+    {
+
+        SharedPreferences prefs = context.getSharedPreferences("setTitleColor", MODE_PRIVATE);
+        String TaxFormString = prefs.getString("TitleColor", "#FFFFFFFF");
+        return TaxFormString;
+
+    }
+
     public boolean isValidateConversationFeedBackDialog(Context applicationContext, RatingBar ratingBar)
     {
         if (ratingBar.getRating()==0) {

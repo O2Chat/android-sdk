@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
@@ -157,10 +158,6 @@ import retrofit2.Response;
 
 public class ConversationsDetailFragment extends Fragment{
 
-    private boolean openGalleryStatus;
-//    private boolean isFileAttach;
-    private Dialog permissionDialog;
-
     ScheduledExecutorService scheduler;
     ArrayList<ConversationByUID> conversationByUIDArrayListIdZero;
     Handler handlerResend;
@@ -274,6 +271,8 @@ public class ConversationsDetailFragment extends Fragment{
         customerEmail = common.getCustomerEmail(mContext);
         conversationByUID = common.getConversationUUId(mContext);
 
+        applyTitleBarColor();
+
         if (common!=null){
             cusId = common.getCustomerID(mContext);
         }
@@ -352,7 +351,7 @@ public class ConversationsDetailFragment extends Fragment{
 
             // Check and request RECORD_AUDIO permission
             ArrayList<String> permissionList = new ArrayList<>();
-            permissionList.add(Manifest.permission.RECORD_AUDIO);
+         //   permissionList.add(Manifest.permission.RECORD_AUDIO);
             permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
             permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
             PermissionHelper.grantMultiplePermissions(getContext(), permissionList, new PermissionHelper.PermissionInterface() {
@@ -642,6 +641,20 @@ public class ConversationsDetailFragment extends Fragment{
         }, 500);
 
         return view;
+    }
+
+    private void applyTitleBarColor() {
+
+        try {
+            fragmentConversationsBinding.layouttoolbar.setBackgroundColor(Color.parseColor(common.getTitleBarColor(requireActivity())));
+            fragmentConversationsBinding.tvCustomText.setBackgroundColor(Color.parseColor(common.getTitleTextColor(requireActivity())));
+            fragmentConversationsBinding.ivImageMenu.setColorFilter(Color.parseColor(common.getTitleTextColor(requireActivity())), PorterDuff.Mode.SRC_IN);
+
+
+        } catch (IllegalArgumentException e) {
+            Log.e("COLOR", "Invalid color code: " );
+            //fragmentConversationsBinding.layouttoolbar.setBackgroundColor(Color.WHITE); // Fallback to white
+        }
     }
 
 
@@ -2353,125 +2366,50 @@ public class ConversationsDetailFragment extends Fragment{
         }
     }
 
-
-    private final ActivityResultLauncher<String[]> permissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
-                boolean allPermissionsGranted = result.values().stream().allMatch(granted -> granted);
-                if (allPermissionsGranted) {
-                    Log.d("PERMISSION", "All permissions granted. Proceeding with action.");
-                    performActionAfterPermission();  //  Auto-open gallery or camera
-                } else {
-                    Log.d("PERMISSION", "Permission denied.");
-                    Toast.makeText(requireContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
-                }
-            });
-
     private void storagePermission(boolean openGalleryStatus, boolean isFileAttach, Dialog dialog) {
-        this.openGalleryStatus = openGalleryStatus;
-        this.isFileAttach = isFileAttach;
-        this.permissionDialog = dialog;
+        ArrayList<String> permissionList = new ArrayList<>();
+        permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        permissionList.add(Manifest.permission.CAMERA);
+        PermissionHelper.grantMultiplePermissions(getActivity(), permissionList, new PermissionHelper.PermissionInterface() {
+            @Override
+            public void onSuccess() {
+                if (isFileAttach){
+                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                    intent.addCategory(Intent.CATEGORY_OPENABLE);
+                    String [] mimeTypes = {"image/*","application/msword","application/doc","application/docx", "application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"};
+                    intent.setType("*/*");
+                    intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                    startActivityForResult(intent, PICK_IMAGE_FOR_SELECT);
+                }
+                else if (openGalleryStatus) {
+                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                    intent.addCategory(Intent.CATEGORY_OPENABLE);
+                    String[] mimeTypes = {"image/*"};
+                    intent.setType("*/*");
+                    intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                    startActivityForResult(intent, PICK_IMAGE_FOR_SELECT);
+                    if(dialog!=null&& dialog.isShowing()){
+                        dialog.dismiss();
+                    }
 
-        String[] permissions = {
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.CAMERA
-        };
+                } else {
+                    if(dialog!=null&& dialog.isShowing()){
+                        dialog.dismiss();
+                    }
+                    dispatchTakePictureIntent(CAPTURE_PICTURE_FROM_CAMERA);
+                }
 
-        if (permissionsGranted()) {
-            //  Already granted, perform action immediately
-            performActionAfterPermission();
-        } else {
-            //  Request permissions using the Activity Result API
-            permissionLauncher.launch(permissions);
-        }
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
     }
-    private boolean permissionsGranted() {
-        return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
-                == PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        == PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
-                        == PackageManager.PERMISSION_GRANTED;
-    }
-
-    private void performActionAfterPermission() {
-        if (isFileAttach) {
-            Log.d("ACTION", "Opening document picker.");
-            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
-            String[] mimeTypes = {
-                    "image/*", "application/msword", "application/doc", "application/docx",
-                    "application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-            };
-            intent.setType("*/*");
-            intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
-            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-            startActivityForResult(intent, PICK_IMAGE_FOR_SELECT);
-        } else if (openGalleryStatus) {
-            Log.d("ACTION", "Opening gallery.");
-            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
-            String[] mimeTypes = {"image/*"};
-            intent.setType("*/*");
-            intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
-            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-            startActivityForResult(intent, PICK_IMAGE_FOR_SELECT);
-        } else {
-            Log.d("ACTION", "Opening camera.");
-            dispatchTakePictureIntent(CAPTURE_PICTURE_FROM_CAMERA);
-        }
-
-        // Dismiss permission dialog if open
-        if (permissionDialog != null && permissionDialog.isShowing()) {
-            permissionDialog.dismiss();
-        }
-    }
-
-
-//    private void storagePermission(boolean openGalleryStatus, boolean isFileAttach, Dialog dialog) {
-//        ArrayList<String> permissionList = new ArrayList<>();
-//        permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-//        permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
-//        permissionList.add(Manifest.permission.CAMERA);
-//        PermissionHelper.grantMultiplePermissions(getActivity(), permissionList, new PermissionHelper.PermissionInterface() {
-//            @Override
-//            public void onSuccess() {
-//                if (isFileAttach){
-//                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-//                    intent.addCategory(Intent.CATEGORY_OPENABLE);
-//                    String [] mimeTypes = {"image/*","application/msword","application/doc","application/docx", "application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"};
-//                    intent.setType("*/*");
-//                    intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
-//                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-//                    startActivityForResult(intent, PICK_IMAGE_FOR_SELECT);
-//                }
-//                else if (openGalleryStatus) {
-//                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-//                    intent.addCategory(Intent.CATEGORY_OPENABLE);
-//                    String[] mimeTypes = {"image/*"};
-//                    intent.setType("*/*");
-//                    intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
-//                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-//                    startActivityForResult(intent, PICK_IMAGE_FOR_SELECT);
-//                    if(dialog!=null&& dialog.isShowing()){
-//                        dialog.dismiss();
-//                    }
-//
-//                } else {
-//                    if(dialog!=null&& dialog.isShowing()){
-//                        dialog.dismiss();
-//                    }
-//                    dispatchTakePictureIntent(CAPTURE_PICTURE_FROM_CAMERA);
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onError() {
-//
-//            }
-//        });
-//    }
 
     private void dispatchTakePictureIntent(int requearCode) {
         if (mContext!=null){
