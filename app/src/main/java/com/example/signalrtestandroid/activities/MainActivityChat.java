@@ -147,7 +147,7 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
             final Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         }
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
 
         mContext = MainActivityChat.this;
         dbchat = AppDatabase.getAppDatabase(mContext.getApplicationContext());

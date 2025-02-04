@@ -26,12 +26,12 @@
             android:id="@+id/textMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_7sdp"
-            android:layout_marginStart="@dimen/_7sdp"
-            android:layout_marginEnd="@dimen/_7sdp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:textColor="@color/black"
-            android:maxWidth="@dimen/_200sdp"
-            android:textSize="@dimen/_13ssp"
+            android:maxWidth="230dp"
+            android:textSize="17sp"
             />
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -44,10 +44,10 @@
                 android:id="@+id/txtTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginStart="8dp"
                 android:textColor="@color/black"
                 android:background="@android:color/transparent"
-                android:textSize="@dimen/_8ssp"/>
+                android:textSize="10sp"/>
 
             <ImageView
                 android:id="@+id/imageStatus"
