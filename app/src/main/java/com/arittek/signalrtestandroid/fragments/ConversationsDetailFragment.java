@@ -647,7 +647,7 @@ public class ConversationsDetailFragment extends Fragment{
 
         try {
             fragmentConversationsBinding.layouttoolbar.setBackgroundColor(Color.parseColor(common.getTitleBarColor(requireActivity())));
-            fragmentConversationsBinding.tvCustomText.setBackgroundColor(Color.parseColor(common.getTitleTextColor(requireActivity())));
+            fragmentConversationsBinding.tvCustomText.setTextColor(Color.parseColor(common.getTitleTextColor(requireActivity())));
             fragmentConversationsBinding.ivImageMenu.setColorFilter(Color.parseColor(common.getTitleTextColor(requireActivity())), PorterDuff.Mode.SRC_IN);
 
 
