@@ -89,3 +89,5 @@
 -keep class okio.** { *; }
 -keep class okhttp3.** { *; }
 -keep class com.google.gson.** { *; }
+-keep class com.microsoft.signalr.** { *; }
+ -keep interface com.microsoft.signalr.** { *; }
