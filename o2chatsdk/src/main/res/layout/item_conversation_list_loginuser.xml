@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.arittek.o2chatsdk.fragments.ConversationsFragment"
+    tools:context="com.example.o2chatsdk.fragments.ConversationsFragment"
      android:layout_width="match_parent"
     android:background="@android:color/transparent"
     >
@@ -26,12 +26,13 @@
             android:id="@+id/textMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:layout_marginStart="7dp"
-            android:layout_marginEnd="7dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:textColor="@color/black"
             android:maxWidth="230dp"
-            android:textSize="13dp" />
+            android:textSize="15sp"
+            />
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,10 +44,10 @@
                 android:id="@+id/txtTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="7dp"
+                android:layout_marginStart="8dp"
                 android:textColor="@color/black"
                 android:background="@android:color/transparent"
-                android:textSize="8dp" />
+                android:textSize="9sp"/>
 
             <ImageView
                 android:id="@+id/imageStatus"
