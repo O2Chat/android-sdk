@@ -29,9 +29,11 @@
             android:layout_marginTop="@dimen/_7sdp"
             android:layout_marginStart="@dimen/_7sdp"
             android:layout_marginEnd="@dimen/_7sdp"
+            android:textIsSelectable="true"
+            android:text=""
             android:textColor="@color/black"
-            android:maxWidth="@dimen/_230sdp"
-            android:textSize="@dimen/_13ssp" />
+            android:maxWidth="@dimen/_200sdp"
+            android:textSize="15sp" />
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,7 +48,7 @@
                 android:layout_marginStart="@dimen/_7sdp"
                 android:textColor="@color/black"
                 android:background="@android:color/transparent"
-                android:textSize="@dimen/_8ssp" />
+                android:textSize="9sp" />
 
             <ImageView
                 android:id="@+id/imageStatus"
