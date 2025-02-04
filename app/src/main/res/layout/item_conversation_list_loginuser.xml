@@ -29,8 +29,10 @@
             android:layout_marginTop="@dimen/_7sdp"
             android:layout_marginStart="@dimen/_7sdp"
             android:layout_marginEnd="@dimen/_7sdp"
+            android:textIsSelectable="true"
+            android:text=""
             android:textColor="@color/black"
-            android:maxWidth="@dimen/_230sdp"
+            android:maxWidth="@dimen/_200sdp"
             android:textSize="@dimen/_13ssp" />
         <RelativeLayout
             android:layout_width="wrap_content"
