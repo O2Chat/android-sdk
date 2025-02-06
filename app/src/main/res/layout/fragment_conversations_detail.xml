@@ -134,6 +134,7 @@
                     android:paddingTop="@dimen/_5sdp"
                     android:layout_marginStart="@dimen/_2sdp"
                     android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
                     android:id="@+id/rvConversations"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
