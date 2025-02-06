@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#7dc8fa</color>
+    <color name="purple_200">#bb1823</color>
     <color name="purple_500">#0c83fa</color>
-    <color name="purple_700">#7dc8fa</color>
+    <color name="purple_700">#bb1823</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
@@ -29,6 +29,7 @@
 
 
 
+<!--
 
     <color name="bg_transparent_90">#B3272727</color>
     <color name="blue_color_dark">#331E84F2</color>
@@ -65,9 +66,9 @@
 
     <color name="chat_sender_bubble_bg">#D9ECFD</color>
 
-    <!--
+    &lt;!&ndash;
     <color name="chat_sender_bubble_bg">#b3d5ef</color>
--->
+&ndash;&gt;
 
     <color name="time_details_bg">#000000</color>
 
@@ -90,5 +91,6 @@
     <color name="switch_track_disabled">#969696</color>
 
     <color name="dark_gray_black">#252222</color>
+-->
 
 </resources>

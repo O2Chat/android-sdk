@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
@@ -37,9 +38,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
@@ -65,7 +70,6 @@ import com.arittek.signalrtestandroid.Events.chatEvents.SendNewChatResponseEvent
 import com.arittek.signalrtestandroid.Events.chatEvents.SendTypingIndicatorResponse;
 import com.arittek.signalrtestandroid.Events.chatEvents.TopicSelectEvent;
 
-import com.arittek.signalrtestandroid.R;
 import com.arittek.signalrtestandroid.activities.MainActivityChat;
 import com.arittek.signalrtestandroid.activities.SelectFilePreviewActivity;
 import com.arittek.signalrtestandroid.adapters.ConversationsByUIListAdapter;
@@ -111,9 +115,9 @@ import com.arittek.signalrtestandroid.retrofit.WebResponseBusinessHour;
 import com.download.library.DownloadImpl;
 import com.download.library.DownloadListenerAdapter;
 import com.download.library.Extra;
-import com.arittek.signalrtestandroid.commons.KeyboardVisibilityUtils;
-
+import com.arittek.signalrtestandroid.R;
 import com.arittek.signalrtestandroid.databinding.FragmentConversationsDetailBinding;
+import com.arittek.signalrtestandroid.commons.KeyboardVisibilityUtils;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
@@ -347,7 +351,7 @@ public class ConversationsDetailFragment extends Fragment{
 
             // Check and request RECORD_AUDIO permission
             ArrayList<String> permissionList = new ArrayList<>();
-            permissionList.add(Manifest.permission.RECORD_AUDIO);
+         //   permissionList.add(Manifest.permission.RECORD_AUDIO);
             permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
             permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
             PermissionHelper.grantMultiplePermissions(getContext(), permissionList, new PermissionHelper.PermissionInterface() {
@@ -643,7 +647,7 @@ public class ConversationsDetailFragment extends Fragment{
 
         try {
             fragmentConversationsBinding.layouttoolbar.setBackgroundColor(Color.parseColor(common.getTitleBarColor(requireActivity())));
-            fragmentConversationsBinding.tvCustomText.setBackgroundColor(Color.parseColor(common.getTitleTextColor(requireActivity())));
+            fragmentConversationsBinding.tvCustomText.setTextColor(Color.parseColor(common.getTitleTextColor(requireActivity())));
             fragmentConversationsBinding.ivImageMenu.setColorFilter(Color.parseColor(common.getTitleTextColor(requireActivity())), PorterDuff.Mode.SRC_IN);
 
 

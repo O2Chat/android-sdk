@@ -15,7 +15,7 @@
 
         <LinearLayout
             android:id="@+id/lnProfileUser"
-            android:layout_weight="0.25"
+            android:layout_weight="0.18"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -49,7 +49,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:textColor="@color/white_chat"
-                    android:textSize="15dp"
+                    android:textSize="17sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -69,9 +69,10 @@
                 android:textStyle="bold"
                 android:visibility="visible"
                 android:textColor="@color/black"
-                android:textSize="8dp" />
+                android:textSize="11sp" />
 
             <LinearLayout
+                android:orientation="vertical"
                 android:layout_below="@+id/txtName"
                 android:elevation="3dp"
                 android:id="@+id/layoutUserMessage"
@@ -80,6 +81,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
+                android:layout_marginBottom="2dp"
                 android:background="@drawable/message_nouser_background"
                 android:minHeight="32dp">
 
@@ -90,13 +92,34 @@
                     android:layout_marginTop="7dp"
                     android:layout_marginStart="7dp"
                     android:layout_marginEnd="7dp"
+                    android:text=""
                     android:layout_marginBottom="7dp"
                     android:textColor="@color/black"
-                    android:maxWidth="200dp"
-                    android:textSize="13dp" />
+                    android:maxWidth="230dp"
+                    android:textSize="15sp" />
+
+                <RelativeLayout
+                    android:layout_below="@+id/layoutUserMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginEnd="10dp"
+                    >
+                    <TextView
+                        android:id="@+id/txtTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_marginStart="8dp"
+                        android:textColor="@color/black"
+                        android:background="@android:color/transparent"
+                        android:textSize="9sp" />
+                </RelativeLayout>
 
             </LinearLayout>
 
+<!--
             <LinearLayout
                 android:layout_below="@+id/layoutUserMessage"
                 android:layout_width="wrap_content"
@@ -112,6 +135,7 @@
                     android:background="@android:color/transparent"
                     android:textSize="8dp" />
             </LinearLayout>
+-->
 
         </RelativeLayout>
     </LinearLayout>
