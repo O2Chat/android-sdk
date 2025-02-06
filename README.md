@@ -19,7 +19,7 @@ allprojects {
 App Module gradle file **(app/build.gradle)** 
 ```
 dependencies {
-	implementation 'com.github.O2Chat:android-sdk:1.0.6'
+	implementation 'com.github.O2Chat:android-sdk:1.0.7'
 }
 ```
 
@@ -47,6 +47,8 @@ To use the library in your project, follow these steps:
    o2chatConfig.saveCustomerEmail(context, "Email Address");
    o2chatConfig.saveCustomerMobileNumber(context, "Phone Number");
    o2chatConfig.saveCnicNumber(context, "Cnic");
+   o2chatConfig.setTitleBarColor(context,"#bb1823");
+   o2chatConfig.setTitleTextColor(context,"#ffffff");
    ```
 
 ## Step 4: Start Chat Activity 
@@ -56,14 +58,6 @@ To use the library in your project, follow these steps:
   ```java
         startActivity(new Intent(this, MainActivityChat.class));
    ```
-
-## Step 5: Permissions
-
-Ensure that you have the necessary permissions in your `AndroidManifest.xml` if your library requires them.
-
-```xml
-<uses-permission android:name="android.permission.INTERNET" />
-```
 
 
 ## Updating to newer versions of SDK
