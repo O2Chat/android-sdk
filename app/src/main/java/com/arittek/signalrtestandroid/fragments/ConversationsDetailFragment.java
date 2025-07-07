@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.storage.StorageManager;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -352,11 +353,40 @@ public class ConversationsDetailFragment extends Fragment{
             // Check and request RECORD_AUDIO permission
             ArrayList<String> permissionList = new ArrayList<>();
          //   permissionList.add(Manifest.permission.RECORD_AUDIO);
-            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-            permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+/*            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);*/
+
+
+            // RECORD_AUDIO is always required
+            permissionList.add(Manifest.permission.RECORD_AUDIO);
+            permissionList.add(Manifest.permission.CAMERA);
+
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                // API 33+
+                permissionList.add(Manifest.permission.READ_MEDIA_AUDIO);
+            } else {
+                // Below API 33 - legacy permissions
+                permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            }
+
+
             PermissionHelper.grantMultiplePermissions(getContext(), permissionList, new PermissionHelper.PermissionInterface() {
                 @Override
                 public void onSuccess() {
+
+
+                   /* // Optional: Set legacy storage flag for Android 10 (API 29)
+                    if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
+                        try {
+                            StorageManager sm = (StorageManager) getContext().getSystemService(Context.STORAGE_SERVICE);
+                            sm.getClass().getMethod("setForceAllowOnExternal", boolean.class).invoke(sm, true);
+                        } catch (Exception e) {
+                            e.printStackTrace(); // Only for legacy handling; optional
+                        }
+                    }*/
+
                     // Assuming fragmentConversationsBinding is of type FragmentConversationsBinding
                     if (fragmentConversationsBinding.lnAudioRecording.getVisibility() == View.VISIBLE) {
                         // The layout is visible, handle it accordingly
@@ -559,13 +589,27 @@ public class ConversationsDetailFragment extends Fragment{
             scrollToBottom();
         });
 
-        fragmentConversationsBinding.ivAudioRecord.setOnClickListener(view113 -> {
+/*        fragmentConversationsBinding.ivAudioRecord.setOnClickListener(view113 -> {
 
             // Check and request RECORD_AUDIO permission
             ArrayList<String> permissionList = new ArrayList<>();
-            permissionList.add(Manifest.permission.RECORD_AUDIO);
+*//*            permissionList.add(Manifest.permission.RECORD_AUDIO);
             permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-            permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);*//*
+
+
+            // RECORD_AUDIO is always required
+            permissionList.add(Manifest.permission.RECORD_AUDIO);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                // API 33+
+                permissionList.add(Manifest.permission.READ_MEDIA_AUDIO);
+            } else {
+                // Below API 33 - legacy permissions
+                permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            }
+
             PermissionHelper.grantMultiplePermissions(getContext(), permissionList, new PermissionHelper.PermissionInterface() {
                 @Override
                 public void onSuccess() {
@@ -587,7 +631,7 @@ public class ConversationsDetailFragment extends Fragment{
                     fragmentConversationsBinding.edtMessage.setEnabled(true);
                 }
             });
-        });
+        });*/
 
         fragmentConversationsBinding.edtMessage.addTextChangedListener(new TextWatcher() {
             @Override
@@ -723,9 +767,24 @@ public class ConversationsDetailFragment extends Fragment{
         SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
         String filename = "recording_" + timestampFormat.format(new Date()) + ".mp3"; // Or your preferred extension
 
-        // Get the external storage directory for recordings (consider permissions)
-        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
-        storageDir.mkdirs(); // Create the directory if it doesn't exist
+        File storageDir;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            // Scoped storage compliant (API 29+)
+            storageDir = new File(getContext().getExternalFilesDir(Environment.DIRECTORY_MUSIC), "Recordings");
+        }
+
+
+        else {
+            // Get the external storage directory for recordings (consider permissions)
+            storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
+        }
+
+        if (!storageDir.exists()) {
+            storageDir.mkdirs();
+        }
+
+        //storageDir.mkdirs(); // Create the directory if it doesn't exist
 
         return new File(storageDir, filename).getAbsolutePath();
     }
@@ -2249,8 +2308,14 @@ public class ConversationsDetailFragment extends Fragment{
 
     private void storagePermission(MessageEventFileDownload messageEventFileDownload){
         ArrayList<String> permissionList = new ArrayList<>();
-        permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+/*        permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);*/
+
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
+
         PermissionHelper.grantMultiplePermissions(getActivity(), permissionList, new PermissionHelper.PermissionInterface() {
             @Override
             public void onSuccess() {
@@ -2259,13 +2324,18 @@ public class ConversationsDetailFragment extends Fragment{
 
 
 
-                        String rootPath = Environment.getExternalStorageDirectory()
+/*                        String rootPath = Environment.getExternalStorageDirectory()
                                 .getAbsolutePath() + "/O2Chat/";
-                        File root = new File(rootPath);
+                        File root = new File(rootPath);*/
+
+
+                        File root = new File(mContext.getExternalFilesDir(null), "O2Chat/");
+
+
                         if (!root.exists()) {
                             root.mkdirs();
                         }
-                        File f = new File(rootPath + messageEventFileDownload.documentName);
+                        File f = new File(root, messageEventFileDownload.documentName);
 
                         Log.d("FilePath", "Expected Path: " + f.getAbsolutePath());
 
@@ -2368,8 +2438,17 @@ public class ConversationsDetailFragment extends Fragment{
 
     private void storagePermission(boolean openGalleryStatus, boolean isFileAttach, Dialog dialog) {
         ArrayList<String> permissionList = new ArrayList<>();
+
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
+
+/*
+
         permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+*/
         permissionList.add(Manifest.permission.CAMERA);
         PermissionHelper.grantMultiplePermissions(getActivity(), permissionList, new PermissionHelper.PermissionInterface() {
             @Override
