@@ -762,32 +762,39 @@ public class ConversationsDetailFragment extends Fragment{
         timerThread.start();
     }
 
+
     private String getOutputFilePath() {
-        // Define your logic to generate a unique output file path for the recording
         SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
-        String filename = "recording_" + timestampFormat.format(new Date()) + ".mp3"; // Or your preferred extension
+        String filename = "recording_" + timestampFormat.format(new Date()) + ".mp3";
 
-        File storageDir;
+        // Get the app-specific directory on external storage for audio files.
+        // This directory is automatically created and managed by the system.
+        // Files here are private to your app but accessible by the user via a file browser.
+        // No WRITE_EXTERNAL_STORAGE permission is needed for this location.
+        File storageDir = getContext().getExternalFilesDir(Environment.DIRECTORY_MUSIC); // Use getContext() for Fragment
+        // For Activity: File storageDir = getExternalFilesDir(Environment.DIRECTORY_MUSIC);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            // Scoped storage compliant (API 29+)
-            storageDir = new File(getContext().getExternalFilesDir(Environment.DIRECTORY_MUSIC), "Recordings");
+        if (storageDir == null) {
+            Log.e("TAG", "ExternalFilesDir for Music is null. Cannot get storage directory.");
+            // Fallback to internal storage if external is not available (rare)
+            storageDir = getContext().getFilesDir(); // Internal storage, also no permissions
+            Log.w("TAG", "Falling back to internal storage: " + storageDir.getAbsolutePath());
         }
 
-
-        else {
-            // Get the external storage directory for recordings (consider permissions)
-            storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
-        }
-
+        // Ensure the directory exists (mkdirs() is safe to call even if it exists)
         if (!storageDir.exists()) {
-            storageDir.mkdirs();
+            if (!storageDir.mkdirs()) {
+                Log.e("TAG", "Failed to create directory: " + storageDir.getAbsolutePath());
+                // Handle error: perhaps return null or throw an exception
+                return null;
+            }
         }
 
-        //storageDir.mkdirs(); // Create the directory if it doesn't exist
-
-        return new File(storageDir, filename).getAbsolutePath();
+        File outputFile = new File(storageDir, filename);
+        Log.d("TAG", "Output file path: " + outputFile.getAbsolutePath());
+        return outputFile.getAbsolutePath();
     }
+
 
     private void stopRecording() {
         if (recorder != null) {
