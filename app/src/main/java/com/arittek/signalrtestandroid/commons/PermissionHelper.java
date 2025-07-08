@@ -70,7 +70,7 @@ public class PermissionHelper {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
             for (String permission : permissionTypes) {
                 // Only add legacy permissions if below Android 10
-                if (permission.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE) ||
+                if (/*permission.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE) ||*/
                         permission.equals(Manifest.permission.READ_EXTERNAL_STORAGE)) {
                     permissionTypesUpdate.add(permission);
                 }

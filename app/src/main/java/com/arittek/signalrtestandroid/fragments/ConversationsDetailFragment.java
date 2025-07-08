@@ -367,7 +367,7 @@ public class ConversationsDetailFragment extends Fragment{
                 permissionList.add(Manifest.permission.READ_MEDIA_AUDIO);
             } else {
                 // Below API 33 - legacy permissions
-                permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+               // permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
                 permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
             }
 
@@ -2312,7 +2312,7 @@ public class ConversationsDetailFragment extends Fragment{
         permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);*/
 
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
-            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+           // permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
             permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
         }
 
@@ -2439,8 +2439,10 @@ public class ConversationsDetailFragment extends Fragment{
     private void storagePermission(boolean openGalleryStatus, boolean isFileAttach, Dialog dialog) {
         ArrayList<String> permissionList = new ArrayList<>();
 
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
-            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.TIRAMISU) {
+            // Only add READ_EXTERNAL_STORAGE if strictly necessary for your app's core functionality
+            // on older devices, and you are NOT using the Photo Picker backport.
+            // Avoid WRITE_EXTERNAL_STORAGE unless your app's core function is a file manager or similar.
             permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
         }
 
