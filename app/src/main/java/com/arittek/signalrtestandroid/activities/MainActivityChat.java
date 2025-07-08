@@ -4,6 +4,7 @@ import static com.arittek.signalrtestandroid.commons.Constants.COLOR_CODE_KEY;
 import static com.arittek.signalrtestandroid.commons.Constants.NAME_KEY;
 import static com.arittek.signalrtestandroid.commons.Constants.NAME_LETTER_KEY;
 import static com.arittek.signalrtestandroid.commons.Constants.SOURCE_KEY;
+import static com.arittek.signalrtestandroid.commons.Utils.setupEdgeToEdge;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -139,6 +140,7 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setupEdgeToEdge(this);
 //        EmojiManager.install(new GoogleEmojiProvider());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
             this.setTurnScreenOn(true);
@@ -146,6 +148,8 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
             final Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         }
+
+
 
         mContext = MainActivityChat.this;
         dbchat = AppDatabase.getAppDatabase(mContext.getApplicationContext());

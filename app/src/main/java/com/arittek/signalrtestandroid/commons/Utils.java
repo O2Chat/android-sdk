@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.os.Build;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.arittek.signalrtestandroid.R;
 
@@ -151,6 +156,44 @@ public class Utils {
             isFileSizeExceed = !Utils.MaxSizeImageCheck(dataSize);
         }
         return isFileSizeExceed;
+    }
+    public static void setupEdgeToEdge(Activity activity) {
+        // Step 1: Enable edge-to-edge drawing
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            activity.getWindow().setDecorFitsSystemWindows(false);
+        }
+
+        // Step 2: Get the root view. Using android.R.id.content is a common way
+        // to get the root of the Activity's content view.
+        View rootView = activity.findViewById(android.R.id.content);
+        if (rootView == null) {
+            // Fallback if android.R.id.content is not suitable or found,
+            // though it usually is for standard Activities.
+            // You might need a specific root view ID from your layout XML.
+            // Example: rootView = activity.findViewById(R.id.your_activity_root_layout);
+            return; // Cannot proceed if no root view found
+        }
+
+        // Step 3: Apply window insets as padding to the root view
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, windowInsets) -> {
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+            // Apply padding directly to the root view.
+            // This assumes the root view should handle the entire system bar area.
+            v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
+
+            // You might return windowInsets here if children views also need to consume parts.
+            // For simple full-screen padding, returning CONSUMED is also an option:
+            // return WindowInsetsCompat.CONSUMED;
+            return windowInsets;
+        });
+
+        // Step 4: Adjust system bar icon appearance
+        WindowInsetsControllerCompat insetsController = ViewCompat.getWindowInsetsController(activity.getWindow().getDecorView());
+        if (insetsController != null) {
+            insetsController.setAppearanceLightStatusBars(true); // Assuming light status bar background
+            insetsController.setAppearanceLightNavigationBars(true); // Assuming light navigation bar background
+            // Set to false for dark background
+        }
     }
 
 }

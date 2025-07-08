@@ -1,5 +1,7 @@
 package com.arittek.o2chatsdk.activities;
 
+import static com.arittek.o2chatsdk.commons.Utils.setupEdgeToEdge;
+
 import android.os.Bundle;
 import android.view.View;
 
@@ -22,6 +24,8 @@ public class UserProfileActivity extends AppCompatActivity {
 
         profileUpdateBinding = ActivityProfileUpdateBinding.inflate(getLayoutInflater());
         setContentView(profileUpdateBinding.getRoot());
+        setupEdgeToEdge(this);
+
         common = new Common();
 
         if (Utils.isNetworkAvailable(UserProfileActivity.this)) {

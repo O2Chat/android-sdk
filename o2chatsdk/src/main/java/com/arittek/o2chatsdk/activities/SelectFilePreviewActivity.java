@@ -1,5 +1,7 @@
 package com.arittek.o2chatsdk.activities;
 
+import static com.arittek.o2chatsdk.commons.Utils.setupEdgeToEdge;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +36,7 @@ public class SelectFilePreviewActivity extends AppCompatActivity {
         // Initialize binding
         binding = FragmentFilePreviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        setupEdgeToEdge(this);
 
         MainActivityChat.isPause = false;
 

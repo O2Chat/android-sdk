@@ -4,6 +4,7 @@ import static com.arittek.o2chatsdk.commons.Constants.COLOR_CODE_KEY;
 import static com.arittek.o2chatsdk.commons.Constants.NAME_KEY;
 import static com.arittek.o2chatsdk.commons.Constants.NAME_LETTER_KEY;
 import static com.arittek.o2chatsdk.commons.Constants.SOURCE_KEY;
+import static com.arittek.o2chatsdk.commons.Utils.setupEdgeToEdge;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -29,6 +30,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -146,6 +148,7 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setupEdgeToEdge(this);
 //        EmojiManager.install(new GoogleEmojiProvider());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
             this.setTurnScreenOn(true);
