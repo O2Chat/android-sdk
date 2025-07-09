@@ -366,12 +366,26 @@ public class ConversationsDetailFragment extends Fragment{
 
         fragmentConversationsBinding.ivAudioRecord.setOnClickListener(view113 -> {
 
-                // Check and request RECORD_AUDIO permission
-                ArrayList<String> permissionList = new ArrayList<>();
-              //  permissionList.add(Manifest.permission.RECORD_AUDIO);
-              //  permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            // Check and request RECORD_AUDIO permission
+            ArrayList<String> permissionList = new ArrayList<>();
+            //   permissionList.add(Manifest.permission.RECORD_AUDIO);
+/*            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);*/
+
+
+            // RECORD_AUDIO is always required
+            permissionList.add(Manifest.permission.RECORD_AUDIO);
+            permissionList.add(Manifest.permission.CAMERA);
+
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                // API 33+
+                permissionList.add(Manifest.permission.READ_MEDIA_AUDIO);
+            } else {
+                // Below API 33 - legacy permissions
+                // permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
                 permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
-                PermissionHelper.grantMultiplePermissions(getContext(), permissionList, new PermissionHelper.PermissionInterface() {
+            }                PermissionHelper.grantMultiplePermissions(getContext(), permissionList, new PermissionHelper.PermissionInterface() {
                     @Override
                     public void onSuccess() {
                         // Assuming fragmentConversationsBinding is of type FragmentConversationsBinding
