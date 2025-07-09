@@ -157,7 +157,22 @@ public class Utils {
         }
         return isFileSizeExceed;
     }
+
     public static void setupEdgeToEdge(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            activity.getWindow().setDecorFitsSystemWindows(false);
+        }
+
+        WindowInsetsControllerCompat controller =
+                ViewCompat.getWindowInsetsController(activity.getWindow().getDecorView());
+
+        if (controller != null) {
+            controller.setAppearanceLightStatusBars(true);
+            controller.setAppearanceLightNavigationBars(true);
+        }
+    }
+
+/*    public static void setupEdgeToEdge(Activity activity) {
         // Step 1: Enable edge-to-edge drawing
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             activity.getWindow().setDecorFitsSystemWindows(false);
@@ -194,5 +209,5 @@ public class Utils {
             insetsController.setAppearanceLightNavigationBars(true); // Assuming light navigation bar background
             // Set to false for dark background
         }
-    }
+    }*/
 }

@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -157,7 +160,24 @@ public class Utils {
         }
         return isFileSizeExceed;
     }
+
+
     public static void setupEdgeToEdge(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            activity.getWindow().setDecorFitsSystemWindows(false);
+        }
+
+        WindowInsetsControllerCompat controller =
+                ViewCompat.getWindowInsetsController(activity.getWindow().getDecorView());
+
+        if (controller != null) {
+            controller.setAppearanceLightStatusBars(true);
+            controller.setAppearanceLightNavigationBars(true);
+        }
+    }
+
+
+/*    public static void setupEdgeToEdge(Activity activity) {
         // Step 1: Enable edge-to-edge drawing
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             activity.getWindow().setDecorFitsSystemWindows(false);
@@ -194,6 +214,6 @@ public class Utils {
             insetsController.setAppearanceLightNavigationBars(true); // Assuming light navigation bar background
             // Set to false for dark background
         }
-    }
+    }*/
 
 }

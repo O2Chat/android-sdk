@@ -6,6 +6,7 @@ import static com.arittek.signalrtestandroid.commons.Constants.NAME_KEY;
 import static com.arittek.signalrtestandroid.commons.Constants.NAME_LETTER_KEY;
 import static com.arittek.signalrtestandroid.commons.Constants.SOURCE_KEY;
 import static com.arittek.signalrtestandroid.commons.PermissionHelper.showSettingsDialog;
+import static com.arittek.signalrtestandroid.commons.Utils.setupEdgeToEdge;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -276,6 +277,9 @@ public class ConversationsDetailFragment extends Fragment{
         // Inflate the layout for this fragment
         fragmentConversationsBinding = FragmentConversationsDetailBinding.inflate(getLayoutInflater());
         View view = fragmentConversationsBinding.getRoot();
+
+
+
         dbchat = AppDatabase.getAppDatabase(getContext().getApplicationContext());
         common = new Common();
         filesNames = new ArrayList<>();
@@ -1342,7 +1346,8 @@ public class ConversationsDetailFragment extends Fragment{
     public void onMessageEvent(MessageEventFileDownload event) {
         if (!event.eventType.isEmpty()) {
             if (event.eventType.equalsIgnoreCase("FileDownload")) {
-                storagePermission(event);
+               // storagePermission(event);
+                downloadFile(event);
             }
         }
     }
@@ -2377,11 +2382,119 @@ public class ConversationsDetailFragment extends Fragment{
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
            // permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
             permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
-        }
 
-        PermissionHelper.grantMultiplePermissions(getActivity(), permissionList, new PermissionHelper.PermissionInterface() {
-            @Override
-            public void onSuccess() {
+
+            PermissionHelper.grantMultiplePermissions(getActivity(), permissionList, new PermissionHelper.PermissionInterface() {
+                @Override
+                public void onSuccess() {
+                    if (!messageEventFileDownload.files.isEmpty()){
+                        if (!messageEventFileDownload.files.get(0).url.isEmpty()) {
+
+
+
+/*                        String rootPath = Environment.getExternalStorageDirectory()
+                                .getAbsolutePath() + "/O2Chat/";
+                        File root = new File(rootPath);*/
+
+
+                            File root = new File(mContext.getExternalFilesDir(null), "O2Chat/");
+
+
+                            if (!root.exists()) {
+                                root.mkdirs();
+                            }
+                            File f = new File(root, messageEventFileDownload.documentName);
+
+                            Log.d("FilePath", "Expected Path: " + f.getAbsolutePath());
+
+                            if (f.exists()) {
+                                //open file here
+                                try {
+                                    common.openFile(mContext,f);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }else{
+                                if (messageEventFileDownload.files.get(0).isLocalFile){
+                                    ConversationByUID conversationByUID = messageEventFileDownload.conversationByUID;
+                                    if (messageEventFileDownload.conversationByUID!=null){
+                                        conversationByUID.isShowLocalFiles = true;
+                                        if(conversationsListAdapter!=null && messageEventFileDownload.position!=-1 && conversationsListAdapter.getItemCount()>0){
+                                            conversationsListAdapter.notifyItemChanged(messageEventFileDownload.position,conversationByUID);
+                                        }
+                                    }
+                                }else{
+                                    ConversationByUID conversationByUID = messageEventFileDownload.conversationByUID;
+                                    DownloadImpl.getInstance(mContext)
+                                            .url(messageEventFileDownload.files.get(0).url).target(f)
+                                            .enqueue(new DownloadListenerAdapter() {
+                                                @Override
+                                                public void onStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength, Extra extra) {
+                                                    super.onStart(url, userAgent, contentDisposition, mimetype, contentLength, extra);
+                                                    Log.d("Download", "Download started: " + url);
+                                                    if (messageEventFileDownload.conversationByUID!=null){
+                                                        conversationByUID.isDownloading = true;
+                                                        conversationByUID.isShowLocalFiles = false;
+                                                        if(conversationsListAdapter!=null && messageEventFileDownload.position!=-1 && conversationsListAdapter.getItemCount()>0){
+                                                            conversationsListAdapter.notifyItemChanged(messageEventFileDownload.position,conversationByUID);
+                                                        }
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onProgress(String url, long downloaded, long length, long usedTime) {
+                                                    super.onProgress(url, downloaded, length, usedTime);
+                                                    //Log.i("TAG", " progress:" + downloaded + " url:" + url);
+                                                    Log.d("Download", "Progress: " + downloaded + " / " + length);
+                                                }
+
+                                                @Override
+                                                public boolean onResult(Throwable throwable, Uri path, String url, Extra extra) {
+                                                    Log.d("FilePath", "Downloaded Path: " + path.getPath());
+                                                    if (throwable != null) {
+                                                        Log.e("DownloadError", "Failed to download file: " + throwable.getMessage());
+                                                        Toast.makeText(mContext, "File download failed.", Toast.LENGTH_SHORT).show();
+                                                        return false;
+                                                    }
+                                                    handler = new Handler();
+                                                    myRunnable = () -> {
+                                                        // Things to be done
+                                                        try {
+                                                            if (messageEventFileDownload.conversationByUID!=null){
+                                                                conversationByUID.isDownloading = false;
+                                                                if(conversationsListAdapter!=null && messageEventFileDownload.position!=-1 && conversationsListAdapter.getItemCount()>0){
+                                                                    conversationsListAdapter.notifyItemChanged(messageEventFileDownload.position,conversationByUID);
+                                                                }
+                                                            }
+                                                            if(common!=null){
+                                                                common.openFile(mContext,new File(path.getPath()));
+                                                            }
+                                                        } catch (IOException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                    };
+                                                    handler.postDelayed(myRunnable, 1200);
+                                                    //Toast.makeText(mContext, "File Saved", Toast.LENGTH_SHORT).show();
+                                                    return super.onResult(throwable, path, url, extra);
+                                                }
+                                            });
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onError() {
+                    storagePermission(messageEventFileDownload);
+                }
+            });
+
+
+        }
+        else {
+
                 if (!messageEventFileDownload.files.isEmpty()){
                     if (!messageEventFileDownload.files.get(0).url.isEmpty()) {
 
@@ -2478,13 +2591,110 @@ public class ConversationsDetailFragment extends Fragment{
                     }
                 }
 
-            }
 
-            @Override
-            public void onError() {
-                storagePermission(messageEventFileDownload);
+        }
+
+    }
+
+    private void downloadFile(MessageEventFileDownload messageEventFileDownload) {
+
+        if (!messageEventFileDownload.files.isEmpty()){
+            if (!messageEventFileDownload.files.get(0).url.isEmpty()) {
+
+
+
+/*                        String rootPath = Environment.getExternalStorageDirectory()
+                                .getAbsolutePath() + "/O2Chat/";
+                        File root = new File(rootPath);*/
+
+
+                File root = new File(mContext.getExternalFilesDir(null), "O2Chat/");
+
+
+                if (!root.exists()) {
+                    root.mkdirs();
+                }
+                File f = new File(root, messageEventFileDownload.documentName);
+
+                Log.d("FilePath", "Expected Path: " + f.getAbsolutePath());
+
+                if (f.exists()) {
+                    //open file here
+                    try {
+                        common.openFile(mContext,f);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    if (messageEventFileDownload.files.get(0).isLocalFile){
+                        ConversationByUID conversationByUID = messageEventFileDownload.conversationByUID;
+                        if (messageEventFileDownload.conversationByUID!=null){
+                            conversationByUID.isShowLocalFiles = true;
+                            if(conversationsListAdapter!=null && messageEventFileDownload.position!=-1 && conversationsListAdapter.getItemCount()>0){
+                                conversationsListAdapter.notifyItemChanged(messageEventFileDownload.position,conversationByUID);
+                            }
+                        }
+                    }else{
+                        ConversationByUID conversationByUID = messageEventFileDownload.conversationByUID;
+                        DownloadImpl.getInstance(mContext)
+                                .url(messageEventFileDownload.files.get(0).url).target(f)
+                                .enqueue(new DownloadListenerAdapter() {
+                                    @Override
+                                    public void onStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength, Extra extra) {
+                                        super.onStart(url, userAgent, contentDisposition, mimetype, contentLength, extra);
+                                        Log.d("Download", "Download started: " + url);
+                                        if (messageEventFileDownload.conversationByUID!=null){
+                                            conversationByUID.isDownloading = true;
+                                            conversationByUID.isShowLocalFiles = false;
+                                            if(conversationsListAdapter!=null && messageEventFileDownload.position!=-1 && conversationsListAdapter.getItemCount()>0){
+                                                conversationsListAdapter.notifyItemChanged(messageEventFileDownload.position,conversationByUID);
+                                            }
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onProgress(String url, long downloaded, long length, long usedTime) {
+                                        super.onProgress(url, downloaded, length, usedTime);
+                                        //Log.i("TAG", " progress:" + downloaded + " url:" + url);
+                                        Log.d("Download", "Progress: " + downloaded + " / " + length);
+                                    }
+
+                                    @Override
+                                    public boolean onResult(Throwable throwable, Uri path, String url, Extra extra) {
+                                        Log.d("FilePath", "Downloaded Path: " + path.getPath());
+                                        if (throwable != null) {
+                                            Log.e("DownloadError", "Failed to download file: " + throwable.getMessage());
+                                            Toast.makeText(mContext, "File download failed.", Toast.LENGTH_SHORT).show();
+                                            return false;
+                                        }
+                                        handler = new Handler();
+                                        myRunnable = () -> {
+                                            // Things to be done
+                                            try {
+                                                if (messageEventFileDownload.conversationByUID!=null){
+                                                    conversationByUID.isDownloading = false;
+                                                    if(conversationsListAdapter!=null && messageEventFileDownload.position!=-1 && conversationsListAdapter.getItemCount()>0){
+                                                        conversationsListAdapter.notifyItemChanged(messageEventFileDownload.position,conversationByUID);
+                                                    }
+                                                }
+                                                if(common!=null){
+                                                    common.openFile(mContext,new File(path.getPath()));
+                                                }
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+                                        };
+                                        handler.postDelayed(myRunnable, 1200);
+                                        //Toast.makeText(mContext, "File Saved", Toast.LENGTH_SHORT).show();
+                                        return super.onResult(throwable, path, url, extra);
+                                    }
+                                });
+                    }
+                }
             }
-        });
+        }
+
+
     }
 
     @Override

@@ -35,6 +35,9 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -149,6 +152,17 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
         setContentView(R.layout.activity_main);
 
         setupEdgeToEdge(this);
+        View rootView = findViewById(com.arittek.signalrtestandroid.R.id.root_view);
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
+            Insets imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime());
+            Insets navInsets = insets.getInsets(WindowInsetsCompat.Type.navigationBars());
+
+            int bottomPadding = Math.max(imeInsets.bottom, navInsets.bottom);
+
+            v.setPadding(0, 100, 0, bottomPadding); // Only apply bottom padding
+            return insets;
+        });
+
 //        EmojiManager.install(new GoogleEmojiProvider());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
             this.setTurnScreenOn(true);
