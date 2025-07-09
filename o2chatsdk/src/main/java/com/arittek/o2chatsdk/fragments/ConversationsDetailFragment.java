@@ -594,7 +594,7 @@ public class ConversationsDetailFragment extends Fragment{
             scrollToBottom();
         });
 
-        fragmentConversationsBinding.ivAudioRecord.setOnClickListener(view113 -> {
+/*        fragmentConversationsBinding.ivAudioRecord.setOnClickListener(view113 -> {
 
                 // Check and request RECORD_AUDIO permission
                 ArrayList<String> permissionList = new ArrayList<>();
@@ -622,7 +622,7 @@ public class ConversationsDetailFragment extends Fragment{
                         fragmentConversationsBinding.edtMessage.setEnabled(true);
                     }
                 });
-        });
+        });*/
 
 
         fragmentConversationsBinding.edtMessage.addTextChangedListener(new TextWatcher() {

@@ -5,6 +5,8 @@ import static com.arittek.signalrtestandroid.commons.Constants.HIDE_TOOLBAR;
 import static com.arittek.signalrtestandroid.commons.Constants.NAME_KEY;
 import static com.arittek.signalrtestandroid.commons.Constants.NAME_LETTER_KEY;
 import static com.arittek.signalrtestandroid.commons.Constants.SOURCE_KEY;
+import static com.arittek.signalrtestandroid.commons.PermissionHelper.showSettingsDialog;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -228,6 +230,28 @@ public class ConversationsDetailFragment extends Fragment{
     Runnable updateTimeRunnable;
     String audioDuration = "";
 
+
+    // Microphone permission launcher
+    private final ActivityResultLauncher<String> micPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    // Assuming fragmentConversationsBinding is of type FragmentConversationsBinding
+                    if (fragmentConversationsBinding.lnAudioRecording.getVisibility() == View.VISIBLE) {
+                        // The layout is visible, handle it accordingly
+                        fragmentConversationsBinding.lnAudioRecording.setVisibility(View.GONE);
+                    } else {
+                        // The layout is not visible, handle it accordingly
+                        startRecording();
+                        fragmentConversationsBinding.lnAudioRecording.setVisibility(View.VISIBLE);
+
+                        fragmentConversationsBinding.edtMessage.setEnabled(false);
+                    }
+                } else {
+                    handleMicPermissionDenied();
+                }
+            });
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -350,11 +374,15 @@ public class ConversationsDetailFragment extends Fragment{
 
         fragmentConversationsBinding.ivAudioRecord.setOnClickListener(view113 -> {
 
+
+            checkMicPermissionAndStart();
+
+/*
             // Check and request RECORD_AUDIO permission
             ArrayList<String> permissionList = new ArrayList<>();
          //   permissionList.add(Manifest.permission.RECORD_AUDIO);
-/*            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-            permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);*/
+*//*            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);*//*
 
 
             // RECORD_AUDIO is always required
@@ -377,7 +405,7 @@ public class ConversationsDetailFragment extends Fragment{
                 public void onSuccess() {
 
 
-                   /* // Optional: Set legacy storage flag for Android 10 (API 29)
+                   *//* // Optional: Set legacy storage flag for Android 10 (API 29)
                     if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
                         try {
                             StorageManager sm = (StorageManager) getContext().getSystemService(Context.STORAGE_SERVICE);
@@ -385,7 +413,7 @@ public class ConversationsDetailFragment extends Fragment{
                         } catch (Exception e) {
                             e.printStackTrace(); // Only for legacy handling; optional
                         }
-                    }*/
+                    }*//*
 
                     // Assuming fragmentConversationsBinding is of type FragmentConversationsBinding
                     if (fragmentConversationsBinding.lnAudioRecording.getVisibility() == View.VISIBLE) {
@@ -404,7 +432,7 @@ public class ConversationsDetailFragment extends Fragment{
                 public void onError() {
                     fragmentConversationsBinding.edtMessage.setEnabled(true);
                 }
-            });
+            });*/
         });
 
         fragmentConversationsBinding.ivStop.setOnClickListener(view114 -> {
@@ -710,6 +738,34 @@ public class ConversationsDetailFragment extends Fragment{
         return false; // Not handled, let activity decide
     }
 
+
+    // When user taps microphone button
+    private void checkMicPermissionAndStart() {
+        if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.RECORD_AUDIO)
+                == PackageManager.PERMISSION_GRANTED) {
+            // Assuming fragmentConversationsBinding is of type FragmentConversationsBinding
+            if (fragmentConversationsBinding.lnAudioRecording.getVisibility() == View.VISIBLE) {
+                // The layout is visible, handle it accordingly
+                fragmentConversationsBinding.lnAudioRecording.setVisibility(View.GONE);
+            } else {
+                // The layout is not visible, handle it accordingly
+                startRecording();
+                fragmentConversationsBinding.lnAudioRecording.setVisibility(View.VISIBLE);
+
+                fragmentConversationsBinding.edtMessage.setEnabled(false);
+            }
+        } else {
+            micPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO);
+        }
+    }
+
+    private void handleMicPermissionDenied() {
+        if (!shouldShowRequestPermissionRationale(Manifest.permission.RECORD_AUDIO)) {
+            showSettingsDialog(mContext);
+        } else {
+            Toast.makeText(mContext, "Microphone permission is required.", Toast.LENGTH_SHORT).show();
+        }
+    }
     private void startRecording() {
 
         outputFilePath = getOutputFilePath();

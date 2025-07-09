@@ -106,12 +106,19 @@ public class PermissionHelper {
                             //Toast.makeText(, "All permissions are granted!", Toast.LENGTH_SHORT).show();
                             permissionInterface.onSuccess();
                         }
-
+                        if (!report.areAllPermissionsGranted()) {
+                            for (PermissionDeniedResponse response : report.getDeniedPermissionResponses()) {
+                                if (response.isPermanentlyDenied()) {
+                                    showSettingsDialog(context); // Only when really blocked
+                                    return;
+                                }
+                            }
+                        }
                         // check for permanent denial of any permission
-                        if (report.isAnyPermissionPermanentlyDenied()) {
+                        /*if (report.isAnyPermissionPermanentlyDenied()) {
                             // show alert dialog navigating to Settings
                             showSettingsDialog(context);
-                        }
+                        }*/
                     }
 
                     @Override

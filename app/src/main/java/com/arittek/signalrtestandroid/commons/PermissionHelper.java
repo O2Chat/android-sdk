@@ -118,7 +118,7 @@ public class PermissionHelper {
 
     }
 
-    private static void showSettingsDialog(Context context) {
+    public static void showSettingsDialog(Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Need Permissions");
         builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.");
