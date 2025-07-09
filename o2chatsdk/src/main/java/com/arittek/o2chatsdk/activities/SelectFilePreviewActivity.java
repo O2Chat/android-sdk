@@ -152,5 +152,9 @@ public class SelectFilePreviewActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+       ConversationsDetailFragment.sendFileAfterPreview = null;
+        ConversationsDetailFragment.isCalledFromPreviewActivityBack = true;
+        MainActivityChat.isPause = true;
+        finish();
     }
 }
