@@ -152,7 +152,7 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
         setContentView(R.layout.activity_main);
 
         setupEdgeToEdge(this);
-        View rootView = findViewById(com.arittek.signalrtestandroid.R.id.root_view);
+        View rootView = findViewById(R.id.root_main_view);
         ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
             Insets imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime());
             Insets navInsets = insets.getInsets(WindowInsetsCompat.Type.navigationBars());
