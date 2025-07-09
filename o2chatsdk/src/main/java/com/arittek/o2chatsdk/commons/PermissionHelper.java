@@ -56,7 +56,7 @@ public class PermissionHelper {
     }
 
     static public void grantMultiplePermissions(final Context context, ArrayList<String> permissionTypes, final PermissionInterface permissionInterface) {
-        ArrayList<String> permissionTypesUpdate = new ArrayList<>();
+      /*  ArrayList<String> permissionTypesUpdate = new ArrayList<>();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             // only for TIRAMISU and newer versions
             permissionTypesUpdate.add(Manifest.permission.READ_MEDIA_IMAGES);
@@ -66,6 +66,34 @@ public class PermissionHelper {
                 permissionTypesUpdate.add(Manifest.permission.CAMERA);
             }
         }else{
+            permissionTypesUpdate = permissionTypes;
+        }*/
+        ArrayList<String> permissionTypesUpdate = new ArrayList<>();
+     /*   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // only for TIRAMISU and newer versions
+            permissionTypesUpdate.add(Manifest.permission.READ_MEDIA_IMAGES);
+            permissionTypesUpdate.add(Manifest.permission.READ_MEDIA_AUDIO);
+            permissionTypesUpdate.add(Manifest.permission.READ_MEDIA_VIDEO);
+            if (permissionTypes.contains(Manifest.permission.CAMERA)){
+                permissionTypesUpdate.add(Manifest.permission.CAMERA);
+            }
+        }
+*/
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+            for (String permission : permissionTypes) {
+                // Only add legacy permissions if below Android 10
+                if (/*permission.equals(Manifest.permission.WRITE_EXTERNAL_STORAGE) ||*/
+                        permission.equals(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    permissionTypesUpdate.add(permission);
+                }
+            }
+            if (permissionTypes.contains(Manifest.permission.CAMERA)) {
+                permissionTypesUpdate.add(Manifest.permission.CAMERA);
+            }
+        }
+
+
+        else{
             permissionTypesUpdate = permissionTypes;
         }
         Dexter.withContext(context)
