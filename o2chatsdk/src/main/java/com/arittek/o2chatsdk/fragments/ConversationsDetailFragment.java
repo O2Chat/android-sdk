@@ -741,11 +741,21 @@ public class ConversationsDetailFragment extends Fragment{
 
                     // ... (update timer UI on main thread)
                     int finalElapsedSeconds = elapsedSeconds;
-                    getActivity().runOnUiThread(() -> {
+                    Activity activity = getActivity();
+                    if (activity != null && isAdded())
+                    {
+                        activity.runOnUiThread(() -> {
                         if (fragmentConversationsBinding.timerTextView  != null) {
-                            fragmentConversationsBinding.timerTextView.setText(String.format("%02d:%02d", finalElapsedSeconds / 60, finalElapsedSeconds % 60));
+                            try {
+                                fragmentConversationsBinding.timerTextView.setText(String.format("%02d:%02d", finalElapsedSeconds / 60, finalElapsedSeconds % 60));
+
+                            }
+                            catch (Exception e){
+
+                            }
                         }
                     });
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                     break;

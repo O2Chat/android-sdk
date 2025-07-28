@@ -915,7 +915,11 @@ public class MainActivityChat extends BaseActivity implements ConnectionService.
             hubConnection.remove("TypingIndicatorListener");
             hubConnection.remove("BulkNewChatListener");
             hubConnection.remove("ConversationStatusListener");
-            hubConnection.stop();
+            if (hubConnection != null)
+            {
+                hubConnection.stop();
+
+            }
         }
         if (common!=null && mContext!=null){
             common.setIsConversationOpen(mContext,false);
