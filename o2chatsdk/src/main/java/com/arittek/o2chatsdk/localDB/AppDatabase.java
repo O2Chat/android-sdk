@@ -28,12 +28,14 @@ public abstract class AppDatabase extends RoomDatabase {
     public static AppDatabase getAppDatabase(Context context) {
         if (INSTANCE == null) {
             // Initialize SQLCipher with your encryption passphrase
-            SQLiteDatabase.loadLibs(context.getApplicationContext());
-            String passphrase = "CMitXwKoZFw6PrK";
+          //  SQLiteDatabase.loadLibs(context.getApplicationContext());
+         /*   String passphrase = "CMitXwKoZFw6PrK";
             byte[] key = SQLiteDatabase.getBytes(passphrase.toCharArray());
             // Create a SupportFactory with the encryption key
-            SupportFactory factory = new SupportFactory(key);
+            SupportFactory factory = new SupportFactory(key);*/
             // Initialize Room with the encrypted factory
+
+            System.loadLibrary("sqlcipher");
             INSTANCE =
                     Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME).allowMainThreadQueries()
                             .build();
