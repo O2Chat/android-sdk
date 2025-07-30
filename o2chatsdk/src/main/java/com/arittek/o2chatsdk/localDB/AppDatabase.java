@@ -12,9 +12,6 @@ import com.arittek.o2chatsdk.localDB.entity.ConversationDetail;
 import com.arittek.o2chatsdk.localDB.entity.ConversationDetailFile;
 import com.arittek.o2chatsdk.localDB.entity.NewChatEntity;
 
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SupportFactory;
-
 @Database(entities = {ConversationDetail.class,ConversationDetailFile.class, NewChatEntity.class}, version = 1, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
