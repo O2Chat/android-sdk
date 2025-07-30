@@ -54,7 +54,7 @@ dependencies {
     implementation project(':app')
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.9.2'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.2'
-    implementation platform('com.google.firebase:firebase-bom:31.2.0')
+    implementation platform('com.google.firebase:firebase-bom:34.0.0')
     implementation 'com.google.firebase:firebase-messaging:25.0.0'
     implementation 'androidx.emoji:emoji-bundled:1.1.0'
     implementation 'androidx.startup:startup-runtime:1.2.0'
@@ -109,6 +109,9 @@ dependencies {
             because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
         }
     }
+
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+    implementation 'org.slf4j:slf4j-simple:1.7.36'
 }
 
 tasks.register("createReleaseAAR", Copy) {
