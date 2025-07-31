@@ -12,8 +12,7 @@ import com.arittek.signalrtestandroid.localDB.entity.ConversationDetail;
 import com.arittek.signalrtestandroid.localDB.entity.ConversationDetailFile;
 import com.arittek.signalrtestandroid.localDB.entity.NewChatEntity;
 
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SupportFactory;
+
 
 @Database(entities = {ConversationDetail.class,ConversationDetailFile.class, NewChatEntity.class}, version = 1, exportSchema = false)
 @TypeConverters(DateConverter.class)
@@ -28,11 +27,12 @@ public abstract class AppDatabase extends RoomDatabase {
     public static AppDatabase getAppDatabase(Context context) {
         if (INSTANCE == null) {
             // Initialize SQLCipher with your encryption passphrase
-            SQLiteDatabase.loadLibs(context.getApplicationContext());
+           /* SQLiteDatabase.loadLibs(context.getApplicationContext());
             String passphrase = "CMitXwKoZFw6PrK";
             byte[] key = SQLiteDatabase.getBytes(passphrase.toCharArray());
             // Create a SupportFactory with the encryption key
-            SupportFactory factory = new SupportFactory(key);
+            SupportFactory factory = new SupportFactory(key);*/
+            System.loadLibrary("sqlcipher");
             // Initialize Room with the encrypted factory
             INSTANCE =
                     Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME).allowMainThreadQueries()
