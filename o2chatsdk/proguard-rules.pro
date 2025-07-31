@@ -89,3 +89,10 @@
 -keep class okio.** { *; }
 -keep class okhttp3.** { *; }
 -keep class com.google.gson.** { *; }
+
+-keep class com.download.library.** { *; }
+-keep class org.bouncycastle.** { *; }
+-keep class org.conscrypt.** { *; }
+-keep class org.ietf.jgss.** { *; }
+-keep class org.openjsse.** { *; }
+-keep class org.slf4j.** { *; }
