@@ -90,3 +90,17 @@
 -keep class okhttp3.** { *; }
 -keep class com.google.gson.** { *; }
 
+# Downloader
+-dontwarn com.download.library.**
+
+# BouncyCastle
+-dontwarn org.bouncycastle.**
+
+# Conscrypt
+-dontwarn org.conscrypt.**
+
+# Java GSS API
+-dontwarn org.ietf.jgss.**
+
+# OpenJSSE
+-dontwarn org.openjsse.**
